@@ -1,0 +1,30 @@
+﻿<div class="dropdown">
+	<button class="btn btn-secondary dropdown-toggle"
+			type="button"
+			id="dropdownImageSelector"
+			data-toggle="dropdown"
+			aria-haspopup="true"
+			aria-expanded="false">
+		<i class="fa fa-camera"></i>
+	</button>
+	<div class="dropdown-menu" aria-labelledby="dropdownImageSelector">
+		<span class="dropdown-item pointer" (click)="openCamera()">Take Photo</span>
+		<span class="dropdown-item pointer" (click)="file.click()">
+			<span>Select Photo</span>
+			<input type="file" accept="image/*" #file (change)="photoSelected($event)" class="hidden">
+		</span>
+	</div>
+</div>
+
+<!--<button mat-mini-fab
+		class="btn-primary"
+		[matMenuTriggerFor]="menu">
+	<mat-icon>camera</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+	<button mat-menu-item (click)="openCamera()">Take Photo</button>
+	<div mat-menu-item (click)="file.click()">
+		<span>Select Photo</span>
+		<input type="file" accept="image/*" #file (change)="photoSelected($event)" class="hidden">
+	</div>
+</mat-menu>-->

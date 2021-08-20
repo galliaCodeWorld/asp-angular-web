@@ -1,0 +1,61 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				Company Employees
+			</span>
+			<span>
+				<button-add-employee-invite (onCompanyEmployeeInviteAdded)="companyEmployeeInviteAdded($event)"></button-add-employee-invite>
+			</span>
+			<span>
+				<button mat-button
+						class="btn-danger"
+						(click)="refresh()">
+					<mat-icon>refresh</mat-icon>
+					Refresh Employee List
+				</button>
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+	<div class="mat-sidenav-content">
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+
+					<div fxLayout="column" fxLayoutGap="20px">
+						<div fxFlex *ngIf="loading">
+							<p class="text-center">
+								<mat-spinner mode="indeterminate" color="warn"></mat-spinner>
+							</p>
+						</div>
+
+						<div fxFlex *ngIf="companyEmployees && !loading">
+							<mat-list>
+								<ng-container *ngFor="let companyEmployee of companyEmployees">
+									<company-employee [companyEmployee]="companyEmployee" (onDelete)="companyEmployeeDeleted($event)"></company-employee>
+									<mat-divider></mat-divider>
+								</ng-container>
+							</mat-list>
+						</div>
+						<div fxFlex *ngIf="!companyEmployees && !loading">
+							<p>
+								No employees found. A user can be associated with your company as an employee by invitation.
+								Use the "Create Invite" button to get permission from your employees to associate their profile with your company.
+								Once the employee accepts your invitation and associates their profile with your company, they will show up in your Employee list
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>
+<phone-ringer #phoneRinger></phone-ringer>

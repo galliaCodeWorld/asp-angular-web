@@ -1,0 +1,29 @@
+@{
+    Layout = "~/Views/Shared/_AppLayout.cshtml";
+    ViewData["Title"] = "App Page";
+}
+
+<environment names="Development">
+    <script src="thirdpartyjs/JsHelper.js"></script>
+    <script src="thirdpartyjs/VideoHelper.js"></script>
+    <script src="thirdpartyjs/WebRtcClient.js"></script>
+    <script src="thirdpartyjs/LocalStorage.js"></script>
+</environment>
+<environment names="Staging,Production">
+    @*
+        Note: Testing is the IIS application folder, on the server the file will be located in
+        Testing/wwwroot/thirdpartyjs/xxxx.js
+    *@
+    <script src="ChatClient/thirdpartyjs/JsHelper.js"></script>
+    <script src="ChatClient/thirdpartyjs/VideoHelper.js"></script>
+    <script src="ChatClient/thirdpartyjs/WebRtcClient.js"></script>
+    <script src="ChatClient/thirdpartyjs/LocalStorage.js"></script>
+</environment>
+
+@*<app asp-prerender-module="ClientApp/dist/main-server">Loading...</app>*@
+<app>ffLoading...</app>
+
+<script src="~/dist/vendor.js" asp-append-version="true"></script>
+@section scripts {
+    <script src="~/dist/main-client.js" asp-append-version="true"></script>
+}

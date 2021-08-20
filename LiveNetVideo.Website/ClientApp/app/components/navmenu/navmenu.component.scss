@@ -1,0 +1,14 @@
+.sidenav-menu {
+	border-right: 1px solid #c6c6c6;
+	/*> img:first-of-type {
+		max-width: 250px;
+		max-height: 200px;
+	}*/
+	max-width: 300px;
+	overflow-x: hidden;
+	background-color: #ececec;
+
+	.list-group-item-sidenav {
+		background-color: #ececec;
+	}
+}

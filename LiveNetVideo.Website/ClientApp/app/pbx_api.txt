@@ -1,0 +1,130 @@
+[HttpGet, Route("~/Pbx/GetCountryIsoCodes")]
+
+[HttpPost, Route("~/Pbx/GetMemberPbxLines")](PagingOrderByDto)
+[HttpPost, Route("~/Pbx/GetEmployeePbxLines")](IdDto)
+
+// NOTE: Id in IdDto is the employees memberId
+[HttpPost, Route("~/Pbx/GetEmployeeCompanies")](IdDto)
+
+[HttpPost, Route("~/Pbx/CreateCompanyProfile")](CompanyProfileDto)
+[HttpPost, Route("~/Pbx/AddCompanyProfileImage/{id}")]
+(fileName: uploadImage)
+
+[HttpDelete, Route("~/Pbx/DeleteCompanyProfileImage/{id}")]
+[HttpPost, Route("~/Pbx/UpdateCompanyProfile")](CompanyProfileDto)
+[HttpDelete, Route("~/Pbx/DeleteCompanyProfile/{id}")]
+[HttpGet, Route("~/Pbx/GetCompanyProfileById/{id}")]
+[HttpPost, Route("~/Pbx/GetCompanyProfilesByMemberId")](IdDto)
+[HttpPost, Route("~/Pbx/SearchCompanyProfilesByName")](SearchTermDto)
+[HttpPost, Route("~/Pbx/SearchCompanyProfilesByLocation")]
+(LocationSearchDto)
+
+[HttpPost, Route("~/Pbx/CreateCompanyEmployee")](CompanyEmployeeDto)
+[HttpPost, Route("~/Pbx/AddCompanyEmployeeImage/{id}")](fileName: uploadImage)
+[HttpDelete, Route("~/Pbx/DeleteCompanyEmployeeImage/{id}")]
+[HttpPost, Route("~/Pbx/UpdateCompanyEmployee")](CompanyEmployeeDto)
+[HttpDelete, Route("~/Pbx/DeleteCompanyEmployee/{id}")]
+[HttpGet, Route("~/Pbx/GetCompanyEmployeeById/{id}")]
+[HttpGet, Route("~/Pbx/GetCompanyEmployeeByMemberId/{id}")]
+[HttpPost, Route("~/Pbx/GetCompanyEmployeesByCompanyProfileId")](IdDto)
+[HttpGet, Route("~/Pbx/GetCompanyEmployeeByEmail/{id}/{email}")]
+(note:id is the companyProfileId)
+
+[HttpPost, Route("~/Pbx/SearchCompanyEmployeeByFirstName/{companyProfileId}")]
+(SearchTermDto, string companyProfileId)
+
+[HttpPost, Route("~/Pbx/SearchCompanyEmployeeByLastName/{companyProfileId}")]
+(SearchTermDto, string companyProfileId)
+
+[HttpPost, Route("~/Pbx/CreateCompanyEmployeeInvite")](CompanyEmployeeInviteDto)
+[HttpPost, Route("~/Pbx/UpdateCompanyEmployeeInvite")](CompanyEmployeeInviteDto)
+[HttpDelete, Route("~/Pbx/DeleteCompanyEmployeeInvite/{id}")]
+[HttpGet, Route("~/Pbx/GetCompanyEmployeeInviteById/{id}")]
+
+[HttpPost, Route("~/Pbx/GetCompanyEmployeeInvitesByCompanyProfileId")](LongIdDto)
+
+[HttpPost, Route("~/Pbx/SearchCompanyEmployeesByEmail/{companyProfileId}")]
+(SearchTermDto, string companyProfileId)
+
+[HttpPost, Route("~/Pbx/SearchCompanyEmployeesByFirstName/{companyProfileId}")]
+(SearchTermDto, string companyProfileId)
+
+[HttpPost, Route("~/Pbx/SearchCompanyEmployeesByLastName/{companyProfileId}")]
+(SearchTermDto, string companyProfileId)
+
+[HttpPost, Route("~/Pbx/CreateCompanyLocation")](CompanyLocationDto)
+
+[HttpPost, Route("~/Pbx/AddCompanyLocationImage/{id}")](fileName: uploadImage)
+[HttpDelete, Route("~/Pbx/DeleteCompanyLocationImage/{id}")]
+[HttpPost, Route("~/Pbx/UpdateCompanyLocation")](CompanyLocationDto)
+[HttpDelete, Route("~/Pbx/DeleteCompanyLocation/{id}")]
+[HttpGet, Route("~/Pbx/GetCompanyLocationById/{id}")]
+[HttpPost, Route("~/Pbx/GetCompanyLocationsByCompanyProfileId")](IdDto)
+
+[HttpPost, Route("~/Pbx/SearchCompanyLocationsByLocation/{companyProfileId}")]
+(LocationSearchDto, string companyProfileId)
+
+[HttpPost, Route("~/Pbx/CreateCompanyVideo")](CompanyVideoDto)
+[HttpPost, Route("~/Pbx/AddCompanyVideo/{id}")](filenName: uploadVideo)
+[HttpPost, Route("~/Pbx/UpdateCompanyVideo")](CompanyVideoDto)//Not implemented
+[HttpDelete, Route("~/Pbx/DeleteCompanyVideo/{id}")]
+[HttpGet, Route("~/Pbx/GetCompanyVideoById/{id}")]
+[HttpPost, Route("~/Pbx/GetCompanyVideosByCompanyProfileId")](IdDto)
+
+[HttpPost, Route("~/Pbx/CreateCompanyPhoto")](CompanyPhotoDto)
+[HttpPost, Route("~/Pbx/AddCompanyPhoto/{id}")](fileName: uploadImage)
+[HttpPost, Route("~/Pbx/UpdateCompanyPhoto")](CompanyPhotoDto)//Not not implemented
+[HttpDelete, Route("~/Pbx/DeleteCompanyPhoto/{id}")]
+[HttpGet, Route("~/Pbx/GetCompanyPhotoById/{id}")]
+[HttpPost, Route("~/Pbx/GetCompanyPHotosByCompanyProfileId")](IdDto)
+
+[HttpPost, Route("~/Pbx/CreatePbxLine")](PbxLineDto)
+[HttpPost, Route("~/Pbx/AddUpdatePbxLineImage/{id}")]
+[HttpDelete, Route("~/Pbx/DeleteUpdatePbxLineImage/{id}")]
+[HttpPost, Route("~/Pbx/UpdatePbxLine")](PbxLineDto)
+[HttpDelete, Route("~/Pbx/DeletePbxLine/{id}")]
+[HttpPost, Route("~/Pbx/GetMemberPbxLines")](PagingOrderByDto)
+[HttpPost, Route("~/Pbx/GetEmployeePbxLines")](IdDto:companyProfileId)
+[HttpGet, Route("~/Pbx/GetPbxLineById/{id}")]
+[HttpPost, Route("~/Pbx/GetPbxLinesByCompanyProfileId")](LongIdDto)
+
+[HttpPost, Route("~/Pbx/SearchPbxLinesByLineName/{companyProfileId}")]
+(SearchTermDto, string companyProfileId)
+
+[HttpPost, Route("~/Pbx/CreatePbxLineRep")](PbxLineRepDto)
+[HttpPost, Route("~/Pbx/UpdatePbxLineRep")](PbxLineRepDto)
+[HttpDelete, Route("~/Pbx/DeletePbxLineRep/{id}")]
+[HttpGet, Route("~/Pbx/GetPbxLineRepById/{id}")]
+[HttpPost, Route("~/Pbx/GetPbxLineRepsByCompanyProfileId")](IdDto)
+[HttpPost, Route("~/Pbx/GetPbxLineRepsByPbxLineId")](LongIdDto)
+
+[HttpPost, Route("~/Pbx/SearchPbxLineRepsByEmployeeFirstName/{pbxLineId}")]
+(SearchTermDto, string pbxLineId)
+
+[HttpPost, Route("~/Pbx/CreatePbxLineRepStatus")](PbxLineRepStatusDto)
+[HttpPost, Route("~/Pbx/UpdatePbxLineRepStatus")](PbxLineRepStatusDto)
+[HttpDelete, Route("~/Pbx/DeletePbxLineRepStatus/{id}")]
+[HttpGet, Route("~/Pbx/GetPbxLineRepStatusById/{id}")]
+[HttpPost, Route("~/Pbx/GetPbxLineRepStatusByPbxLineRepId")](LongIdDto)
+[HttpGet, Route("~/Pbx/IsRepOnline/{id}")]
+
+[HttpPost, Route("~/Pbx/CreatePbxCallQueue")](PbxCallQueueDto)
+[HttpPost, Route("~/Pbx/UpdatePbxCallQueue")](PbxCallQueueDto)
+[HttpDelete, Route("~/Pbx/DeletePbxCallQueue/{id}")]
+[HttpGet, Route("~/Pbx/GetPbxCallQueueById/{id}")]
+[HttpPost, Route("~/Pbx/GetPbxCallQueueByPbxLineRepId")](LongIdDto)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

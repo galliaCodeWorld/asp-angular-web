@@ -1,0 +1,68 @@
+<div class="sidenav-menu">
+	<img src="{{logo}}" alt="" class="img-fluid mb-2">
+
+	<profile-summary-component></profile-summary-component>
+
+	<ul class="list-group list-group-flush">
+
+		<li class="list-group-item list-group-item-sidenav pointer" (click)="gotoMainSiteDashboard()" *ngIf="isLoggedIn && hasMainSite">
+			<img src="assets/images/icon_home.png" />
+			<span class="align-middle">Home</span>
+		</li>
+		<li class="list-group-item list-group-item-sidenav pointer" [routerLink]="['/dashboard']" *ngIf="isLoggedIn">
+			<i class="fa fa-server fa-lg"></i>
+			<span class="align-middle">&nbsp; Dashboard</span>
+		</li>
+		<li class="list-group-item list-group-item-sidenav pointer" [routerLink]="['/phone', '']" *ngIf="isLoggedIn">
+			<img src="assets/images/icon_phone.png" />
+			<span class="align-middle">Phone</span>
+		</li>
+
+		<li class="list-group-item list-group-item-sidenav pointer" [routerLink]="['/meetings-dashboard']" *ngIf="isLoggedIn && !phoneOnly">
+			<img src="assets/images/icon_meetings.png" />
+			<span class="align-middle">Meetings</span>
+		</li>
+		<li class="list-group-item list-group-item-sidenav pointer" [routerLink]="['/netcast-dashboard']" *ngIf="isLoggedIn && !phoneOnly">
+			<img src="assets/images/icon_netcasts.png" />
+			<span class="align-middle">Netcasts</span>
+		</li>
+		<li class="list-group-item list-group-item-sidenav pointer" [routerLink]="['/contacts']" *ngIf="isMember">
+			<img src="assets/images/icon_contacts.png" />
+			<span class="align-middle">Contacts</span>
+		</li>
+		<li class="list-group-item list-group-item-sidenav pointer" [routerLink]="['/account']" *ngIf="isMember">
+			<img src="assets/images/icon_account.png" />
+			<span class="align-middle">Account</span>
+		</li>
+		<li class="list-group-item list-group-item-sidenav pointer" [routerLink]="['/guest-account']" *ngIf="!isMember && isLoggedIn">
+			<img src="assets/images/icon_account.png" />
+			<span class="align-middle">Account</span>
+		</li>
+		<li class="list-group-item list-group-item-sidenav pointer" [routerLink]="['/block-list']" *ngIf="isMember">
+			<img src="assets/images/icon_blocklist.png" />
+			<span class="align-middle">Block List</span>
+		</li>
+		<li class="list-group-item list-group-item-sidenav pointer" [routerLink]="['/settings']" *ngIf="isLoggedIn">
+			<img src="assets/images/icon_settings.png" />
+			<span class="align-middle">Settings</span>
+		</li>
+		<li class="list-group-item list-group-item-sidenav pointer" [routerLink]="['/logout']" *ngIf="isLoggedIn">
+			<img src="assets/images/icon_logout.png" />
+			<span class="align-middle">Logout</span>
+		</li>
+		<li class="list-group-item list-group-item-secondary" *ngIf="!phoneOnly"><strong>PBX</strong></li>
+
+		<li class="list-group-item list-group-item-sidenav pointer" [routerLink]="['/company-search']" *ngIf="isLoggedIn && !phoneOnly">
+			<img src="assets/images/icon_search.png" />
+			<span class="align-middle">Search Companies</span>
+		</li>
+		<li class="list-group-item list-group-item-sidenav pointer" [routerLink]="['/my-company']" *ngIf="isMember && !phoneOnly">
+			<img src="assets/images/icon_company.png" />
+			<span class="align-middle">My Company</span>
+		</li>
+		<li class="list-group-item list-group-item-sidenav pointer" [routerLink]="['/my-employers']" *ngIf="isMember && !phoneOnly">
+			<img src="assets/images/icon_employers.png" />
+			<span class="align-middle">My Employers</span>
+		</li>
+	</ul>
+</div>

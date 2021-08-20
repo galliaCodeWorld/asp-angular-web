@@ -1,0 +1,14 @@
+﻿@import '../../_variables.scss';
+@import '../../_mixins.scss';
+
+.timer {
+	font-size: 18px;
+	font-weight: bold;
+	color: $white;
+	background-color: $red;
+	@include borderRadius(30px);
+	padding: 10px;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}

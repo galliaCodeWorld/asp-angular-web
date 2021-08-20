@@ -1,0 +1,39 @@
+.modal-content {
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	max-height: 80vh;
+    z-index: 100;
+	.searchbox {
+		flex-shrink: 0;
+		margin: 0;
+		height: 2em;
+	}
+	.contacts {
+		margin: 0;
+		overflow: auto;
+		.contact {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			margin: .4em 0 .4em 0;
+			padding: .8em;
+			align-items: center;
+			.image img {
+				border-radius: 100%;
+			}
+			.info {
+				display: flex;
+				flex-direction: column;
+				margin-right: auto;
+				margin-left: 1em;
+			}
+			.actions {
+				display: flex;
+				.button {
+					border-radius: 100%;
+				}
+			}
+		}
+	}
+}

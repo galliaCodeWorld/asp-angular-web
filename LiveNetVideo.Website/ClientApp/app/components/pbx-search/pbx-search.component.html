@@ -1,0 +1,21 @@
+<div class="pbx-search">
+    <pbx-search-box (searchFound)="searchFound($event)" *ngIf="!showResults"></pbx-search-box>
+    <button mat-raised-button color="accent" *ngIf="showResults" (click)="showResults = false">Search Again</button>
+    <div class="results" *ngIf="showResults">
+        <mat-card class="result-card" *ngFor="let profile of companyProfiles">
+            <mat-card-header>
+                <mat-card-title>{{profile.companyName}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image [src]="profile.logoFilename | filename: profile.companyProfileId" alt="Photo of {{profile.companyName}}">
+            <mat-card-content>
+                <h1>Description:</h1>
+                <p>
+                    {{profile.description}}
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button color="accent">View Details</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿<div class="card bg-light border-primary">
+	<h3 class="card-header bg-primary text-white">{{data.title | titlecase }}</h3>
+	<div class="card-body">
+		<div [innerHtml]="htmlContent"></div>
+	</div>
+	<div class="card-footer">
+		<button class="btn btn-primary btn-lg" tabindex="-1" (click)="close()">Close</button>
+	</div>
+</div>
+<!--<h1 mat-dialog-title>{{data.title | titlecase }}</h1>
+<mat-dialog-content>
+	<div [innerHtml]="htmlContent"></div>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-raised-button tabindex="-1" (click)="close()">Close</button>
+</mat-dialog-actions>-->

@@ -1,0 +1,40 @@
+﻿@addTagHelper *, PaulMiami.AspNetCore.Mvc.Recaptcha
+@model LiveNetVideo.Website.Models.EmployeeInviteRegisterViewModel
+
+<recaptcha-script />
+
+<div class="well">
+
+	<form asp-controller="Account" asp-action="EmployeeInviteRegister" method="post">
+		<input asp-for="@Model.CompanyEmployeeInviteId" type="hidden" value="@Model.CompanyEmployeeInviteId" />
+		<div class="form-group">
+			<label><strong>First Name: </strong></label>
+
+			<input asp-for="@Model.FirstName" type="text" value="@Model.FirstName" class="form-control" placeholder="FirstName" />
+		</div>
+
+		<div class="form-group">
+			<label><strong>Last Name: </strong></label>
+
+			<input asp-for="@Model.LastName" type="text" value="@Model.LastName" class="form-control" placeholder="LastName" />
+		</div>
+
+		<div class="form-group">
+			<label><strong>Email: </strong></label>
+			<code>
+				@Model.Email
+			</code>
+			<input asp-for="@Model.Email" type="hidden" value="@Model.Email" />
+		</div>
+
+		<div class="form-group">
+			<label><strong>Password</strong></label>
+			<input asp-for="@Model.Password" type="password" placeholder="Password" class="form-control" />
+			<p class="help-block">Enter a password for your account.</p>
+		</div>
+		<div class="form-group">
+			<recaptcha />
+		</div>
+		<button class="button is-light is-outlined is-pulled-right" type="submit">Create Account</button>
+	</form>
+</div>

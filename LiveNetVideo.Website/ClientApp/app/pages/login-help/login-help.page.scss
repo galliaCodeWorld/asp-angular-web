@@ -1,0 +1,14 @@
+.container#forgot-password {
+	color: white;
+	h1: {
+		color: #ffffff !important;
+	}
+
+	form {
+		display:  flex;
+		flex-direction: column;
+		button {
+			align-self: flex-end;
+		}
+	}
+}

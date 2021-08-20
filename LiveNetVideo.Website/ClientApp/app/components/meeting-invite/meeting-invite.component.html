@@ -1,0 +1,25 @@
+﻿<h3>
+	{{title}}
+</h3>
+<p>
+	{{description}}
+</p>
+<p><strong>Date:</strong> {{meetDateTime}}</p>
+<div class="row justify-content-center">
+	<div class="col">
+		<button class="btn btn-primary" (click)="meetingDetails()">
+			Details
+		</button>
+	</div>
+	<div class="col">
+		<button class="btn btn-success" (click)="acceptRsvp()">
+			RSVP Will Attend
+		</button>
+	</div>
+
+	<div class="col">
+		<button class="btn btn-default" (click)="denyRsvp()">
+			RSVP Not Attending
+		</button>
+	</div>
+</div>

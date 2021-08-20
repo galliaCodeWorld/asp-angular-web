@@ -1,0 +1,26 @@
+<div class="chatbox" [class.is-active]="chatBoxActive">
+	<div class="chat-area">
+		<div class="chat-message {{message.position}}" *ngFor="let message of messages">
+			<figure class="chat-avatar">
+				<img src="http://via.placeholder.com/45x45" alt="">
+			</figure>
+			<div class="chat-bubble">
+				<p>{{message.message}}</p>
+			</div>
+		</div>
+	</div>
+	<div class="chat-input">
+		<div class="field has-addons">
+			<p class="control is-expanded">
+				<input class="input" type="text" (keyup.enter)="sendGroupMessage()" [(ngModel)]="chatInput" placeholder="Enter sms here">
+			</p>
+			<p class="control">
+				<a class="button is-primary">
+					<span class="icon is-small">
+						<i class="fa fa-paper-plane-o"></i>
+					</span>
+				</a>
+			</p>
+		</div>
+	</div>
+</div>

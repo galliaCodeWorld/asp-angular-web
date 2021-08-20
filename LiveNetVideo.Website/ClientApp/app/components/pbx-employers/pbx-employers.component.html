@@ -1,0 +1,21 @@
+﻿<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+<div class="containerv" *ngIf="!isLoading">
+    <div class="pbx-lines" >
+        <h1 color="primary" class="line-title">Companies</h1>
+        <div class="flex-container">
+            <mat-card class="pbx-line-card" *ngFor="let company of companies; let i = index">
+                <a (click)="navigateToRepLines(i)">
+                    <div class="image-title">
+                        <img src="{{company.logoFilename | filename: company.companyProfileId}}" alt="" />
+                        <h1>
+                            {{company.companyName}}
+                        </h1>
+                    </div>
+                </a>
+                <p>
+                    {{company.description}}
+                </p>
+            </mat-card>
+        </div>
+    </div>
+</div>

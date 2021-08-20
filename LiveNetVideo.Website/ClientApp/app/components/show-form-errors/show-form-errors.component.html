@@ -1,0 +1,5 @@
+﻿<ul *ngIf="shouldShowErrors()">
+	<li *ngFor="let error of listOfErrors()" class="is-invalid">
+		{{error}}
+	</li>
+</ul>

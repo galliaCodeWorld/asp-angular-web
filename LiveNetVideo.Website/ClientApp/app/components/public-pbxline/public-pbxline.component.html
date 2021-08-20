@@ -1,0 +1,16 @@
+﻿<div class="media">
+	<img class="mr-3" src="{{imgSrc}}" />
+	<div class="media-body">
+		<h3 class="mt-0">
+			{{lineName}}
+		</h3>
+		<p>
+			{{description}}
+		</p>
+
+		<button class="btn btn-primary btn-sm" (click)="gotoPbxline()" *ngIf="!isDisabled && pbxlineId">
+			<i class="fa fa-phone"></i>
+			Connect
+		</button>
+	</div>
+</div>

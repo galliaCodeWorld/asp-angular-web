@@ -1,0 +1,65 @@
+﻿<div class="card border border-primary mb-3">
+	<h1 class="card-header bg-primary text-white">Incoming Call</h1>
+
+	<div class="card-body">
+		<img class="img-circle thumbnail-md" src="{{imgSrc}}" />
+		<h2 class="card-title">{{name}}</h2>
+		<h4 class="card-subtitle">{{email}}</h4>
+		<div class="row justify-content-center">
+			<div class="col-2">
+				<div class="alert alert-warning">
+					{{timer}}
+				</div>
+			</div>
+		</div>
+		<button class="btn btn-danger btn-lg" (click)="denyCall()">
+			<i class="fa fa-window-close"></i>
+			Deny Caller
+		</button>
+		<button class="btn btn-success btn-lg" (click)="acceptCall()">
+			<i class="fa fa-phone"></i>
+			Accept Caller
+		</button>
+	</div>
+	<div class="card-footer" *ngIf="idCards.length">
+		<div class="row align-items-top justify-content-center">
+			<div class="col-3" *ngFor="let idCard of idCards">
+				<id-card [idCard]="idCard"></id-card>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--<mat-card>
+	<mat-card-header>
+		<img mat-card-avatar src="{{imgSrc}}" />
+		<mat-card-title>{{name}}</mat-card-title>
+		<mat-card-subtitle>{{email}}</mat-card-subtitle>
+	</mat-card-header>
+	<mat-card-actions>
+		<div fxLayout="row">
+			<div fxFlex="70%" class="text-center">
+				<button mat-raised-button (click)="denyCall()">
+					<mat-icon font-set="fontawesome" fontIcon="thumbs-down"></mat-icon>
+					Deny Caller
+				</button>
+				<button mat-raised-button (click)="acceptCall()">
+					<mat-icon font-set="fontawesome" fontIcon="thumbs-up"></mat-icon>
+					Accept Caller
+				</button>
+			</div>
+			<div fxFlex="30%">
+				<h2 class="timer">{{timer}}</h2>
+			</div>
+		</div>
+	</mat-card-actions>
+	<mat-card-content *ngIf="idCards.length">
+		<div fxLayout="column" fxLayoutGap="10px">
+			<ng-container *ngFor="let idCard of idCards;">
+				<div fxFlex>
+					<id-card [idCard]="idCard"></id-card>
+				</div>
+			</ng-container>
+		</div>
+	</mat-card-content>
+</mat-card>-->

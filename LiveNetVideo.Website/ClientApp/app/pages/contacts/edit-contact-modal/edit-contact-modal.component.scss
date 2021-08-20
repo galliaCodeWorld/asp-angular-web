@@ -1,0 +1,16 @@
+.modal-content {
+    display:  flex;
+    justify-content: center;
+    .card {
+        .card-image {
+            display: flex;
+            flex-direction: column;
+            upload-photo-menu {
+                align-self: flex-end;
+            }
+        }
+        .card-content {
+            padding: 1rem;
+        }
+    }
+}

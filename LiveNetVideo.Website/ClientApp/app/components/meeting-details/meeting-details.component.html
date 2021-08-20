@@ -1,0 +1,22 @@
+<h3>
+	{{title}}
+</h3>
+<p>
+	{{description}}
+</p>
+<p><strong>Type:</strong> {{isPrivate}}</p>
+<p><strong>Date:</strong> {{meetDateTime}}</p>
+<p><strong>Duration: </strong> {{duration}}</p>
+<p><strong>Link: </strong> {{link}}</p>
+<div *ngIf="isPrivate" class="card bg-light border-primary mb-3">
+	<h3 class="card-header">Attendees</h3>
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item" *ngFor="let attendee of attendees">
+			<meeting-attendee [canDelete]="false" [meetingAttendee]="attendee" (onMeetingAttendeeDeleted)="deleteMeetingAttendee($event)"></meeting-attendee>
+		</li>
+	</ul>
+</div>
+
+<hr />
+<p><button class="btn btn-primary" (click)="close()">Close</button></p>
+<hr />

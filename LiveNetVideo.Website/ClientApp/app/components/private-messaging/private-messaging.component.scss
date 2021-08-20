@@ -1,0 +1,10 @@
+﻿@import '../../_variables.scss';
+@import '../../_mixins.scss';
+
+.mat-option {
+	img {
+		max-width: 26px;
+		max-height: 26px;
+		@include borderRadius($radiusMd);
+	}
+}

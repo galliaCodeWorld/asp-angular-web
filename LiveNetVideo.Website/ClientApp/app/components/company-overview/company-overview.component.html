@@ -1,0 +1,160 @@
+<div *ngIf="isLoading">
+
+	<div class="circle">
+		<div class="loader">
+			<div class="loader">
+				<div class="loader">
+					<div class="loader">
+					</div>
+				</div>
+			</div>
+		</div>
+		<p class="text-center">Please Wait</p>
+	</div>
+</div>
+
+<div class="containerv" *ngIf="!isLoading">
+	<div class="no-company" *ngIf="!hasCompany">
+		<button class="btn btn-primary btn-lg" (click)="createCompany()">Create a company</button>
+	</div>
+	<div class="company" *ngIf="hasCompany">
+
+		<mat-card class="company-card">
+			<mat-card-header>
+				<div mat-card-avatar class="company-logo">
+					<img [src]="companyProfileView.logoFilename">
+				</div>
+				<mat-card-title>
+					<h1 class="edit">
+						<span *ngIf="!canEditName">{{companyProfileView.companyName}}</span>
+						<mat-form-field class="" *ngIf="canEditName">
+							<input [formControl]="companyNameFormControl" matInput placeholder="name" />
+						</mat-form-field>
+						<button mat-icon-button color="accent" (click)="toggleEditMode('canEditName')">
+							<mat-icon>edit</mat-icon>
+						</button>
+					</h1>
+				</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<br>
+				<h1>
+					<span class="edit">
+						Description:
+						<button mat-icon-button color="accent" (click)="toggleEditMode('canEditDescription')">
+							<mat-icon>edit</mat-icon>
+						</button>
+					</span>
+				</h1>
+				<p *ngIf="!canEditDescription">
+					{{companyProfileView.description}}
+				</p>
+				<mat-form-field class="" *ngIf="canEditDescription">
+					<textarea [formControl]="companyDescriptionFormControl" matInput placeholder="Add company description"></textarea>
+				</mat-form-field>
+				<br>
+				<h1 class="edit">
+					<span>
+						Location:
+					</span>
+					<button mat-icon-button color="accent" (click)="toggleEditMode('canEditLocation')">
+						<mat-icon>edit</mat-icon>
+					</button>
+				</h1>
+				<address *ngIf="!canEditLocation">
+					{{companyProfileLocationView?.address}}
+					<br> {{companyProfileLocationView?.city}}
+					<br> {{companyProfileLocationView?.region}}
+					<br> {{companyProfileLocationView?.countryIsoCode}}
+				</address>
+				<form [formGroup]="locationForm" class="form-field-container">
+					<mat-form-field class="" *ngIf="canEditLocation">
+						<input formControlName="address" matInput placeholder="address" />
+					</mat-form-field>
+					<mat-form-field class="" *ngIf="canEditLocation">
+						<input formControlName="city" matInput placeholder="city" />
+					</mat-form-field>
+					<mat-form-field class="" *ngIf="canEditLocation">
+						<input formControlName="region" matInput placeholder="region" />
+					</mat-form-field>
+					<mat-form-field *ngIf="canEditLocation">
+						<mat-select placeholder="select country code" [(ngModel)]="selectedCountryIsoCode" [ngModelOptions]="{standalone: true}">
+							<mat-option *ngFor="let countryIsoCode of countryIsoCodes" value="({{countryIsoCode.countryIsoCode}}) {{countryIsoCode.countryName}}">
+								({{countryIsoCode.countryIsoCode}}) {{countryIsoCode.countryName}}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</form>
+			</mat-card-content>
+			<mat-card-actions class="actions-right" *ngIf="canEditName || canEditLocation || canEditDescription">
+				<button mat-raised-button color="accent" (click)="saveChanges()">Save Changes</button>
+			</mat-card-actions>
+		</mat-card>
+		<mat-card>
+			<mat-card-content>
+				<mat-grid-list cols="2" rowHeight="4:1" gutterSize="1em">
+					<!-- pass the company id to the url params -->
+					<mat-grid-tile id="pbx-lines" (click)="navigate(['/dashboard/company/pbxlines', companyProfileView.companyProfileId])">
+						pbx lines
+					</mat-grid-tile>
+					<mat-grid-tile id="employees" (click)="navigate(['/dashboard/company/employees', companyProfileView.companyProfileId])">
+						employees
+					</mat-grid-tile>
+				</mat-grid-list>
+			</mat-card-content>
+		</mat-card>
+		<mat-card>
+			<mat-card-header>
+				<mat-card-title>
+					<h1>Photos</h1>
+				</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<mat-grid-list cols="4" rowHeight="2:1">
+					<mat-grid-tile>
+						<img src="https://picsum.photos/210" alt="">
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<img src="https://picsum.photos/210" alt="">
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<img src="https://picsum.photos/210" alt="">
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<img src="https://picsum.photos/210" alt="">
+					</mat-grid-tile>
+				</mat-grid-list>
+			</mat-card-content>
+			<mat-card-actions class="actions-right">
+				<button mat-button color="accent">More</button>
+			</mat-card-actions>
+		</mat-card>
+
+		<mat-card>
+			<mat-card-header>
+				<mat-card-title>
+					<h1>Videos</h1>
+				</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+				<mat-grid-list cols="4" rowHeight="2:1">
+					<mat-grid-tile>
+						<img src="https://picsum.photos/210/118" alt="">
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<img src="https://picsum.photos/210/118" alt="">
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<img src="https://picsum.photos/210/118" alt="">
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<img src="https://picsum.photos/210/118" alt="">
+					</mat-grid-tile>
+				</mat-grid-list>
+			</mat-card-content>
+			<mat-card-actions class="actions-right">
+				<button mat-button color="accent">More</button>
+			</mat-card-actions>
+		</mat-card>
+	</div>
+</div>

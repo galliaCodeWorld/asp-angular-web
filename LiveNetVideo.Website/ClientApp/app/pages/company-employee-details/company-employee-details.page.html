@@ -1,0 +1,81 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar>
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span>
+				Employee Details
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+	<div class="mat-sidenav-content">
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col">
+
+					<div class="card">
+						<img src="{{imgSrc}}" class="card-img-top" *ngIf="imgSrc" />
+						<div class="card-body">
+							<div class="card-title">
+							</div>
+						</div>
+					</div>
+
+					<div class="list-group">
+						<div class="list-group-item list-group-item-heading">
+							Contact Information
+						</div>
+					</div>
+
+					<mat-card>
+						<mat-card-header>
+							<img *ngIf="imgSrc" mat-card-avatar src="{{imgSrc}}" />
+							<mat-card-title><strong>Name: </strong>{{firstName}} {{lastName}}</mat-card-title>
+							<mat-card-subtitle *ngIf="title"><strong>Title: </strong>{{title}}</mat-card-subtitle>
+						</mat-card-header>
+						<mat-card-content>
+							<mat-list>
+								<h2>Employer Information</h2>
+								<mat-list-item *ngIf="!companyProfile">
+									Not Available.
+								</mat-list-item>
+								<mat-list-item *ngIf="companyProfileId">
+									<img matListAvatar src="{{companyImgSrc}}" />
+									<h3 matLine>
+										<a class="link" [routerLink]="['/company-profile', companyProfileId]">{{companyName}}</a>
+									</h3>
+									<p matLine>
+										{{companyEmail}}
+									</p>
+									<p matLine>
+										{{companyDescription}}
+									</p>
+								</mat-list-item>
+
+								<mat-divider></mat-divider>
+								<h2>Pbx Lines</h2>
+								<ng-container *ngIf="pbxlines">
+									<ng-container *ngFor="let pbxline of pbxlines">
+										<public-pbxline [pbxline]="pbxline"></public-pbxline>
+									</ng-container>
+								</ng-container>
+								<ng-container *ngIf="!pbxlines">
+									<mat-list-item>
+										No Pbx Lines assigned to {{firstName}} {{lastName}}.
+									</mat-list-item>
+								</ng-container>
+							</mat-list>
+						</mat-card-content>
+					</mat-card>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>
+<phone-ringer #phoneRinger></phone-ringer>

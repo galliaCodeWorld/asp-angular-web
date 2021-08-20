@@ -1,0 +1,143 @@
+<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar>
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span>
+				Edit Account
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+	<div class="mat-sidenav-content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col mb-5">
+
+					<p>
+						Use the form below to edit your account information.
+					</p>
+					<form [formGroup]="formGroup">
+
+						<div class="card border-primary mb-3">
+
+							<div class="card-body">
+
+								<img class="img-circle thumbnail_md" src="{{imgSrc}}" />
+								<div class="card-text">
+									<strong>Name: </strong> {{formGroup.get('firstName').value}} {{formGroup.get('lastName').value}} <br />
+									<strong>Email: </strong> {{formGroup.get('email').value}} {{formGroup.get('email').value}} <br />
+									<button class="btn btn-danger btn-sm" (click)="removeImage()">Remove Image</button>
+								</div>
+							</div>
+						</div>
+						<!--<mat-card>
+							<p><img mat-card-avatar src="{{imgSrc}}" /></p>
+							<mat-card-subtitle>
+								<span><strong>Name:</strong> {{formGroup.get('firstName').value}} {{formGroup.get('lastName').value}}<br /></span>
+								<span><strong>Email:</strong> {{formGroup.get('email').value}}<br /></span>
+							</mat-card-subtitle>
+							<mat-card-actions *ngIf="imgSrc && imgSrc != defaultAvatar">
+								<button mat-raised-button (click)="removeImage()">
+									<i class="fa fa-trash"></i>
+									Remove Image
+								</button>
+							</mat-card-actions>
+						</mat-card>-->
+
+						<div class="form-group">
+							<label><strong>First Name: </strong></label>
+							<input type="text"
+								   class="form-control"
+								   formControlName="firstName"
+								   placeholder="First Name" />
+							<show-form-errors [control]="formGroup.get('firstName')"></show-form-errors>
+						</div>
+
+						<div class="form-group">
+							<label><strong>Last Name: </strong></label>
+							<input type="text"
+								   class="form-control"
+								   formControlName="lastName"
+								   placeholder="Last Name" />
+							<show-form-errors [control]="formGroup.get('lastName')"></show-form-errors>
+						</div>
+
+						<div class="alert alert-secondary mb-3">
+							<p class="alert alert-warning">
+								<strong>Account Password:</strong> *******<br />
+								If you wish to change your password, enter your new password below and re-enter
+								it in the confirm field. Leave this field blank
+								if you do not wish to change your password.
+							</p>
+							<div class="form-group">
+								<label>New Password: </label>
+								<input type="text"
+									   class="form-control"
+									   formControlName="password"
+									   placeholder="Password" />
+								<show-form-errors [control]="formGroup.get('password')"></show-form-errors>
+							</div>
+							<div class="form-group">
+								<label>Confirm New Password: </label>
+								<input type="text"
+									   class="form-control"
+									   formControlName="confirmPassword"
+									   placeholder="Confirm Password" />
+								<show-form-errors [control]="formGroup.get('confirmPassword')"></show-form-errors>
+							</div>
+						</div>
+
+						<div class="alert alert-secondary mb-3">
+							<p class="alert alert-warning" *ngIf="originalEmail">
+								<strong>Account Email:</strong> {{originalEmail}}<br />
+								Changing your email will require verification of your new email.
+								You will be logged out and you must log back in with your new email.
+							</p>
+							<div class="form-group">
+								<input type="text"
+									   class="form-control"
+									   formControlName="email"
+									   placeholder="email" />
+								<show-form-errors [control]="formGroup.get('email')"></show-form-errors>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label><strong>Add Photo: </strong></label>
+							<image-selector (onImageSelected)="onImageSelected($event)"></image-selector>
+						</div>
+
+						<div *ngIf="showProgress">
+
+							<div class="circle">
+								<div class="loader">
+									<div class="loader">
+										<div class="loader">
+											<div class="loader">
+											</div>
+										</div>
+									</div>
+								</div>
+								<p class="text-center">Please Wait</p>
+							</div>
+						</div>
+
+						<button (click)="cancel()" class="btn btn-danger" *ngIf="!showProgress">
+							Cancel
+						</button>
+						<button (click)="submit($event)" class="btn btn-primary" *ngIf="!showProgress">
+							<i class="fa fa-thumbs-up"></i>
+							Update Account Information
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>
+<phone-ringer #phoneRinger></phone-ringer>

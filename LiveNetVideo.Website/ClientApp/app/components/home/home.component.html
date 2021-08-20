@@ -1,0 +1,14 @@
+<div class="row">
+	<div class="col">
+		<img id="logo" src="assets/images/lnv_logo_blue.png" alt="">
+
+		<h1>Home</h1>
+		<hr />
+
+		<p *ngIf="!ipResponse"><em>Loading...</em></p>
+
+		<p>{{ipResponse}}</p>
+
+		<button (click)="goToPhone()">Phone</button>
+	</div>
+</div>

@@ -1,0 +1,90 @@
+﻿<form [formGroup]="formGroup">
+	<h2>Add a Company PBX Line</h2>
+	<p>
+		Use the form below to add a PBX Line.
+	</p>
+
+	<div class="row">
+		<div class="col-7">
+			<div class="card">
+				<div class="card-body">
+					<img class="img-circle thumbnail-md" src="{{image}}" />
+					<div class="card-text">
+						<span *ngIf="formGroup.get('lineName').value">
+							{{formGroup.get('lineName').value}}
+						</span><br />
+						<span *ngIf="formGroup.get('description').value">
+							{{formGroup.get('description').value}}
+						</span>
+					</div>
+					<button class="btn btn-danger btn-sm" (click)="removeImage()" *ngIf="image && image != defaultAvatar">
+						<i class="fa fa-trash"></i>
+						Remove Image
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label><strong>Line Name: </strong></label>
+		<input type="text"
+			   class="form-control"
+			   formControlName="lineName"
+			   placeholder="Name of Pbx Line" />
+		<show-form-errors [control]="formGroup.get('lineName')"></show-form-errors>
+	</div>
+
+	<div class="form-group">
+		<label><strong>Description: </strong></label>
+		<textarea class="form-control"
+				  rows="4"
+				  formControlName="description"
+				  placeholder="Description"></textarea>
+		<show-form-errors [control]="formGroup.get('description')"></show-form-errors>
+	</div>
+
+	<div class="form-group" *ngIf="employees">
+		<label><strong>Reps: </strong></label>
+		<select multiple class="form-control" #reps>
+			<option *ngFor="let employee of employees" [value]="employee.companyEmployeeId">
+				<employee-card [employee]="employee"></employee-card>
+			</option>
+		</select>
+	</div>
+
+	<p *ngIf="!employees">
+		You currently do not have any employees associated with your company. After you create the PBX Line,
+		Invite employees to assiate their account with your company profile. After employees are associated with your company,
+		you can assign the employees to your PBX Lines
+	</p>
+
+	<div class="form-group">
+		<label><strong>Add PBX Line Icon: </strong></label>
+
+		<image-selector (onImageSelected)="onImageSelected($event)"></image-selector>
+	</div>
+
+	<div *ngIf="showProgress">
+
+		<div class="circle">
+			<div class="loader">
+				<div class="loader">
+					<div class="loader">
+						<div class="loader">
+						</div>
+					</div>
+				</div>
+			</div>
+			<p class="text-center">Please Wait</p>
+		</div>
+	</div>
+	<button (click)="cancel()" class="btn btn-danger" *ngIf="!showProgress">
+		<i class="fa fa-window-close"></i>
+		Cancel
+	</button>
+	<button (click)="submit()" class="btn btn-primary" *ngIf="!showProgress">
+		<i class="fa fa-plus"></i>
+		Add PBX Line
+	</button>
+</form>

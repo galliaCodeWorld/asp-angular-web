@@ -1,0 +1,45 @@
+<div class="card bg-light border-primary">
+	<div class="card-body">
+		<div class="photo-upload">
+			<img [src]="image" alt="">
+			<upload-photo-menu [isBlob]="true" [iconOnly]="true" (pictureChanged)="pictureChanged($event)"></upload-photo-menu>
+		</div>
+
+		<form>
+			<div class="form-group">
+				<label><strong>Line Name: </strong></label>
+				<input class="form-control" [formControl]="pbxLineNameFormControl" [(ngModel)]="pbxLineName" placeholder="pbx line name">
+			</div>
+			<div class="form-group">
+				<label><strong>Description: </strong></label>
+				<textarea class="form-control" rows="3" [formControl]="pbxLineDescription" placeholder="Description"></textarea>
+			</div>
+			<button class="btn btn-primary" (click)="save()" [disabled]="!pbxLineNameFormControl?.valid">Save</button>
+			<button class="btn btn-danger" (click)="cancel()">Cancel</button>
+		</form>
+	</div>
+</div>
+
+<!--<mat-card class="mat-elevation-z0">
+	<mat-card-content>
+		<div class="photo-upload">
+			<img [src]="image" alt="">
+			<upload-photo-menu [isBlob]="true" [iconOnly]="true" (pictureChanged)="pictureChanged($event)"></upload-photo-menu>
+		</div>
+		<form>
+			<mat-form-field>
+				<input matInput [formControl]="pbxLineNameFormControl" [(ngModel)]="pbxLineName" placeholder="pbx line name">
+				<mat-error *ngIf="pbxLineNameFormControl?.hasError('required')">
+					<strong>required</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<textarea matInput [formControl]="pbxLineDescription" placeholder="Description"></textarea>
+			</mat-form-field>
+		</form>
+	</mat-card-content>
+	<mat-card-actions>
+		<button mat-raised-button color="accent" (click)="save()" [disabled]="!pbxLineNameFormControl?.valid">Save</button>
+		<button mat-button color="warn" (click)="cancel()">Cancel</button>
+	</mat-card-actions>
+</mat-card>-->

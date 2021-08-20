@@ -1,0 +1,60 @@
+﻿<div class="card border border-primary mb-3">
+	<h2 class="card-header">
+		Add A Company Photo
+	</h2>
+	<div class="card-body">
+		<h4 class="card-subtitle">
+			Click the camera to take a picture or select an image.
+		</h4>
+
+		<img class="img-circle thumbnail-md" src="{{image}}" />
+		<div class="form-group">
+			<label><strong>Add Photo: </strong></label>
+			<image-selector (onImageSelected)="onImageSelected($event)"></image-selector>
+		</div>
+
+		<div *ngIf="showProgress">
+
+			<div class="circle">
+				<div class="loader">
+					<div class="loader">
+						<div class="loader">
+							<div class="loader">
+							</div>
+						</div>
+					</div>
+				</div>
+				<p class="text-center">Please Wait</p>
+			</div>
+		</div>
+
+		<button class="btn btn-primary" (click)="save()" *ngIf="!showProgress">
+			<i class="fa fa-floppy-o"></i>
+			Save
+		</button>
+	</div>
+</div>
+
+<!--<mat-card>
+	<mat-card-header>
+		<mat-card-title>
+			<h2>Add A Company Photo</h2>
+		</mat-card-title>
+		<mat-card-subtitle>
+			Click the camera to take a picture or select an image.
+		</mat-card-subtitle>
+	</mat-card-header>
+
+	<mat-card-content>
+		<p><img src="{{image}}" alt="Company Photo"></p>
+		<image-selector (onImageSelected)="onImageSelected($event)"></image-selector>
+		Add Photo
+	</mat-card-content>
+	<mat-card-actions>
+		<mat-spinner *ngIf="showProgress" mode="indeterminate" color="warn"></mat-spinner>
+		<button mat-raised-button (click)="save()" *ngIf="!showProgress">
+			<i class="fa fa-floppy-o"></i>
+			Save
+		</button>
+	</mat-card-actions>
+</mat-card>-->

@@ -1,0 +1,46 @@
+<section class="hero is-fullheight" id="login-shell">
+	<div class="hero-head">
+		<div class="container">
+			<nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
+				<div class="navbar-brand">
+					<a [routerLink]="['login']" class="navbar-item">
+						<img src="assets/images/lnv_logo.png" alt="Description">
+					</a>
+					<button class="button navbar-burger" (clickedOutside)="burgerIsActive = false" (click)="burgerIsActive = !burgerIsActive" [class.is-active]="burgerIsActive">
+						<span></span>
+						<span></span>
+						<span></span>
+					</button>
+				</div>
+				<div class="navbar-menu" [class.is-active]="burgerIsActive">
+					<div class="navbar-end">
+						<a [routerLink]="['login']" class="navbar-item has-text-white">
+							Log in
+						</a>
+						<a [routerLink]="['register']" class="navbar-item has-text-white">
+							Sign up
+						</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+
+	<div class="hero-body">
+		<div class="container">
+			<router-outlet></router-outlet>
+		</div>
+	</div>
+
+	<div class="hero-foot">
+		<div class="container">
+			<div class="tabs is-centered">
+				<ul>
+					<li>
+						<a>Copyright © 2017, {{domain}}, All Rights Reserved.</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>

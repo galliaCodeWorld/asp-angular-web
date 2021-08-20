@@ -1,0 +1,31 @@
+﻿@{
+	Layout = null;
+}
+
+@model LiveNetVideo.Website.Models.WebPhoneViewModel
+
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Livenetvideo</title>
+	<base href="~/dist/">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=News+Cycle:400,700">
+	<link href="~/dist/styles.2178955f054864915845.bundle.css" rel="stylesheet" />
+</head>
+
+<body>
+	<app pbx-line-id="@Model.PbxLineId.ToString()"></app>
+	<!--~/dist/-->
+	<script type="text/javascript" src="~/dist/inline.31e1fb380eb7cf3d75b1.bundle.js"></script>
+	<script type="text/javascript" src="~/dist/polyfills.3ebb9635f5f9a8646e12.bundle.js"></script>
+	<script type="text/javascript" src="~/dist/scripts.cb08d38d6423cf555a39.bundle.js"></script>
+	<script type="text/javascript" src="~/dist/vendor.96176ef5a00d752cde10.bundle.js"></script>
+	<script type="text/javascript" src="~/dist/main.40bf35bf6c3adb12a267.bundle.js"></script>
+</body>
+</html>

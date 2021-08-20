@@ -1,0 +1,18 @@
+﻿@import "../../_variables.scss";
+@import "../../_mixins.scss";
+
+div:first-child {
+	clear: both;
+
+	img {
+		max-height: 22px;
+		max-width: 22px;
+		@include borderRadius($radiusLg);
+		float: right;
+		margin: 0 0 4px 8px;
+	}
+}
+
+.private {
+	color: darken($red, 30%);
+}

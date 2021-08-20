@@ -1,0 +1,61 @@
+.containerv {
+	padding: 2em;
+}
+
+mat-card {
+	margin: 1em;
+	&.is-fullwidth {
+		width: 100%;
+	}
+	mat-list-item:nth-child(odd) {
+		background-color: #ebf2f5;
+	}
+}
+
+.company-card {
+	word-wrap: break-word
+}
+
+mat-card-actions.actions-right {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+#employees,
+#pbx-lines {
+	color: white;
+	font-size: 3em;
+	font-style: italic;
+	&:hover {
+		cursor: pointer;
+	}
+	
+}
+
+#pbx-lines {
+	background-color: #03a9f4;
+}
+
+#employees {
+	background-color: #3f51b5;
+}
+
+.edit {
+	button {
+        visibility: hidden;
+        margin: 0;
+        padding: 0;
+	}
+	&:hover {
+		button {
+			visibility: visible;
+		}
+	}
+}
+
+
+.form-field-container {
+    display: flex;
+    flex-direction: column;
+}

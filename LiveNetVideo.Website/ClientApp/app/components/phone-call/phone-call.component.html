@@ -1,0 +1,39 @@
+﻿<div class="phone-call-component" (click)="phoneCallClicked($event)" [hidden]="!isVisible">
+	<video #remoteVideoElement [hidden]="isOnHold || !canMaxView" src="" class="video-thumbs" playsinline></video>
+	<!--<div class="hold-placeholder" *ngIf="isOnHold" [style.height.px]="videoHeight" [style.width.px]="videoWidth">-->
+	<div class="hold-placeholder" *ngIf="isOnHold">
+		<mat-icon>play_arrow</mat-icon>
+		<p>{{this.caller.profile.name}}</p>
+	</div>
+	<div class="hold-placeholder" *ngIf="!isOnHold && !canMaxView">
+		<mat-icon>person</mat-icon>
+		<p>{{this.caller.profile.name}}</p>
+	</div>
+</div>
+<span mat-icon-button [matMenuTriggerFor]="menu">
+</span>
+<mat-menu #menu="matMenu">
+	<button mat-menu-item (click)="putOnHold()" *ngIf="!isOnHold && isHolder">
+		<mat-icon>pause</mat-icon>
+		<span>Put On Hold</span>
+	</button>
+	<button mat-menu-item (click)="removeOnHold()" *ngIf="isOnHold && isHolder">
+		<mat-icon>play_arrow</mat-icon>
+		<span>Unhold</span>
+	</button>
+	<span mat-menu-item *ngIf="isOnHold && !isHolder">
+		<span>Currently On Hold</span>
+	</span>
+	<button mat-menu-item *ngIf="!isOnHold && canMaxView" (click)="showToMainVideo()">
+		<mat-icon>zoom_in</mat-icon>
+		<span>Maximize</span>
+	</button>
+	<button mat-menu-item *ngIf="!isOnHold && !canMaxView" (click)="closeFromMainVideo()">
+		<mat-icon>zoom_out</mat-icon>
+		<span>Minimize</span>
+	</button>
+	<button mat-menu-item *ngIf="!isOnHold" (click)="openSendPrivateSmsInterface()">
+		<mat-icon>message</mat-icon>
+		<span>Private Message</span>
+	</button>
+</mat-menu>

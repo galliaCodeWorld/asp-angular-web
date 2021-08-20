@@ -1,0 +1,74 @@
+.chatbox {
+	position: fixed;
+	overflow-x: hidden;
+	right: 0;
+	height: 100%;
+	z-index: 300;
+	display: flex;
+	width: 0;
+	&.is-active {
+		width: $chatbox-width;
+	}
+	flex-direction: column;
+	.chat-area {
+		height: 100%;
+		display: flex;
+		background-color: white;
+		flex-direction: column-reverse;
+		overflow-y: auto;
+		padding-bottom: 1.3em;
+		.chat-message {
+			flex-shrink: 0;
+			display: flex;
+			margin: 0.8em 0.3em 0.8em 0.3em;
+			.chat-bubble {
+				max-width: 80%;
+				border-radius: .7em;
+				padding: 0.5em;
+				p {
+					word-break: break-all;
+					word-wrap: break-word;
+					font-size: 1em;
+					color: white;
+				}
+			}
+			.chat-avatar {
+				margin-top: auto;
+				display: flex;
+				img {
+					width: 25px;
+					height: 25px;
+					border-radius: 100%;
+					margin-bottom: -1.3em;
+				}
+			}
+			&.left {
+				align-items: left;
+				flex-direction: row;
+				.chat-bubble {
+					border-bottom-left-radius: 0;
+					background-color: #00baf5;
+				}
+			}
+			&.right {
+				align-items: left;
+				flex-direction: row-reverse;
+				.chat-bubble {
+					border-bottom-right-radius: 0;
+					background-color: #22a5c9;
+				}
+			}
+		}
+	}
+	.chat-input {
+		align-self: flex-end;
+		width: 100%;
+		.field.has-addons .control:first-child .button,
+		.field.has-addons .control:first-child .input,
+		.field.has-addons .control:last-child .button,
+		.field.has-addons .control:last-child .input,
+		{
+			border-radius: 0;
+		}
+	}
+}

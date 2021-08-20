@@ -1,0 +1,86 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				Live Video Meeting
+			</span>
+			<span>
+				<i class="fa fa-users" (click)="gotoMeetingsDashboardPage()"></i>
+			</span>
+			<span *ngIf="isBusy">
+				<button mat-button
+						class="btn-warning" (click)="hangUp()">
+					<i class="fa fa-times-circle" id="hangup"></i>
+					Exit Meeting
+				</button>
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+	<div mat-sidenav-content>
+
+		<section class="phone">
+			<button id="minimize-main-video" (click)="minimizeMainVideo()" *ngIf="showMinimizeMainVideo"><i class="fa fa-times-circle"></i></button>
+			<video id="main-video" class="main-video" src="" #mainVideoElement autoplay playsinline></video>
+			<div class="video-thumb-container">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+							<video #localVideoElement
+								   (click)="localVideoClicked()"
+								   class="local-video"
+								   autoplay="autoplay"
+								   playsinline
+								   src=""
+								   [hidden]="!canMaxView"></video>
+							<div class="hold-placeholder" *ngIf="!canMaxView" (click)="minimizeMainVideo()">
+								<mat-icon>person</mat-icon>
+								<p>Local Video</p>
+							</div>
+						</div>
+						<ng-container #phoneCallComponentInsert>
+						</ng-container>
+					</div>
+				</div>
+			</div>
+			<div class="text-messaging-container">
+				<text-messaging [users]="currentUsers" [(textMessages)]="textMessages" [currentMessage]="currentMessage"></text-messaging>
+			</div>
+			<div class="info-container" *ngIf="!canStartMeeting">
+				<div fxLayout="row wrap" fxLayoutGap="10px">
+					<div fxFlex>
+						<div class="alert alert-info" *ngIf="title">
+							<h3>
+								<span>
+									{{title}}
+								</span>
+							</h3>
+							<p>
+								{{description}}
+							</p>
+							<p><strong>Type:</strong> {{isPrivate}}</p>
+							<p><strong>Date:</strong> {{meetDateTime}}</p>
+							<p><strong>Duration: </strong> {{duration}}</p>
+							<div *ngIf="isPrivate && attendees.length > 0" class="well">
+								<mat-list>
+									<h4>Attendees</h4>
+									<ng-container *ngFor="let attendee of attendees">
+										<meeting-attendee [canDelete]="false" [meetingAttendee]="attendee" (onMeetingAttendeeDeleted)="deleteMeetingAttendee($event)"></meeting-attendee>
+									</ng-container>
+								</mat-list>
+							</div>
+						</div>
+						<div class="jumbotron" *ngIf="!title">
+							<h2>Welcome</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</mat-sidenav-container>

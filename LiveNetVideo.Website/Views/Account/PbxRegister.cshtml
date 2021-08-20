@@ -1,0 +1,43 @@
+<style>
+	html,
+	body {
+		margin: 0;
+		padding: 0;
+		height: 100%;
+		width: 100%;
+	}
+
+	.register {
+		height: 100vh;
+		width: 100%;
+		background: #0051ba;
+		/* fallback for old browsers */
+		background: -webkit-linear-gradient(to right, #0051ba, #4e9ef8) !important;
+		background: linear-gradient(to right, #0051ba, #4e9ef8) !important;
+		display: flex;
+	}
+
+		.register form {
+			width: 550px;
+			margin: auto;
+		}
+</style>
+
+<div class="register">
+	<h1 class="is-size-3 has-text-white">Register</h1>
+	@*<form asp-controller="Account" asp-action="PBXRegister" method="post">
+			<div class="field">
+				<input  asp-for="FirstName" type="text" placeholder="First Name" class="input">
+			</div>
+			<div class="field">
+				<input  asp-for="LastName" type="text" placeholder="Last Name" class="input">
+			</div>
+			<div class="field">
+				<input  asp-for="Email" type="email" placeholder="Email" class="input">
+			</div>
+			<div class="field">
+				<input  asp-for="Password" type="password" placeholder="Password" class="input">
+			</div>
+			<button class="button is-light is-outlined is-pulled-right" type="submit">Register</button>
+		</form>*@
+</div>

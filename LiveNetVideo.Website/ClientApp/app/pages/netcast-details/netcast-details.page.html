@@ -1,0 +1,135 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				Netcast Information
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+	<div class="mat-sidenav-content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col">
+
+					<div *ngIf="loading">
+						<div class="circle">
+							<div class="loader">
+								<div class="loader">
+									<div class="loader">
+										<div class="loader">
+										</div>
+									</div>
+								</div>
+							</div>
+							<p class="text-center">Please Wait</p>
+						</div>
+					</div>
+
+					<div *ngIf="!loading && netcast">
+
+						<div class="card border border-primary">
+							<div class="card-body">
+								<div class="media">
+									<img src="{{netcast.imageSrc}}" class="img-circle thumbnail-md mr-3" />
+									<div class="media-body">
+										<h3 class="card-title mt-0">
+											{{netcast.title}}
+										</h3>
+										<p>
+											<strong>Scheduled Broadcast Date and Time: </strong><br />
+											{{netcast.startDateTime}}	 <br />
+											<button class="btn btn-primary" (click)="gotoNetcast(netcast.netcastId)">View Netcast</button>
+										</p>
+										<p>
+											<strong>Private: </strong><br />
+											{{netcast.isPrivate ? "Yes" : "No"}}
+										</p>
+										<p>
+											<strong>Description:</strong><br />
+											<span *ngIf="netcast.description">
+												{{netcast.description}}
+											</span>
+											<span *ngIf="!netcast.description">
+												No description available.
+											</span>
+										</p>
+										<p *ngIf="netcast.tags">
+											<strong>Tags: </strong><br />
+											<ng-container *ngFor="let tag of netcast.tags">
+												<span class="label label-default">
+													{{tag}}
+												</span>&nbsp;
+											</ng-container>
+										</p>
+										<p *ngIf="netcast.genre">
+											<strong>Netcast Genre: </strong><br />
+											{{netcast.genre.name}}
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!--<div class="panel panel-default">
+							<div class="panel-heading">
+								<h2 class="panel-title">{{netcast.title}}</h2>
+							</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-md-2">
+										<img src="{{netcast.imageSrc}}" class="img-responsive" />
+									</div>
+									<div class="col-md-10">
+										<p>
+											<strong>Scheduled Broadcast Date and Time: </strong><br />
+											{{netcast.startDateTime}}	 <br />
+											<button class="btn btn-primary" (click)="gotoNetcast(netcast.netcastId)">View Netcast</button>
+										</p>
+										<p>
+											<strong>Private: </strong><br />
+											{{netcast.isPrivate ? "Yes" : "No"}}
+										</p>
+										<p>
+											<strong>Description:</strong><br />
+											<span *ngIf="netcast.description">
+												{{netcast.description}}
+											</span>
+											<span *ngIf="!netcast.description">
+												No description available.
+											</span>
+										</p>
+										<p *ngIf="netcast.tags">
+											<strong>Tags: </strong><br />
+											<ng-container *ngFor="let tag of netcast.tags">
+												<span class="label label-default">
+													{{tag}}
+												</span>&nbsp;
+											</ng-container>
+										</p>
+										<p *ngIf="netcast.genre">
+											<strong>Netcast Genre: </strong><br />
+											{{netcast.genre.name}}
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>-->
+					</div>
+
+					<div class="jumbotron" *ngIf="!loading && !netcast">
+						<h2>Error</h2>
+						<p>Unable to retrieve Netcast Information</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>
+<phone-ringer #phoneRinger></phone-ringer>

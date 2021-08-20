@@ -1,0 +1,18 @@
+.connected-video {
+    height: 200px;
+    video {
+        height: 100%;
+        width: auto;
+    }
+}
+
+.main-video {
+    height: calc(100% - 250px);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    video {
+        height: 100%;
+        width: auto;
+    }
+}

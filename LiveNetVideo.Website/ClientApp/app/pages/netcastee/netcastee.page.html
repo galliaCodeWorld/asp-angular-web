@@ -1,0 +1,101 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				NetCast	Viewer
+			</span>
+			<span>
+
+				<!--<button class="btn btn-warning" (click)="showPeers()">
+					Peers
+				</button>-->
+				<button class="btn btn-warning" (click)="exit()">
+					<i class="fa fa-times-circle" id="hangup"></i>
+					Exit
+				</button>
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+	<div class="mat-sidenav-content">
+		<!--<p>Local ID: {{localGuid}}</p>-->
+		<!--<div class="row">
+			<div class="col-3">
+				<form [formGroup]="getRemoteGuidForm">
+					<div class="form-group">
+						<label><strong>Remote Guid: </strong></label>
+						<input type="text"
+							   class="form-control"
+							   formControlName="remoteGuid"
+							   placeholder="remoteGuid" />
+						<show-form-errors [control]="getRemoteGuidForm.get('remoteGuid')"></show-form-errors>
+					</div>
+				</form>
+			</div>
+			<div class="col-7">
+
+				<button (click)="setNetcasterGuid()" class="btn-xs btn-primary" *ngIf="!showProgress">Set Netcaster</button>
+				<button (click)="getNetcast()" class="btn btn-sm btn-primary" *ngIf="!showProgress">Get Netcast</button>
+				<button (click)="getExistingPCMediaStream()" class="btn-xs btn-primary" *ngIf="!showProgress">Get BackUp Stream</button>
+				<button (click)="getSecondaryNetcast()" class="btn-xs btn-primary" *ngIf="!showProgress">Get Secondary Stream</button>
+				<button (click)="getPCOnly()" class="btn-xs btn-primary" *ngIf="!showProgress">Get PC Only</button>
+				<button (click)="disconnect()" class="btn btn-sm btn-primary" *ngIf="!showProgress">Disconnect</button>
+				<button (click)="deleteAllConnections()" class="btn btn-sm btn-primary" *ngIf="!showProgress">Disconnect All</button>
+				<button (click)="sendDataChannelMessage()" class="btn-xs btn-primary" *ngIf="!showProgress">Test DataChannel</button>
+				<button (click)="renewJwtToken()" class="btn-xs btn-primary" *ngIf="!showProgress">Renew Token</button>
+				<button (click)="showPeers()" class="btn-xs btn-primary">Peers</button>
+			</div>
+			<div class="col-md-2">
+				<form [formGroup]="getAltNetcastForm">
+					<mat-form-field class="full-width">
+						<input type="text"
+							   matInput
+							   formControlName="altGuid"
+							   placeholder="alternative remoteGuid" />
+						<show-form-errors [control]="getAltNetcastForm.get('altGuid')"></show-form-errors>
+					</mat-form-field>
+					<mat-spinner *ngIf="showAltProgress" mode="indeterminate" color="warn"></mat-spinner>
+					<button (click)="getAltNetcast()" mat-raised-button *ngIf="!showAltProgress">Get Alt Netcast</button>
+				</form>
+			</div>
+		</div>-->
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col">
+					<section class="phone">
+						<div class="row">
+							<div class="col-6">
+								<!--<p>First Incoming ID: {{mainRemoteGuid}}</p>-->
+								<video id="main-video" class="main-video" src="" #mainVideoElement autoplay="autoplay" muted></video>
+							</div>
+							<!--<div class="col-md-6">
+								<p>2nd Incoming ID: {{secondRemoteGuid}}</p>
+								<video id="second-video" class="video-thumb" src="" #secondVideoElement autoplay="autoplay" muted></video>
+							</div>-->
+						</div>
+					</section>
+
+					<div *ngIf="showProgress">
+						<div class="circle">
+							<div class="loader">
+								<div class="loader">
+									<div class="loader">
+										<div class="loader">
+										</div>
+									</div>
+								</div>
+							</div>
+							<p class="text-center">Please Wait</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>

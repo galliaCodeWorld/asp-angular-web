@@ -1,0 +1,24 @@
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+<div class="containerv" *ngIf="!isLoading">
+    <div class="pbx-lines" >
+        <h1 color="primary" class="line-title">Pbx Lines</h1>
+        <div class="actions">
+            <button mat-raised-button color="accent" (click)="createPbxLine()">ADD PBX LINE</button>
+        </div>
+        <div class="flex-container">
+            <mat-card class="pbx-line-card" *ngFor="let pbx of pbxLines">
+                <a>
+                    <div class="image-title">
+                        <img src="{{pbx.iconFilename}}" alt="" />
+                        <h1>
+                            {{pbx.lineName}}
+                        </h1>
+                    </div>
+                </a>
+                <p>
+                    {{pbx.description}}
+                </p>
+            </mat-card>
+        </div>
+    </div>
+</div>

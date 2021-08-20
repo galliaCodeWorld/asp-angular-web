@@ -1,0 +1,96 @@
+﻿<div *ngIf="loading">
+
+	<div class="circle">
+		<div class="loader">
+			<div class="loader">
+				<div class="loader">
+					<div class="loader">
+					</div>
+				</div>
+			</div>
+		</div>
+		<p class="text-center">Please Wait</p>
+	</div>
+</div>
+
+<div class="media" *ngIf="!loading">
+	<img class="mr-3" src="{{imgSrc}}" *ngIf="imgSrc" />
+	<div class="media-body">
+		<h4 class="mt-0"><strong>{{firstName}} {{lastName}}</strong></h4>
+		<p>
+			{{email}}
+		</p>
+		<p *ngIf="isAccepted">
+			<span class="text-success"><strong>Accepted:</strong> {{dateAccepted}}</span>
+		</p>
+		<p *ngIf="!isAccepted">
+			<span>
+				<strong>Status:</strong>
+				<span *ngIf="isAccepted === null">
+					Waiting For Acceptance
+				</span>
+				<span *ngIf="isAccepted === false" class="text-danger">
+					Invitation Rejected
+				</span>
+			</span>
+		</p>
+
+		<div class="row">
+			<div class="col">
+				<button class="btn btn-primary btn-sm" *ngIf="isAccepted && companyEmployee" [routerLink]="['/company-employee-details', companyEmployee.companyEmployeeId]">
+					<i class="fa fa-vcard"></i>
+					Details
+				</button>
+				<button class="btn btn-primary btn-sm" *ngIf="isAccepted && companyEmployee" [routerLink]="['/public-user-profile', companyEmployee.memberId]">
+					<i class="fa fa-user-circle-o"></i>
+					Profile
+				</button>
+
+				<button class="btn btn-primary btn-sm" *ngIf="!isAccepted" (click)="delete()">
+					<i class="fa fa-trash"></i>
+					Delete
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--<mat-list-item *ngIf="!loading">
+
+	<img matListAvatar src="{{imgSrc}}" *ngIf="imgSrc" />
+
+	<h3 matLine>
+		<strong>{{firstName}} {{lastName}}</strong>
+	</h3>
+	<p matLine>
+		{{email}}
+	</p>
+	<p matLine *ngIf="isAccepted">
+		<span class="text-success"><strong>Accepted:</strong> {{dateAccepted}}</span>
+	</p>
+	<p matLine *ngIf="!isAccepted">
+		<span>
+			<strong>Status:</strong>
+			<span *ngIf="isAccepted === null">
+				Waiting For Acceptance
+			</span>
+			<span *ngIf="isAccepted === false" class="text-danger">
+				Invitation Rejected
+			</span>
+		</span>
+	</p>
+
+	<button mat-button *ngIf="isAccepted && companyEmployee" [routerLink]="['/company-employee-details', companyEmployee.companyEmployeeId]">
+		<i class="fa fa-vcard"></i>
+		Details
+	</button>
+	<button mat-button *ngIf="isAccepted && companyEmployee" [routerLink]="['/public-user-profile', companyEmployee.memberId]">
+		<i class="fa fa-user-circle-o"></i>
+		Profile
+	</button>
+
+	<button mat-button *ngIf="!isAccepted" (click)="delete()">
+		<i class="fa fa-trash"></i>
+		Delete
+	</button>
+</mat-list-item>-->

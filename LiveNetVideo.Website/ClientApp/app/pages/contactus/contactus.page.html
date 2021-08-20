@@ -1,0 +1,32 @@
+﻿<div class="container">
+	<div class="row">
+		<div class="w-100 mb-3"></div>
+		<div class="col">
+			<div class="card bg-light border-primary">
+				<h2 class="card-header bg-primary text-white">
+					Contact Us
+				</h2>
+				<div class="card-body">
+					<p>
+						Need help? please fill out the form below. The information you provide is only used to assist you with the current subject matter.
+					</p>
+					<contactus-form (onContactUsComplete)="onContactUsComplete($event)" (onCancel)="cancelContactUs()"></contactus-form>
+				</div>
+				<div class="card-footer">
+					<p>
+						Not a member? - <a [routerLink]="['/register']">Register for free</a>
+					</p>
+					<p>
+						Ready to login? - <a [routerLink]="['/login']">Login here</a>
+					</p>
+					<p>
+						Need login help? - <a [routerLink]="['/login-help']">Get help here</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row justify-content-center mb-5">
+		<footer-component></footer-component>
+	</div>
+</div>

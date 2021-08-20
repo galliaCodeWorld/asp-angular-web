@@ -1,0 +1,155 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				Create A Meeting
+			</span>
+			<span>
+				<i class="fa fa-users" (click)="gotoMeetingsDashboardPage()"></i>
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+
+	<div class="mat-sidenav-content">
+
+		<div class="container-fluid">
+			<div class="row mb-5">
+				<div class="col">
+					<div *ngIf="loading">
+						<div class="circle">
+							<div class="loader">
+								<div class="loader">
+									<div class="loader">
+										<div class="loader">
+										</div>
+									</div>
+								</div>
+							</div>
+							<p class="text-center">Please Wait</p>
+						</div>
+					</div>
+
+					<div *ngIf="!loading">
+						<div class="mr-10 ml-10">
+
+							<p>Use the form below to create your meeting. All fields with <i class="fa fa-asterisk text-danger"></i> are required.</p>
+
+							<form [formGroup]="formCreateMeeting">
+								<div class="form-group">
+									<label><strong>Title<i class="fa fa-asterisk text-danger"></i>:</strong></label>
+									<input type="text"
+										   class="form-control"
+										   formControlName="title" />
+									<show-form-errors [control]="formCreateMeeting.get('title')"></show-form-errors>
+								</div>
+								<div class="form-group">
+									<label><strong>Description:</strong></label>
+									<input type="text"
+										   class="form-control"
+										   formControlName="description" />
+									<show-form-errors [control]="formCreateMeeting.get('description')"></show-form-errors>
+								</div>
+
+								<div class="row">
+									<div class="col">
+										<div class="form-group">
+											<label><strong>Date<i class="fa fa-asterisk text-danger"></i>:</strong></label>
+											<input type="text"
+												   class="form-control"
+												   [matDatepicker]="picker"
+												   formControlName="meetDate" />
+
+											<show-form-errors [control]="formCreateMeeting.get('meetDate')"></show-form-errors>
+										</div>
+									</div>
+									<div class="col-2">
+										<div class="form-group">
+											<label> &nbsp; </label>
+											<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+											<mat-datepicker #picker></mat-datepicker>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-5">
+										<div class="form-group">
+											<label><strong>Hour<i class="fa fa-asterisk text-danger"></i>:</strong></label>
+											<input type="text"
+												   class="form-control"
+												   formControlName="meetHour" />
+											<show-form-errors [control]="formCreateMeeting.get('meetHour')" [customErrorMessage]="meetHourErrorMessage"></show-form-errors>
+										</div>
+									</div>
+									<div class="col-5">
+										<div class="form-group">
+											<label><strong>Minute<i class="fa fa-asterisk text-danger"></i>:</strong></label>
+											<input type="text"
+												   class="form-control"
+												   formControlName="meetMinute" />
+											<show-form-errors [control]="formCreateMeeting.get('meetMinute')" [customErrorMessage]="meetMinuteErrorMessage"></show-form-errors>
+										</div>
+									</div>
+									<div class="col-2">
+										<div class="form-group">
+											<label><strong>AM/PM<i class="fa fa-asterisk text-danger"></i>:</strong></label>
+											<mat-slide-toggle formControlName="isPm">PM</mat-slide-toggle>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label><strong>Estimated Meeting Length<i class="fa fa-asterisk text-danger"></i>:</strong> </label>
+									<select [(value)]="selected"
+											class="form-control"
+											placeHolder="Select meeting Duration"
+											formControlName="meetLength">
+										<option *ngFor="let length of lengths"
+												[value]="length.value">
+											{{length.key}}
+										</option>
+									</select>
+									<show-form-errors [control]="formCreateMeeting.get('meetLength')"></show-form-errors>
+								</div>
+
+								<div class="row">
+									<div class="col">
+										<div class="form-group">
+											<label><strong>Private Meeting<i class="fa fa-asterisk text-danger"></i>:</strong></label><br />
+											<mat-slide-toggle formControlName="isPrivate">Yes</mat-slide-toggle>
+										</div>
+									</div>
+									<div class="col-3" [hidden]="!formCreateMeeting.get('isPrivate').value">
+										<div class="form-group">
+											<label> &nbsp; </label>
+											<button class="btn btn-primary" (click)="openFormAddAttendee()">
+												Add Attendee
+											</button>
+										</div>
+									</div>
+								</div>
+
+								<div class="row" *ngIf="formCreateMeeting.get('isPrivate').value">
+									<div class="col-3 mb-3" *ngFor="let attendee of attendees">
+										<meeting-attendee [meetingAttendee]="attendee" (onMeetingAttendeeDeleted)="deleteMeetingAttendee($event)"></meeting-attendee>
+									</div>
+								</div>
+
+								<hr />
+								<button class="btn btn-primary" (click)="submit($event)">Create Meeting</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>
+<phone-ringer #phoneRinger></phone-ringer>

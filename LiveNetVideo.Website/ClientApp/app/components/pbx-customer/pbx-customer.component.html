@@ -1,0 +1,44 @@
+﻿<div class="media">
+	<img class="mr-3" src="{{customer.imgSrc}}" alt="">
+	<div class="media-body">
+		<p>
+			{{customer.name}}
+		</p>
+		<div class="btn-group">
+			<button class="btn-btn-secondary" (click)="sendInvite($event)" *ngIf="!isBusy">
+				<i class="fa fa-phone"></i> Connect
+			</button>
+			<button class="btn-btn-danger" (click)="disconnect($event)" *ngIf="isBusy">
+				<i class="fa fa-window-close"></i> Disconnect
+			</button>
+			<div class="btn-btn-secondary" (click)="openDetails($event)">
+				<i class="fa fa-address-card"></i> Details
+			</div>
+			<div class="btn-btn-secondary" (click)="transfer($event)">
+				<i class="fa fa-user-circle"></i>
+				Transfer
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--<mat-list-item [matMenuTriggerFor]="menu">
+	<img matListAvatar src="{{customer.imgSrc}}" alt="">
+	<p matLine>{{customer.name}}</p>
+</mat-list-item>
+
+<mat-menu #menu="matMenu">
+	<button mat-menu-item (click)="sendInvite($event)" *ngIf="!isBusy">
+		<i class="fa fa-phone"></i> Connect
+	</button>
+	<button mat-menu-item (click)="disconnect($event)" *ngIf="isBusy">
+		<i class="fa fa-window-close"></i> Disconnect
+	</button>
+	<div mat-menu-item (click)="openDetails($event)">
+		<i class="fa fa-address-card"></i> Details
+	</div>
+	<div mat-menu-item (click)="transfer($event)">
+		<i class="fa fa-user-circle"></i>
+		Transfer
+	</div>
+</mat-menu>-->

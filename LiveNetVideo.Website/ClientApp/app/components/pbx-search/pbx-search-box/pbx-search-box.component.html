@@ -1,0 +1,52 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title *ngIf="isSearching">Searching Companies...</mat-card-title>
+        <mat-card-title *ngIf="!isSearching">Search Companies</mat-card-title>
+    </mat-card-header>
+    <mat-progress-bar mode="indeterminate" *ngIf="isSearching"></mat-progress-bar>
+    <hr>
+    <mat-card-content *ngIf="!isSearching">
+        <form [formGroup]="searchForm" class="searchForm">
+            <mat-form-field class="search-options">
+                <mat-select placeholder="search by" [(ngModel)]="selectedSearchOption" [ngModelOptions]="{standalone: true}">
+                    <mat-option #searchOption *ngFor="let option of searchOptions" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="selectedSearchOption === 'name'">
+                <input formControlName="searchTerm" placeholder="company name" matInput type="search">
+            </mat-form-field>
+            <ng-container *ngIf="selectedSearchOption === 'location'">
+                <mat-form-field>
+                    <input formControlName="address" placeholder="address" matInput type="search">
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="city" placeholder="city" matInput type="search">
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="region" placeholder="region" matInput type="search">
+                </mat-form-field>
+            </ng-container>
+
+            <!-- <mat-form-field [class.hide]="selectedSearchOption != 'location'">
+                <mat-select placeholder="country iso code" formControlName="countryIsoCode">
+                    <mat-option *ngFor="let code of countryIsoCodes" [value]="code.countryIsoCode">
+                        ({{code.countryIsoCode}}) {{code.countryName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> -->
+
+            <mat-form-field  [class.hide]="selectedSearchOption != 'location'">
+                <input type="text" matInput formControlName="countryIsoCode" [matAutocomplete]="auto">
+            </mat-form-field>
+
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let code of filteredCountryCodes" [value]="code.countryIsoCode">
+                    ({{code.countryIsoCode}}) {{code.countryName}}
+                </mat-option>
+            </mat-autocomplete>
+            <button id="searchButton" mat-raised-button color="primary" (click)="search()">Go</button>
+        </form>
+    </mat-card-content>
+</mat-card>

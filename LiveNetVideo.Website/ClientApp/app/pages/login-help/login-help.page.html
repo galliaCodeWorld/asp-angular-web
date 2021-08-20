@@ -1,0 +1,61 @@
+<div class="container">
+
+	<div class="row justify-content-center">
+		<div class="w-100 mb-3"></div>
+		<div class="col">
+			<div class="card bg-light border-primary">
+				<h2 class="card-header bg-primary text-white">
+					Login Help
+				</h2>
+				<div class="card-body">
+					<p class="card-text">
+						Enter your account email to reset your password.
+					</p>
+
+					<form [formGroup]="fgEmail">
+						<div class="form-group">
+							<label><strong>Email</strong>: <small>[max 300 characters]</small></label>
+							<input type="text"
+								   class="form-control"
+								   formControlName="email"
+								   placeholder="Enter your email" />
+							<show-form-errors [control]="fgEmail.get('email')"></show-form-errors>
+						</div>
+
+						<div *ngIf="showEmailProgress">
+
+							<div class="circle">
+								<div class="loader">
+									<div class="loader">
+										<div class="loader">
+											<div class="loader">
+											</div>
+										</div>
+									</div>
+								</div>
+								<p class="text-center">Please Wait</p>
+							</div>
+						</div>
+
+						<button (click)="cancel()" class="btn btn-danger" *ngIf="!showEmailProgress">Cancel</button>
+						<button (click)="onPasswordResetWithEmail()" class="btn btn-primary" *ngIf="!showEmailProgress">Submit</button>
+					</form>
+				</div>
+				<div class="card-footer">
+					<p>
+						Not a member? - <a [routerLink]="['/register']">Register for free</a>
+					</p>
+					<p>
+						Ready to login? - <a [routerLink]="['/login']">Login here</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row justify-content-center">
+		<div class="col">
+			<footer-component></footer-component>
+		</div>
+	</div>
+</div>

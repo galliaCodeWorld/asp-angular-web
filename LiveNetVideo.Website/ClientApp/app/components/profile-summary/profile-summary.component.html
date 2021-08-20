@@ -1,0 +1,16 @@
+﻿<div class="row align-items-center mb-2">
+	<div class="col-4">
+		<img src="{{avatarSrc}}" alt="" class="avatar">
+	</div>
+	<div class="col-8" *ngIf="name">
+		Welcome,<br />
+		<h4><strong>{{name}}</strong></h4>
+	</div>
+</div>
+<div class="row" *ngIf="email">
+	<div class="col text-center">
+		<h6>
+			{{email}}
+		</h6>
+	</div>
+</div>

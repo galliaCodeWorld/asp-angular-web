@@ -1,0 +1,39 @@
+﻿@using LiveNetVideo.Website.Services;
+@model LiveNetVideo.Website.Models.EmployeeInviteDenyViewModel
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+
+			@if (ViewBag.ErrorMessages != null)
+			{
+				if (ViewBag.ErrorMessages.Count > 0)
+				{
+
+					foreach (string errorMessage in ViewBag.ErrorMessages)
+					{
+						UtilityHelper.DisplayAlert(errorMessage);
+					}
+				}
+			}
+
+			<div class="jumbotron">
+				<h2>Employee Invite Deny</h2>
+				<p>
+					Thank you, a message has been sent to the other party to let them know you did not accept their invitation.
+				</p>
+				<p>
+					If you are an existing member. Click Here to login to your account.
+				</p>
+				<p>
+					If you are not an existing member. You can still join and use all our services for free.
+					Fill out the registration form below.
+				</p>
+
+				<p>
+					TODO: add partial view, registration, post to regular registration
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

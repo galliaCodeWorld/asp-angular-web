@@ -1,0 +1,33 @@
+﻿<div class="row">
+	<div class="col">
+		<h3>
+			{{title}}
+		</h3>
+		<p>
+			{{description}}
+		</p>
+		<p>
+			<strong>Meeting Type:</strong> {{isPrivate}}<br />
+			<strong>Date:</strong> {{meetDateTime}}
+		</p>
+	</div>
+</div>
+
+<div class="btn-group">
+
+	<button class="btn btn-primary" (click)="meetingDetails()">
+		Details
+	</button>
+
+	<button class="btn btn-primary" (click)="editMeeting()" *ngIf="canEdit">
+		Edit
+	</button>
+
+	<button class="btn btn-success" (click)="gotoMeeting()" *ngIf="canAttend">
+		Attend
+	</button>
+
+	<button fxFlex class="btn btn-danger" (click)="deleteMeeting()" *ngIf="canDelete">
+		Delete
+	</button>
+</div>

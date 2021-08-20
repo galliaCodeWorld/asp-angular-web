@@ -1,0 +1,49 @@
+﻿<div class="card bg-light border-primary mb-3">
+	<h2 class="card-header bg-primary text-white">
+		Login Options
+	</h2>
+	<div class="card-body">
+		<p *ngIf="allowsGuest" class="card-text">If you are a member, please click the login button to login, or continue as an anonymous user.</p>
+		<p *ngIf="!allowsGuest" class="card-text">To continue please login.</p>
+		<button class="btn btn-primary btn-lg" (click)="openLogin()">
+			<i class="fa fa-sign-in"></i>
+			Login
+		</button>
+		<button mat-raised-button (click)="instantGuestLogin()" *ngIf="allowsGuest">
+			<i class="fa fa-user"></i>
+			Continue As Guest
+		</button>
+		<button mat-raised-button (click)="leave()">
+			<i class="fa fa-sign-out"></i>
+			Leave
+		</button>
+	</div>
+</div>
+
+<!--<mat-card>
+	<mat-card-header>
+		<mat-card-title>Login Options</mat-card-title>
+	</mat-card-header>
+	<mat-card-actions>
+		<div fxLayout="row">
+			<div fxFlex="100%" class="text-center">
+				<button mat-raised-button (click)="openLogin()">
+					<mat-icon font-set="fontawesome" fontIcon="vcard"></mat-icon>
+					Login
+				</button>
+				<button mat-raised-button (click)="instantGuestLogin()" *ngIf="allowsGuest">
+					<mat-icon font-set="fontawesome" fontIcon="user-circle"></mat-icon>
+					Continue As Guest
+				</button>
+				<button mat-raised-button (click)="leave()">
+					<mat-icon font-set="fontawesome" fontIcon="window-close"></mat-icon>
+					Leave
+				</button>
+			</div>
+		</div>
+	</mat-card-actions>
+	<mat-card-content>
+		<p *ngIf="allowsGuest">If you are a member, please click the login button to login, or continue as an anonymous user.</p>
+		<p *ngIf="!allowsGuest">To continue please login.</p>
+	</mat-card-content>
+</mat-card>-->

@@ -1,0 +1,56 @@
+﻿<form [formGroup]="formGroup">
+	<h2>Create an Invite</h2>
+	<p>
+		Use the form below to invite a user to register as a employee of your company.
+	</p>
+
+	<div class="form-group">
+		<label><strong>Email:</strong></label>
+		<input type="text"
+			   class="form-control"
+			   formControlName="email"
+			   placeholder="Email" />
+		<show-form-errors [control]="formGroup.get('email')"></show-form-errors>
+	</div>
+
+	<div class="form-group">
+		<label><strong>First Name: </strong></label>
+		<input class="form-control"
+			   type="text"
+			   formControlName="firstName"
+			   placeholder="First Name" />
+		<show-form-errors [control]="formGroup.get('firstName')"></show-form-errors>
+	</div>
+
+	<div class="form-group">
+		<label><strong>Last Name: </strong></label>
+		<input class="form-control"
+			   type="text"
+			   formControlName="lastName"
+			   placeholder="Last Name" />
+		<show-form-errors [control]="formGroup.get('lastName')"></show-form-errors>
+	</div>
+
+	<div *ngIf="showProgress">
+
+		<div class="circle">
+			<div class="loader">
+				<div class="loader">
+					<div class="loader">
+						<div class="loader">
+						</div>
+					</div>
+				</div>
+			</div>
+			<p class="text-center">Please Wait</p>
+		</div>
+	</div>
+
+	<button (click)="cancel()" class="btn-danger" *ngIf="!showProgress">
+		Cancel
+	</button>
+	<button (click)="submit()" class="btn-primary" *ngIf="!showProgress">
+		<i class="fa fa-plus"></i>
+		Create and Send Invitation
+	</button>
+</form>

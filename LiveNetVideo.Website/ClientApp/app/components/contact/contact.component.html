@@ -1,0 +1,50 @@
+﻿<!-- dummy component requires data from parent-->
+
+<div class="media">
+	<img class="mr-3 img-circle" src="{{imgSrc}}" />
+	<div class="media-body">
+		<h3 class="mt-0">
+			{{name}}
+		</h3>
+		<p *ngIf="email">{{email}}</p>
+		<p>
+			<button class="btn btn-primary btn-sm" (click)="makePhoneCall()" *ngIf="canCall">
+				<i class="fa fa-phone"></i>
+				Call
+			</button>
+
+			<button class="btn btn-primary btn-sm" (click)="editContact()">
+				<i class="fa fa-pencil"></i>
+				Edit
+			</button>
+
+			<button class="btn btn-danger btn-sm" (click)="deleteContact()">
+				<i class="fa fa-trash"></i>
+				Delete
+			</button>
+		</p>
+	</div>
+</div>
+
+<!--<mat-list-item>
+	<img matListAvatar src="{{imgSrc}}" />
+	<h3 matLine>
+		{{name}}
+	</h3>
+	<p matLine *ngIf="email">{{email}}</p>
+
+	<button mat-button (click)="makePhoneCall()" *ngIf="canCall">
+		<mat-icon>phone</mat-icon>
+		Call
+	</button>
+
+	<button mat-button (click)="editContact()">
+		<mat-icon>edit</mat-icon>
+		Edit
+	</button>
+
+	<button mat-button (click)="deleteContact()">
+		<mat-icon>delete</mat-icon>
+		Delete
+	</button>
+</mat-list-item>-->

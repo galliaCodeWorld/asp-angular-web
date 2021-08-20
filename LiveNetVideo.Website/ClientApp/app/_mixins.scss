@@ -1,0 +1,38 @@
+﻿@import '_variables.scss';
+
+@mixin borderRadius($radius: $radiusSm) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin circle($diameter: 50px, $backgroundColor: $white, $color: $grey) {
+	// NOTE: $diameter has to be in pixels
+	$fontSize: ($diameter * .6);
+	width: $diameter;
+	height: $diameter;
+	@include borderRadius(50%);
+	display: inline-block;
+	color: $color;
+	background-color: $backgroundColor;
+	text-align: center;
+
+	> span {
+		position: relative;
+		//top:$top;
+		font-size: $fontSize;
+		//height:auto !important;
+		//max-height:70% !important;
+		top: 10%;
+	}
+}
+
+@mixin shadow($color: $black, $opacity: .4) {
+	-webkit-box-shadow: 3px 3px 4px 0 transparentize($color, $opacity);
+	-moz-box-shadow: 3px 3px 4px 0 transparentize($color, $opacity);
+	box-shadow: 3px 3px 4px 0 transparentize($color, $opacity);
+}
+
+@mixin shadow-text($color: $black, $distance: 1, $opacity: .4, $blur: 1) {
+	text-shadow: #{$distance}px #{$distance}px #{$blur}px transparentize($color, $opacity);
+}

@@ -1,0 +1,157 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" open="true" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				Netcast Search
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+
+	<div mat-sidenav-content>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col">
+
+					<div *ngIf="loading">
+						<div class="circle">
+							<div class="loader">
+								<div class="loader">
+									<div class="loader">
+										<div class="loader">
+										</div>
+									</div>
+								</div>
+							</div>
+							<p class="text-center">Please Wait</p>
+						</div>
+					</div>
+
+					<div *ngIf="!loading">
+						<div class="row">
+							<div class="col">
+								<p class="text-right">
+									<mat-slide-toggle [(ngModel)]="showSearchForm">Show Search Form</mat-slide-toggle>
+								</p>
+							</div>
+						</div>
+						<section [hidden]="!showSearchForm">
+							<div class="row mb-3">
+								<div class="col-6">
+									<div class="alert alert-secondary">
+										<h3>Search By Title: </h3>
+										<form [formGroup]="titleSearchForm">
+											<div class="form-group">
+												<label>Netcast Title: </label>
+												<input type="text"
+													   class="form-control"
+													   formControlName="title" />
+												<show-form-errors [control]="titleSearchForm.get('title')"></show-form-errors>
+											</div>
+											<div class="form-group">
+												<button class="btn btn-primary" (click)="searchByTitle($event)">Search Titles</button>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="alert alert-secondary">
+										<h3>Search By Tags: </h3>
+										<form [formGroup]="tagSearchForm">
+											<div class="form-group">
+												<label>Netcast Tag: </label>
+												<input type="text"
+													   class="form-control"
+													   formControlName="tag" />
+												<show-form-errors [control]="tagSearchForm.get('tag')"></show-form-errors>
+											</div>
+											<div class="form-group">
+												<button class="btn btn-primary" (click)="searchByTitle($event)">Search Tag</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-6">
+									<div class="alert alert-secondary">
+										<h3>Search By Description: </h3>
+										<form [formGroup]="descriptionSearchForm">
+											<div class="form-group">
+												<label>Netcast Description: </label>
+												<input type="text"
+													   class="form-control"
+													   formControlName="description" />
+												<show-form-errors [control]="descriptionSearchForm.get('description')"></show-form-errors>
+											</div>
+											<div class="form-group">
+												<button class="btn btn-primary" (click)="searchByDescription($event)">Search Description</button>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="alert alert-secondary">
+										<h3>Browse by Genre</h3>
+										<form [formGroup]="genreSearchForm">
+											<div class="form-group">
+												<label>Netcast Genre: </label>
+												<select [(value)]="selected"
+														class="form-control"
+														placeHolder="Select a Netcast genre"
+														formControlName="netcastGenreId">
+													<option *ngFor="let genre of genres"
+															[value]="genre.value">
+														{{genre.key}}
+													</option>
+												</select>
+												<show-form-errors [control]="genreSearchForm.get('netcastGenreId')"></show-form-errors>
+											</div>
+											<div class="form-group">
+												<button class="btn btn-primary" (click)="searchByGenre($event)">Browse Genre</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<div *ngIf="showResults">
+							<h2>Search Results</h2>
+
+							<ul class="list-group list-group-flush" *ngIf="items && items.length > 0">
+
+								<li class="list-group-item" *ngFor="let item of items">
+									<div class="media">
+										<img class="mr-3 img-circle"
+											 src="{{item.imgSrc}}"
+											 (click)="gotoNetcastDetails(item.id)">
+										<div class="media-body">
+											<h3 class="mt-0 pointer" (click)="gotoNetcastDetails(item.id)">{{item.title}}</h3>
+											<p>{{item.content}}</p>
+
+											<button class="btn btn-sm btn-default border border-secondary" (click)="gotoNetcastDetails(item.id)">View Details</button>
+										</div>
+									</div>
+								</li>
+							</ul>
+
+							<div *ngIf="!items">
+								<div class="jumbotron-fluid">
+									<h4>No results</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>
+<phone-ringer #phoneRinger></phone-ringer>

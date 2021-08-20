@@ -1,0 +1,26 @@
+mat-card {
+	mat-card-header {
+		display: flex;
+		justify-content: center;
+		mat-card-title {
+			font-size: 2em;
+			color: #3f51b5;
+		}
+	}
+}
+
+
+.searchForm {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	.search-options {
+		width: 200px
+	}
+	&>* {
+		width: 100%;
+	}
+	.hide {
+		display: none;
+	}
+}

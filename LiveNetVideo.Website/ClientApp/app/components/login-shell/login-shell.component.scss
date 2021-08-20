@@ -1,0 +1,24 @@
+#login-shell.hero {
+	background: #0051ba;
+	/* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #0051ba, #4e9ef8) !important;
+	background: linear-gradient(to right, #0051ba, #4e9ef8) !important;
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	.hero-foot {
+		li a {
+			color: white;
+		}
+	}
+	.navbar-menu,
+	.navbar-burger {
+		background-color: transparent;
+	}
+	.navbar-brand .navbar-item {
+		background-color: transparent;
+	}
+	.button.navbar-burger {
+		border: none;
+        color: white;
+        box-shadow: none;
+	}
+}

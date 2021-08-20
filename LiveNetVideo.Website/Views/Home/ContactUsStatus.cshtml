@@ -1,0 +1,38 @@
+﻿@model LiveNetVideo.Website.Models.ContactUsStatusViewModel
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+
+			<div class="well well-lg">
+
+				<h2>Inquiry Status</h2>
+				<div class="list-group">
+					<div class="list-group-item">
+						<strong>Name: </strong>
+						@Model.Name
+					</div>
+					<div class="list-group-item">
+						<strong>Subject Matter: </strong>
+						@Model.Subject
+					</div>
+					<div class="list-group-item">
+						<strong>Message: </strong>
+						@Model.Message
+					</div>
+					<div class="list-group-item">
+						<strong>Status: </strong>
+						@Model.Status
+					</div>
+					@if (Model.IsResolved)
+					{
+						<div class="list-group-item">
+							<strong>Response: </strong>
+							@Model.Notes
+						</div>
+
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

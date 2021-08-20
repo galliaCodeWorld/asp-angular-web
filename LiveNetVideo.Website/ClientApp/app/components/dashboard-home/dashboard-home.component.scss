@@ -1,0 +1,26 @@
+.dashboard-home {
+    padding: 5em;
+    display: flex;
+    flex-wrap: wrap;
+    a {
+        color: black;
+    }
+    .icon-block {
+        margin: 3em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        mat-icon {
+            font-size: 80px;
+            width: 100px;
+            height: 100px;
+            display: block;
+            margin: auto;
+            text-align: center;
+        }
+        .title {
+            font-size: 1em;
+            margin-top: 1em;
+        }
+    }
+}

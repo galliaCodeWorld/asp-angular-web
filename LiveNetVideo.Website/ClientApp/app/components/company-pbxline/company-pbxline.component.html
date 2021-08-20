@@ -1,0 +1,55 @@
+﻿<div class="media">
+	<img class="mr-3" src="{{imgSrc}}" />
+	<div class="media-body">
+		<h4 class="mt-0">{{lineName}}</h4>
+		{{description}}
+		<p>
+			<strong>Status: </strong>
+			{{status}}
+		</p>
+		<p>
+			<code>{{link}}</code>
+		</p>
+		<p>
+			<button class="btn btn-primary btn-sm" (click)="editCompanyPbxline()">
+				<i class="fa fa-pencil"></i>
+				Edit
+			</button>
+
+			<button class="btn btn-danger btn-sm" (click)="deleteCompanyPbxline()">
+				<i class="fa fa-trash"></i>
+				Delete
+			</button>
+		</p>
+	</div>
+</div>
+
+<!--<mat-list-item>
+	<img matListAvatar src="{{imgSrc}}" />
+	<h3 matLine>
+		{{lineName}}
+	</h3>
+	<p matLine>
+		{{description}}
+	</p>
+	<p matLine>
+		<span class="text-smaller">
+			<strong>Status: </strong>
+			{{status}}
+		</span>
+	</p>
+
+	<p matLine>
+		<code>{{link}}</code>
+	</p>
+
+	<button mat-button (click)="editCompanyPbxline()">
+		<mat-icon>edit</mat-icon>
+		Edit
+	</button>
+
+	<button mat-button (click)="deleteCompanyPbxline()">
+		<mat-icon>delete</mat-icon>
+		Delete
+	</button>
+</mat-list-item>-->

@@ -1,0 +1,162 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" open="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				Customer Phone
+			</span>
+			<span *ngIf="!isBusy">
+				<button mat-button
+						class="btn-danger" (click)="exitPhone()">
+					<i class="fa fa-times-circle"></i>
+					Exit
+				</button>
+			</span>
+
+			<span *ngIf="isBusy">
+				<button mat-button
+						class="btn-danger" (click)="endConnection()">
+					<i class="fa fa-times-circle"></i>
+					End Connection
+				</button>
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+
+	<div mat-sidenav-content>
+
+		<section class="phone">
+
+			<div class="init" *ngIf="loading || statusMessage ">
+				<div class="content">
+					<div *ngIf="loading" class="text-center">
+						<mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+					</div>
+					<div *ngIf="statusMessage" class="text-danger text-center"><strong>{{statusMessage}}</strong></div>
+				</div>
+			</div>
+
+			<video id="main-video" class="main-video" src="" #mainVideoElement autoplay="autoplay" muted></video>
+
+			<div class="video-thumb-container">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+							<video #localVideoElement
+								   (click)="localVideoClicked()"
+								   class="local-video"
+								   autoplay="autoplay"
+								   muted></video>
+						</div>
+						<ng-template #phoneCallComponentInsert>
+						</ng-template>
+					</div>
+				</div>
+			</div>
+
+			<div class="text-messaging-container">
+				<text-messaging [users]="currentUsers" [(textMessages)]="textMessages" [currentMessage]="currentMessage"></text-messaging>
+			</div>
+			<div class="info-container">
+
+				<p *ngIf="!employee && !callEnded">
+					Please wait. A representative will be with you as soon as available.
+				</p>
+				<div *ngIf="employee && !isBusy && !callEded">
+
+					<div>
+						Customers Ahead of You: <span class="number-badge">{{customersAhead}}</span>
+					</div>
+					<!--<div>
+						Estimated Wait Time: <span class="number-badge">{{totalWaitTime}}</span> sec
+					</div>-->
+				</div>
+
+				<mat-tab-group>
+
+					<mat-tab label="Information" *ngIf="customerProfile">
+						<section *ngIf="callEnded">
+							<div class="jumbotron">
+								Session End
+							</div>
+						</section>
+						<section *ngIf="!callEnded">
+							<p *ngIf="!customerProfile.subject || !customerProfile.message">
+								Please provide additional information so we can better assist you.
+							</p>
+							<form [formGroup]="formGroup">
+
+								<div class="form-group">
+									<label>Your Name: </label>
+									<span *ngIf="customerProfile.name == customerProfile.email || !customerProfile.name">
+										<input type="text"
+											   class="form-control"
+											   formControlName="name" />
+										<show-form-errors [control]="formGroup.get('name')"></show-form-errors>
+									</span>
+									<span *ngIf="customerProfile.name">
+										{{customerProfile.name}}
+									</span>
+								</div>
+								<div class="form-group">
+									<label>Email: </label>
+									{{customerProfile.email}}
+								</div>
+								<div class="form-group">
+									<label>Subject: </label>
+									<span *ngIf="!customerProfile.subject">
+										<input type="text"
+											   class="form-control"
+											   formControlName="subject" />
+										<show-form-errors [control]="formGroup.get('subject')"></show-form-errors>
+									</span>
+									<span *ngIf="customerProfile.subject">
+										{{customerProfile.subject}}
+									</span>
+								</div>
+
+								<div class="form-group">
+									<label>Message/Comment: </label>
+									<span *ngIf="!customerProfile.message">
+										<textarea class="form-control"
+												  formControlName="message"></textarea>
+										<show-form-errors [control]="formGroup.get('message')"></show-form-errors>
+									</span>
+									<span *ngIf="customerProfile.message">
+										{{customerProfile.message}}
+									</span>
+								</div>
+
+								<div class="form-group" *ngIf="!customerProfile.subject || !customerProfile.message || !customerProfile.name">
+									<button class="btn-primary" (click)="sendCustomerNotes($event)">Submit Addtional Information</button>
+								</div>
+							</form>
+						</section>
+					</mat-tab>
+					<mat-tab label="Company" *ngIf="genericCompanyProfile">
+						<mat-list>
+							<mat-list-item>
+								<img matListAvatar src="{{genericCompanyProfile.imgSrc}}" />
+								<p matLine><strong>Company:</strong> {{genericCompanyProfile.name}}</p>
+							</mat-list-item>
+						</mat-list>
+					</mat-tab>
+					<mat-tab label="Representative" *ngIf="employee">
+						<mat-list>
+							<mat-list-item>
+								<img matListAvatar src="{{employee.imgSrc}}" />
+								<p matLine><strong>Representative:</strong> {{employee.name}}</p>
+							</mat-list-item>
+						</mat-list>
+					</mat-tab>
+				</mat-tab-group>
+			</div>
+		</section>
+	</div>
+</mat-sidenav-container>

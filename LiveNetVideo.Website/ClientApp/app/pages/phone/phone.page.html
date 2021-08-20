@@ -1,0 +1,94 @@
+<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				Live Video Phone
+			</span>
+			<span>
+
+				<button class="btn btn-primary" (click)="showContactsDialog()">
+					<!--<span *ngIf="gettingContacts">
+						<mat-spinner class="getting-contacts-spinner" mode="indeterminate" color="warn"></mat-spinner>
+					</span>-->
+					<span *ngIf="!gettingContacts">
+						<i class="fa fa-users"></i>
+						Contacts
+					</span>
+				</button>
+				<!--<button mat-button
+						class="btn-primary" (click)="testAddUser()">
+
+					test add user
+				</button>-->
+			</span>
+			<span *ngIf="isBusy">
+				<button mat-button
+						class="btn-warning" (click)="hangUp()">
+					<i class="fa fa-times-circle" id="hangup"></i>
+					Hang Up
+				</button>
+			</span>
+
+			<!--<span>
+				<i class="fa fa-archive" (click)="test()"></i>
+			</span>-->
+		</mat-toolbar-row>
+	</mat-toolbar>
+
+	<div mat-sidenav-content>
+
+		<div *ngIf="gettingContacts">
+
+			<div class="circle">
+				<div class="loader">
+					<div class="loader">
+						<div class="loader">
+							<div class="loader">
+							</div>
+						</div>
+					</div>
+				</div>
+				<p class="text-center">Please Wait</p>
+			</div>
+		</div>
+
+		<section class="phone">
+			<button id="minimize-main-video" (click)="minimizeMainVideo()" *ngIf="showMinimizeMainVideo"><i class="fa fa-times-circle"></i></button>
+			<video id="main-video" class="main-video" src="" #mainVideoElement autoplay playsinline></video>
+
+			<div class="video-thumb-container">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+							<video #localVideoElement
+								   (click)="localVideoClicked()"
+								   class="local-video"
+								   autoplay="autoplay"
+								   playsinline
+								   src=""
+								   [hidden]="!canMaxView"></video>
+							<div class="hold-placeholder" *ngIf="!canMaxView" (click)="minimizeMainVideo()">
+								<mat-icon>person</mat-icon>
+								<p>Local Video</p>
+							</div>
+						</div>
+
+						<ng-container #phoneCallComponentInsert>
+						</ng-container>
+					</div>
+				</div>
+			</div>
+			<div class="text-messaging-container">
+				<text-messaging [users]="currentUsers" [(textMessages)]="textMessages" [currentMessage]="currentMessage"></text-messaging>
+			</div>
+		</section>
+	</div>
+</mat-sidenav-container>
+<phone-ringer #phoneRinger></phone-ringer>

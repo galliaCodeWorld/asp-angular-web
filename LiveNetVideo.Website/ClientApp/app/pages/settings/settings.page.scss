@@ -1,0 +1,9 @@
+@import '../../_variables.scss';
+@import '../../_mixins.scss';
+
+#main-video {
+	height: 240px;
+	width: 320px;
+	border: 1px solid $black;
+	background-color: $black;
+}

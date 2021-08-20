@@ -1,0 +1,81 @@
+﻿<div class="card">
+	<img class="card-img-top" src="{{imgSrc}}" *ngIf="imgSrc" />
+
+	<div class="card-body">
+		<h3 class="card-title">
+			<strong>{{firstName}} {{lastName}}</strong>
+		</h3>
+		<h5 class="card-subtitle" *ngIf="email">
+			{{email}}
+		</h5>
+		<p class="card-text">
+			<strong>Title: </strong>
+			{{title}}
+		</p>
+		<p class="card-text">
+			<strong>Status: </strong>
+			<a (click)="edit()" class="link">{{status}}</a>
+		</p>
+	</div>
+	<div class="card-footer">
+		<button class="btn btn-secondary btn-sm" *ngIf="companyEmployeeId" [routerLink]="['/company-employee-details', companyEmployeeId]">
+			<i class="fa fa-vcard"></i>
+			Details
+		</button>
+		<button class="btn btn-secondary btn-sm" *ngIf="memberId" [routerLink]="['/public-user-profile', memberId]">
+			<i class="fa fa-user-circle-o"></i>
+			Profile
+		</button>
+
+		<button class="btn btn-secondary btn-sm" (click)="edit()">
+			<i class="fa fa-pencil"></i>
+			Edit
+		</button>
+
+		<button class="btn btn-danger btn-sm" (click)="delete()">
+			<i class="fa fa-trash"></i>
+			Delete
+		</button>
+	</div>
+</div>
+
+<!--<mat-list-item>
+	<img matListAvatar src="{{imgSrc}}" *ngIf="imgSrc" />
+	<h3 matLine>
+		<strong>{{firstName}} {{lastName}}</strong>
+	</h3>
+	<p matLine *ngIf="email">
+		{{email}}
+	</p>
+	<p matLine>
+		<span class="text-smaller">
+			<strong>Title: </strong>
+			{{title}}
+		</span>
+	</p>
+	<p matLine>
+		<span class="text-smaller">
+			<strong>Status: </strong>
+			<a (click)="edit()" class="link">{{status}}</a>
+		</span>
+	</p>
+
+	<button mat-button *ngIf="companyEmployeeId" [routerLink]="['/company-employee-details', companyEmployeeId]">
+		<i class="fa fa-vcard"></i>
+		Details
+	</button>
+	<button mat-button *ngIf="memberId" [routerLink]="['/public-user-profile', memberId]">
+		<i class="fa fa-user-circle-o"></i>
+		Profile
+	</button>
+
+	<button mat-button (click)="edit()">
+		<i class="fa fa-pencil"></i>
+		Edit
+	</button>
+
+	<button mat-button (click)="delete()">
+		<i class="fa fa-trash"></i>
+		Delete
+	</button>
+</mat-list-item>-->

@@ -1,0 +1,10 @@
+﻿@import '../../_variables.scss';
+@import '../../_mixins.scss';
+
+.avatar {
+	max-width: 100px;
+	overflow: hidden;
+	border-radius: 50%;
+	margin: 0 auto;
+	border: 8px solid $white;
+}

@@ -1,0 +1,130 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" open="true" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				Company Pbx Phone
+			</span>
+			<span>
+				<button mat-button
+						class="btn-warning" (click)="exitPhone()">
+					<i class="fa fa-times-circle"></i>
+					Exit
+				</button>
+			</span>
+			<!--<span class="fill-row text-right">
+				<button mat-button (click)="test()">
+					test
+				</button>
+			</span>-->
+		</mat-toolbar-row>
+
+		<!--<div fxFlex *ngIf="isBusy">
+			<button mat-button
+					class="btn-warning" (click)="hangUp()">
+				<i class="fa fa-times-circle" id="hangup"></i>
+				Hang Up
+			</button>
+		</div>-->
+	</mat-toolbar>
+
+	<div mat-sidenav-content>
+
+		<section class="phone">
+
+			<div class="init" *ngIf="loading || statusMessage ">
+				<div class="content">
+					<div *ngIf="loading">
+
+						<div class="circle">
+							<div class="loader">
+								<div class="loader">
+									<div class="loader">
+										<div class="loader">
+										</div>
+									</div>
+								</div>
+							</div>
+							<p class="text-center">Please Wait</p>
+						</div>
+					</div>
+					<div *ngIf="statusMessage" class="text-danger text-center"><strong>{{statusMessage}}</strong></div>
+				</div>
+			</div>
+
+			<video id="main-video" class="main-video" src="" #mainVideoElement autoplay="autoplay" muted></video>
+
+			<div class="video-thumb-container">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+							<video #localVideoElement
+								   (click)="localVideoClicked()"
+								   class="local-video"
+								   autoplay="autoplay"
+								   muted></video>
+						</div>
+						<ng-template #phoneCallComponentInsert>
+						</ng-template>
+					</div>
+				</div>
+			</div>
+			<div class="text-messaging-container">
+				<text-messaging [users]="currentUsers" [(textMessages)]="textMessages" [currentMessage]="currentMessage"></text-messaging>
+			</div>
+			<div class="icon-container">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item" *ngIf="otherReps">
+						<button class="btn btn-primary btn-sm" (click)="displayOtherReps()"><i class="fa fa-users"></i></button>
+					</li>
+				</ul>
+			</div>
+			<div class="info-container">
+				<mat-tab-group>
+					<mat-tab label="Customers">
+						<div *ngIf="customers" class="customer-list">
+							<mat-list>
+								<ng-container *ngFor="let customer of customers">
+									<pbx-customer [customer]="customer" [otherReps]="otherReps" (onDisconnect)="onDisconnect($event)"></pbx-customer>
+								</ng-container>
+
+								<mat-divider></mat-divider>
+							</mat-list>
+						</div>
+						<div *ngIf="!customers">
+							<p>No customers</p>
+						</div>
+					</mat-tab>
+					<mat-tab label="Information">
+						<mat-list>
+
+							<mat-list-item *ngIf="genericCompanyProfile">
+								<img matListAvatar src="{{genericCompanyProfile.imgSrc}}" />
+								<p matLine><strong>Company:</strong> {{genericCompanyProfile.name}}</p>
+							</mat-list-item>
+
+							<mat-list-item *ngIf="pbxlineView">
+								<img matListAvatar src="{{pbxlineView.imgSrc}}" />
+								<p matLine>
+									<strong>Line Name:</strong>  {{pbxlineView.title}}
+								</p>
+							</mat-list-item>
+							<mat-list-item *ngIf="employeeProfile">
+								<img matListAvatar src="{{employeeProfile.imgSrc}}" />
+								<p matLine>
+									<strong>Displayed Name:</strong> {{employeeProfile.name}}
+								</p>
+							</mat-list-item>
+						</mat-list>
+					</mat-tab>
+				</mat-tab-group>
+			</div>
+		</section>
+	</div>
+</mat-sidenav-container>

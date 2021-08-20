@@ -1,0 +1,50 @@
+<div class="dropdown">
+	<button class="btn btn-secondary dropdown-toggle"
+			type="button"
+			id="dropdownUploadPhoto"
+			data-toggle="dropdown"
+			aria-haspopup="true"
+			aria-expanded="false">
+		<i class="fa fa-camera"></i>
+	</button>
+	<div class="dropdown-menu" aria-labelledby="dropdownUploadPhoto">
+		<a class="dropdown-item" (click)="takePhoto()">Take Photo</a>
+		<div class="dropdown-item" (click)="file.click()">
+			<span>Select Photo</span>
+			<input type="file" accept="image/*" #file (change)="photoSelected($event)" class="hidden">
+		</div>
+	</div>
+</div>
+
+<!--<button mat-mini-fab
+		class="btn-primary"
+		[matMenuTriggerFor]="menu">
+	<mat-icon>camera</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+	<button mat-menu-item (click)="takePhoto()">Take Photo</button>
+	<div mat-menu-item (click)="file.click()">
+		<span>Select Photo</span>
+		<input type="file" accept="image/*" #file (change)="photoSelected($event)" class="hidden">
+	</div>
+</mat-menu>-->
+<!--<div class="dropdown" (clickedOutside)="hideDropdown()" [class.is-active]="dropdownShown" #menu>
+	<div class="dropdown-trigger ">
+		<button class="button is-black is-outlined" (click)="dropdownShown = !dropdownShown">
+			<span class="icon is-small">
+				<i class="fa fa-camera is-light"></i>
+			</span>
+			<span *ngIf="!iconOnly">UPLOAD</span>
+		</button>
+	</div>
+	<div class="dropdown-menu" id="dropdown-menu" role="menu">
+		<div class="dropdown-content">
+			<a class="dropdown-item" (click)="takePhoto()">Take Photo</a>
+			<a class="dropdown-item">
+				<span> Select From File</span>
+				<input class="input" type="file" accept="image/*" (change)="photoSelected($event)">
+			</a>
+		</div>
+	</div>
+</div>-->
+<capture-photo-modal (photoSelected)="updatePhoto($event)" (close)="hideModal()" *ngIf="capturePhotoModalShown"></capture-photo-modal>

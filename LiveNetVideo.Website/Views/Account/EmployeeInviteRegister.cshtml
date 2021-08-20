@@ -1,0 +1,36 @@
+@addTagHelper *, PaulMiami.AspNetCore.Mvc.Recaptcha
+@using LiveNetVideo.Website.Services;
+
+@model LiveNetVideo.Website.Models.EmployeeInviteRegisterViewModel
+
+
+<recaptcha-script />
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+
+			<h1>Register to Accept Invitation</h1>
+			<p>
+				Please create a password, and click "Create Account" to create an account and accept your invitation.
+			</p>
+			@if (ViewBag.ErrorMessages != null)
+			{
+				if (ViewBag.ErrorMessages.Count > 0)
+				{
+
+					foreach (string errorMessage in ViewBag.ErrorMessages)
+					{
+						UtilityHelper.DisplayAlert(errorMessage);
+					}
+				}
+			}
+
+			@Html.Partial("~/Views/Shared/_EmployeeInviteRegister.cshtml", Model)
+			<hr />
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	@{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

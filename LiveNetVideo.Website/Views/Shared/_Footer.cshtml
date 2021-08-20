@@ -1,0 +1,19 @@
+﻿<footer id="page-footer">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+
+				<p class="text-center">
+					&copy; <span id="domain-container"></span> @DateTime.Now.Year, All Rights Reserved
+				</p>
+			</div>
+		</div>
+	</div>
+</footer>
+<script>
+	(function () {
+		var domainContainer = document.getElementById("domain-container");
+		domainContainer.innerHTML = window.location.hostname.toUpperCase();
+	})();
+</script>

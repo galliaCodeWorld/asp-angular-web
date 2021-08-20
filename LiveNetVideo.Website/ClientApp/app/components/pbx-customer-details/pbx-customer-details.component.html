@@ -1,0 +1,69 @@
+﻿<div class="card bg-light border-primary">
+	<div class="card-header">
+		<div class="media">
+			<img class="mr-3" src="{{customer.imgSrc}}" />
+			<div class="media-body">
+				<h3 class="card-title">
+					{{customer.name}}
+				</h3>
+				<h4 class="card-subtitle">{{customer.email}}</h4>
+			</div>
+		</div>
+	</div>
+	<div class="card-body">
+		<strong>Subject: </strong>
+		<span *ngIf="customer.subject">
+			{{customer.subject}}
+		</span>
+		<span *ngIf="!customer.subject">
+			N/A
+		</span>
+
+		<hr />
+		<strong>Info: </strong>
+		<span *ngIf="customer.message">
+			{{customer.message}}
+		</span>
+		<span *ngIf="!customer.message">
+			N/A
+		</span>
+	</div>
+	<div class="card-footer">
+		<button class="btn btn-danger" (click)="close()">Close</button>
+		<button class="btn btn-primary" (click)="sendInvite()">Connect</button>
+	</div>
+</div>
+
+<!--<mat-card>
+	<mat-card-header>
+		<img mat-card-avatar src="{{customer.imgSrc}}" />
+		<mat-card-title>
+			<h3>{{customer.name}}</h3>
+		</mat-card-title>
+		<mat-card-subtitle>
+			<p>{{customer.email}}</p>
+		</mat-card-subtitle>
+	</mat-card-header>
+	<mat-card-content>
+		<strong>Subject: </strong>
+		<span *ngIf="customer.subject">
+			{{customer.subject}}
+		</span>
+		<span *ngIf="!customer.subject">
+			N/A
+		</span>
+
+		<hr />
+		<strong>Info: </strong>
+		<span *ngIf="customer.message">
+			{{customer.message}}
+		</span>
+		<span *ngIf="!customer.message">
+			N/A
+		</span>
+	</mat-card-content>
+	<mat-card-actions>
+		<button class="btn btn-danger" (click)="close()">Close</button>
+		<button class="btn btn-primary" (click)="sendInvite()">Connect</button>
+	</mat-card-actions>
+</mat-card>-->

@@ -1,0 +1,47 @@
+<div class="container">
+	<div class="row justify-content-center mb-3">
+		<div class="w-100 mb-3"></div>
+
+		<div class="col-8">
+			<div class="card bg-light border-primary">
+				<h2 class="card-header bg-primary text-white">
+					Live Net Video Login
+				</h2>
+				<div class="card-body">
+					<h3 class="card-title">Member Login</h3>
+					<p class="card-subtitle">
+						Enter your email and password to login. If you do not have an account with {{siteName}},
+						Login with one of your Social Media accounts.
+					</p>
+					<member-login-form (onMemberLoginSuccess)="onMemberLoginSuccess($event)"></member-login-form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row justify-content-center mb-5">
+		<div class="col-8">
+			<div class="card bg-light border-primary">
+
+				<div class="card-body">
+					<h3 class="card-title">
+						Or Login As A Guest
+					</h3>
+					<p class="card-text">
+						Give us a try, you can login as a guest. Enter your email and a name or nickname.
+						Please note, guest users are not stored in our system. We only use your email and name
+						to identify you to other users when you interact with our members or other users.
+					</p>
+					<guest-login-form (onGuestLoginSuccess)="onGuestLoginSuccess($event)"></guest-login-form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col justify-content-center">
+			<p class="text-center">
+				Need login help? - <a [routerLink]="['/login-help']">Get help here</a>
+			</p>
+			<footer-component></footer-component>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,23 @@
+<div class="modal is-active">
+    <div class="modal-background" (click)="closeClicked()"></div>
+    <div class="modal-content">
+        <div class="media-container">
+            <video (canplay)="canPlay = true" #videoElement [class.is-invisible]="pictureTaken"></video>
+            <img #photoElement [class.is-invisible]="!pictureTaken">
+        </div>
+        <div class="button-bar" *ngIf="canPlay">
+            <button class="button is-icon is-light is-outlined" (click)="takePicture()" *ngIf="!pictureTaken">
+                <span class="icon is-large">
+                    <i class="fa fa-camera"></i>
+                </span>
+            </button>
+            <button class="button is-light is-outlined" (click)="usePicture()" *ngIf="pictureTaken">
+                use
+            </button>
+            <button class="button is-light is-outlined" (click)="startCamera()" *ngIf="pictureTaken">
+                retake
+            </button>
+        </div>
+    </div>
+    <button (click)="closeClicked()" class="modal-close is-large" aria-label="close"></button>
+</div>

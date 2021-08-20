@@ -1,0 +1,44 @@
+<div class="card bg-light border-secondary">
+	<div class="card-body">
+		<form [formGroup]="employeeInviteForm">
+			<div class="form-group">
+				<label><strong>First Name: </strong></label>
+				<input class="form-control" formControlName="firstName" placeholder="first name">
+			</div>
+			<div class="form-group">
+				<label><strong>Last Name: </strong></label>
+				<input class="form-control" formControlName="lastName" placeholder="last name">
+			</div>
+
+			<div class="form-group">
+				<label><strong>Email: </strong></label>
+				<input class="form-control" formControlName="email" placeholder="email name">
+				<show-form-errors [control]="formGroup.get('email')"></show-form-errors>
+			</div>
+		</form>
+		<button [disabled]="!employeeInviteForm.valid" (click)="inviteEmployee()" class="btn btn-primary btn-lg">Invite Employee</button>
+		<button (click)="cancel()" class="btn btn-danger btn-lg">Cancel</button>
+	</div>
+</div>
+
+<!--<mat-card class="mat-elevation-z0">
+	<mat-card-content>
+		<form [formGroup]="employeeInviteForm">
+			<mat-form-field>
+				<input matInput formControlName="firstName" placeholder="first name">
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput formControlName="lastName" placeholder="last name">
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput formControlName="email" placeholder="email name">
+				<mat-error *ngIf="employeeInviteForm?.controls?.email?.errors?.invalid &&
+				employeeInviteForm?.controls?.email?.touched">Invalid Email</mat-error>
+			</mat-form-field>
+		</form>
+	</mat-card-content>
+	<mat-card-actions>
+		<button mat-raised-button color="accent" [disabled]="!employeeInviteForm.valid" (click)="inviteEmployee()">Invite Employee</button>
+		<button mat-button color="warn" (click)="cancel()">Cancel</button>
+	</mat-card-actions>
+</mat-card>-->

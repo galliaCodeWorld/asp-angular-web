@@ -1,0 +1,11 @@
+﻿<div *ngIf="contacts">
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item" *ngFor="let contact of contacts">
+			<contact [contact]="contact" (onContactDeleted)="onContactDeleted($event)"></contact>
+		</li>
+	</ul>
+</div>
+
+<div class="jumbotron-fluid" *ngIf="!contacts">
+	<h3>Unable to retrieve any contacts.</h3>
+</div>

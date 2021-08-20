@@ -1,0 +1,22 @@
+﻿<div fxLayout="column" fxLayoutGap="20px">
+	<div fxFlex>
+		<video #videoElement [hidden]="showPhoto" class="full-width"></video>
+		<img #photoElement [hidden]="!showPhoto" class="img-responsive" />
+	</div>
+	<div fxFlex [hidden]="showPhoto">
+		<button mat-raised-button (click)="takePhoto()">
+			<mat-icon>camera</mat-icon>
+			Snap Photo
+		</button>
+	</div>
+	<div fxFlex [hidden]="!showPhoto">
+		<button mat-raised-button (click)="usePhoto()">
+			<mat-icon>done</mat-icon>
+			Use Photo
+		</button>
+		<button mat-raised-button (click)="discardPhoto()">
+			<mat-icon>delete</mat-icon>
+			Retake Photo
+		</button>
+	</div>
+</div>

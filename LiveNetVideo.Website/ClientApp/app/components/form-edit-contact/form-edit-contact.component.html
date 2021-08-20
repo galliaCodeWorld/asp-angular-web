@@ -1,0 +1,66 @@
+﻿<form [formGroup]="formGroup">
+	<h2>Edit Contact</h2>
+
+	<p>
+		Update your contact name, email, or avatar.
+	</p>
+
+	<div class="card border border-primary mb-3">
+		<div class="card-body">
+			<img class="img-circle thumbnail-md" src="{{image}}" />
+			<div class="card-text mb-2">
+				<span>
+					{{formGroup.get('name').value}}
+				</span>
+				<span>
+					{{formGroup.get('email').value}}
+				</span>
+			</div>
+			<button class="btn btn-danger btn-sm" (click)="removeAvatar()" *ngIf="image && image != defaultAvatar">
+				<i class="fa fa-trash"></i>
+				Remove Avatar
+			</button>
+		</div>
+	</div>
+
+	<div class="form-groupo">
+		<label><strong>Name: </strong></label>
+		<input type="text"
+			   class="form-control"
+			   formControlName="name"
+			   placeholder="Contact Name" />
+		<show-form-errors [control]="formGroup.get('name')"></show-form-errors>
+	</div>
+
+	<div class="form-group">
+		<label><strong>Contact Email: </strong></label>
+		<input type="text"
+			   class="form-control"
+			   formControlName="email"
+			   placeholder="Contact email" />
+		<show-form-errors [control]="formGroup.get('email')"></show-form-errors>
+	</div>
+
+	<div class="form-group">
+		<label><strong>Add New Photo: </strong></label>
+		<image-selector (onImageSelected)="onImageSelected($event)"></image-selector>
+	</div>
+
+	<div *ngIf="showProgress">
+
+		<div class="circle">
+			<div class="loader">
+				<div class="loader">
+					<div class="loader">
+						<div class="loader">
+						</div>
+					</div>
+				</div>
+			</div>
+			<p class="text-center">Please Wait</p>
+		</div>
+	</div>
+	<button (click)="submit()" class="btn btn-primary" *ngIf="!showProgress">
+		Update Contact
+	</button>
+</form>

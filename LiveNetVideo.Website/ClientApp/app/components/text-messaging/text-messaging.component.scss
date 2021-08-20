@@ -1,0 +1,49 @@
+﻿@import '../../_variables.scss';
+@import '../../_mixins.scss';
+
+form {
+	padding-bottom: 10px;
+
+	textarea {
+		width: 340px;
+	}
+}
+
+.text-message-display-box {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: 160px;
+	margin: 20px 0;
+	padding: 20px;
+	@include borderRadius($radiusLg);
+	background-color: rgba(255, 255, 255, .7);
+}
+
+.text-message-display-mini-box {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: 70px;
+	margin: 20px 0;
+	padding: 20px;
+	@include borderRadius($radiusLg);
+	background-color: rgba(255, 255, 255, .7);
+
+	img {
+		max-height: 34px;
+		max-width: 34px;
+		@include borderRadius($radiusLg);
+		float: right;
+		margin: 0 0 4px 8px;
+	}
+}
+
+.mat-spinner {
+	width: 38px;
+	height: auto;
+}
+
+.mat-chip-list {
+	.mat-chip {
+		margin-bottom: 6px;
+	}
+}

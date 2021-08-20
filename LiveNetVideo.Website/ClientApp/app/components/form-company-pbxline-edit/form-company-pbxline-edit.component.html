@@ -1,0 +1,93 @@
+﻿<form [formGroup]="formGroup">
+	<h2>Edit PBX Line</h2>
+	<p>
+		Use the form below to edit your PBX Line.
+	</p>
+
+	<div class="card border border-primary mb-3">
+		<div class="card-body">
+			<img class="img-circle thumbnail-md" src="{{image}}" />
+			<div class="card-text">
+				<span *ngIf="formGroup.get('lineName').value">
+					{{formGroup.get('lineName').value}}	<br />
+				</span>
+				<span *ngIf="formGroup.get('description').value">
+					{{formGroup.get('description').value}}
+				</span>
+			</div>
+
+			<button class="btn btn-danger btn-sm" (click)="removeImage()" *ngIf="image && image != defaultAvatar">
+				<i class="fa fa-trash"></i>
+				Remove Image
+			</button>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label><strong>Pbx Line Name: </strong></label>
+		<input type="text"
+			   class="form-control"
+			   formControlName="lineName"
+			   placeholder="Name of Pbx Line" />
+		<show-form-errors [control]="formGroup.get('lineName')"></show-form-errors>
+	</div>
+
+	<div class="form-group">
+		<label><strong>Description: </strong></label>
+		<textarea class="form-control"
+				  rows="3"
+				  formControlName="description"
+				  placeholder="description"></textarea>
+		<show-form-errors [control]="formGroup.get('description')"></show-form-errors>
+	</div>
+
+	<div class="form-group">
+		<label><strong>Employees: </strong></label>
+		<select [(ngModel)]="existingEmployeeReps" *ngIf="employees"
+				placeholder="Employees"
+				class="form-control"
+				formControlName="selectedEmployees" multiple>
+			<option *ngFor="let employee of employees"
+					[value]="employee">
+				{{employee.title}}
+			</option>
+		</select>
+	</div>
+	<div fxFlex *ngIf="!employees">
+		<p>
+			You currently do not have any employees associated with your company. After you create the PBX Line,
+			Invite employees to assiate their account with your company profile. After employees are associated with your company,
+			you can assign the employees to your PBX Lines
+		</p>
+	</div>
+
+	<mat-radio-group formControlName="isDisabled" [(ngModel)]="formGroup.get('isDisabled').value">
+		<mat-radio-button [value]="false">Active</mat-radio-button>
+		<mat-radio-button [value]="true">Disabled</mat-radio-button>
+	</mat-radio-group>
+	<show-form-errors [control]="formGroup.get('isSuspended')"></show-form-errors>
+
+	<div class="form-group">
+		<label><strong>Add PBX Line Icon: </strong></label>
+		<image-selector (onImageSelected)="onImageSelected($event)"></image-selector>
+	</div>
+
+	<div *ngIf="showProgress">
+
+		<div class="circle">
+			<div class="loader">
+				<div class="loader">
+					<div class="loader">
+						<div class="loader">
+						</div>
+					</div>
+				</div>
+			</div>
+			<p class="text-center">Please Wait</p>
+		</div>
+	</div>
+	<button (click)="submit()" class="btn btn-primary" *ngIf="!showProgress">
+		<i class="fa fa-plus"></i>
+		Update PBX Line
+	</button>
+</form>

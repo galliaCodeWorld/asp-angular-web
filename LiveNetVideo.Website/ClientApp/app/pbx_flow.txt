@@ -1,0 +1,131 @@
+- Representative will login 
+check if they are an employee of any companies by call api 
+[HttpPost, Route("~/Pbx/GetEmployeeCompanies")](IdDto)
+this will list all the companies this member is an employee of.
+Rep will then click on the Company to get a list of PbxLines they
+are assigned too. Rep will click the PbxLine to Check Into the PbxLine
+NOTE: Representative checks in to signalr to get hubconnectionId (connectionGuid) first.
+THEN
+Checks into pbx by creating an entry into PbxLineRepStatus
+using their PbxLineRepId and ConnectionGuid
+now Representative is considered online, else they are offline
+(
+	NOTE: Rep checksout of PbxLine by deleting their PbxLineRepStatus db entry. 
+	When a Rep is deleted from PbxLineRepStatus, PbxCallQueue.PbxLineRepId should 
+	be updated to be null. and those customers on hold will be re-assigned to a new available rep,
+	else if after 30 seconds, there are no reps available, customers will be notified that PbxLine is offline.
+)
+
+- Anonymous customer -> clicks link(website)/button(mobile app) with PbxLineId ->
+the web or mobile app will get the PbxLineId, Create an anonymous email for the 
+customer, connects to signalr to get a connectionId, and register that connectionId
+by creating a net.HubConnection db entry using the signalr connectionId, and generated email.
+
+An entry is created in net.PbxCallQueue using the customers PbxLineId, and HubConnection.ConnectionGuid
+
+The system will then assign the customer a a PbxLineRep.
+
+All the PbxCallQueue assigned to the PbxLineRep are pulled to display the number
+of customers ahead of this customer, and get the wait time for this customer.
+NOTE: PbxCallQueue is ordered in descending order by CreatedDate field. So you have to see how many
+customers are ahead of this customer. and add all the time for the customers ahead of this customer 
+to determine the calculated wait time.
+
+The Pbx Customer GUI is displayed to the customer, showing the company information, and the PbxLine Information
+and the PbxLineRep information, number of customers ahead, and estimated wait time.
+At this point the customer can enter additional information, such as their name, why they are contacting the company.
+This information is live updated on the reps GUI
+
+
+NOTE: Algorithm to determine which PbxLineRep to route a customer to.
+- Get list of all online Reps for the PbxLine
+- Check if any Rep that is online who doesn't have any PbxCallQueue entries
+the first rep without any customers will be assigned.
+- If all reps are busy, See which rep has the shortest total TimeAllotment value
+assign the rep that has the shortest total TimeAllotment value.
+
+
+Note: if no Representative is available, then a push message is sent to all Representatives of the PbxLine
+(NOTE: it is up to the organization to create their own protocol as to who answers the push message)
+
+Customer is put into call queue
+Representative can see customers in their call Queue from their Pbx Dashboard
+Representative will then initiate a call to the customer by sending a phone line invitation
+
+Retrieve a phoneline, retrieve phoneLineConnection
+tryGetPhoneLine()
+tryGetLocalPhoneLineConnection()
+addPhoneLineConnectionToPhoneLine(), 
+removePhoneLineConnectionFromPhoneLine()
+
+Representative can then invite other representatives by sending them a phoneLineInvitation
+
+sendPhoneLineInvitation(email: string)
+
+receivePhoneLineInvitation: Subscription;
+
+sendAcceptPhoneLineInvitation(phoneLineGuid: string, remoteGuid: string)
+-sendAreYouReadyForCall()
+sendNotAcceptCall(remoteGuid: string)
+sendBusyResponse(remoteGuid: string)
+
+receiveAcceptPhoneLineInvitation: Subscription;
+receiveNotAcceptCall: Subscription;
+
+
+receiveBusyResponse: Subscription;
+-receiveAreYouReadyForCall: Subscription;
+--create RtcPeerConnection
+--start RtcPeerConnection Listeners
+
+sendReadyForCall(remoteGuid: string)
+sendNotReadyForCall(errorMessage: string, remoteGuid: string)
+
+receiveReadyForCall: Subscription;
+--create RtcPeerConnection
+--start RtcPeerConnection Listeners
+--add LocalMediaStream to RtcPeerConnection (phoneCallComponent.addLocalStream(this.phoneService.localMediaStream);)
+--create LocalSdpOffer, set LocalSdpOffer 
+--using signalr to send LocalSdpOffer (phoneCallComponent.startP2pConnection();)
+receiveNotReadyForCall: Subscription;
+
+receiveSDP: Subscription;
+--set RemoteSdpOffer, create localSdpAnswer, set localSdpAnswer
+--add LocalMediaStream to RtcPeerConnection
+--send localSdpAnswer
+receiveICE: Subscription;
+
+//connection established
+
+//During Conversation rep can put customer on hold
+receivePutOnHold: Subscription;
+receiveRemoveOnHold: Subscription;
+
+// During conversation rep and customer can send text information
+// only make group sms available if the rep brings in other reps to the conversation
+receiveGroupSmsMessage: Subscription;
+receivePrivateSmsMessage: Subscription;
+
+//when customer hangs up
+sendHangUpNotice(phoneLineGuid: string)
+// rep will receiveHangUpNotice, this tells rep system that customer has hung up
+receiveHangUpNotice: Subscription;
+
+
+
+// Other methods
+sendCancelInvitation(email: string)
+receiveCancelInvitation: Subscription;
+hangUp()
+initCall(isMember: boolean, call: CallType)
+
+
+When a representative is done with a customer, 
+the representative will sendDisconnect(remoteGuid) to the customer, 
+or if the customer hangup, the representative will receive a hangup notice.
+HangUpnotice to the representative. When the representative receives this notice, they will end the call. 
+The customer is removed from the phoneline, they will be checkedout of signalr
+The Representative can reuse the phoneline to connect to the next customer.
+else the representative can get a new phoneline and connect to the next customer.
+
+

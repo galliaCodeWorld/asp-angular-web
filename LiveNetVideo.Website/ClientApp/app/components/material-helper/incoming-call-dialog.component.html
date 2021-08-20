@@ -1,0 +1,56 @@
+﻿<div class="card bg-light border-primary">
+
+	<img class="card-img-top" src="{{data.avatarBaseUrl}}{{data.call.profile.avatarFileName}}">
+
+	<h1 class="card-header bg-primary text-white">
+		Incoming Call
+	</h1>
+
+	<div class="card-body">
+		<button class="btn btn-primary btn-lg" (click)="accept()">Accept</button>
+		<button class="btn btn-danger btn-lg" (click)="deny()">Deny</button>
+		<button class="btn btn-warning btn-lg" (click)="block()">Block</button>
+	</div>
+
+	<div class="card-body">
+		<h3 class="card-title">
+			{{data.call.profile.name}}
+		</h3>
+		<p class="card-subtitle">Please accept, deny, or block this call.</p>
+	</div>
+	<div class="card-body" *ngIf="data.call['callers']">
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item" *ngFor="let caller of data.call['callers']">
+				<div class="media">
+					<img src="{{data.avatarBaseUrl}}{{caller.profile.avatarDataUri}}" class="mr-3" />
+					<div class="media-body">
+						<h4 class="mt-0">{{caller.profile.name}}</h4>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<!--<h1 mat-dialog-title>Incoming Call</h1>
+<div mat-dialog-actions>
+	<button mat-button (click)="accept()">Accept</button>
+	<button mat-button (click)="deny()">Deny</button>
+	<button mat-button (click)="block()">Block</button>
+</div>
+<div mat-dialog-content>
+	<mat-card>
+		<mat-card-header>
+			<img mat-card-avatar src="{{data.avatarBaseUrl}}{{data.call.profile.avatarFileName}}">
+			<mat-card-title>{{data.call.profile.name}}</mat-card-title>
+			<mat-card-subtitle>Please accept, deny, or block this call.</mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-content>
+			<mat-list>
+				<mat-list-item *ngFor="let caller of data.call['callers']">
+					<img mat-card-avatar src="{{data.avatarBaseUrl}}{{caller.profile.avatarDataUri}}" />
+					{{caller.profile.name}}
+				</mat-list-item>
+			</mat-list>
+		</mat-card-content>
+	</mat-card>
+</div>-->

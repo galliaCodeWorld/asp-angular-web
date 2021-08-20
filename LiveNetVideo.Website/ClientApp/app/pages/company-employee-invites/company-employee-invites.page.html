@@ -1,0 +1,60 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				Invites
+			</span>
+			<span>
+				<button-add-employee-invite (onCompanyEmployeeInviteAdded)="companyEmployeeInviteAdded($event)"></button-add-employee-invite>
+			</span>
+			<span>
+				<button mat-button
+						class="btn-danger"
+						(click)="refresh()">
+					<mat-icon>refresh</mat-icon>
+					Refresh
+				</button>
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+	<div class="mat-sidenav-content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+
+					<p>
+						Check the status of your invites here. Accepted invites will remain on this list or up to 48 hours. After 48 hours,
+						only accepted invites will appear in your  <a (click)="gotoCompanyEmployees()">Employee Invites List</a>.
+					</p>
+					<div fxLayout="column" fxLayoutGap="20px">
+						<div fxFlex *ngIf="loading">
+							<p class="text-center">
+								<mat-spinner mode="indeterminate" color="warn"></mat-spinner>
+							</p>
+						</div>
+
+						<div fxFlex *ngIf="companyEmployeeInvites">
+							<mat-list>
+								<ng-container *ngFor="let companyEmployeeInvite of companyEmployeeInvites">
+									<company-employee-invite [companyEmployeeInvite]="companyEmployeeInvite" (onDeleted)="companyEmployeeInviteDeleted($event)"></company-employee-invite>
+									<mat-divider></mat-divider>
+								</ng-container>
+							</mat-list>
+						</div>
+						<div fxFlex *ngIf="!companyEmployeeInvites && !loading">
+							<p>No Invites found. Use the Create Invite button to create and send an invitation.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>
+<phone-ringer #phoneRinger></phone-ringer>

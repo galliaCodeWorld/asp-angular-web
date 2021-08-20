@@ -1,0 +1,20 @@
+﻿<div class="card bg-light border-primary mb-3">
+	<img *ngIf="imgSrc" class="card-img-top" src="{{imgSrc}}" />
+	<div class="card-body">
+		<h3 class="card-title" *ngIf="title">{{title}}</h3>
+		<p class="card-subtitle" *ngIf="subtitle">{{subtitle}}</p>
+		<p class="card-text" *ngIf="content">
+			{{content}}
+		</p>
+	</div>
+</div>
+<!--<mat-card>
+	<mat-card-header>
+		<img *ngIf="imgSrc" mat-card-avatar src="{{imgSrc}}" />
+		<mat-card-title *ngIf="title">{{title}}</mat-card-title>
+		<mat-card-subtitle *ngIf="subtitle">{{subtitle}}</mat-card-subtitle>
+	</mat-card-header>
+	<mat-card-content *ngIf="content">
+		{{content}}
+	</mat-card-content>
+</mat-card>-->

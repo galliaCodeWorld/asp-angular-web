@@ -1,0 +1,55 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				Company Pbx Lines
+			</span>
+			<span>
+				<button-add-pbxline (onCompanyPbxlineAdded)="pbxlineAdded($event)"></button-add-pbxline>
+			</span>
+			<span>
+				<button mat-button
+						class="btn-danger"
+						(click)="refresh()">
+					<mat-icon>refresh</mat-icon>
+					Refresh Pbx Line List
+				</button>
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+	<div class="mat-sidenav-content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+
+					<div fxLayout="column" fxLayoutGap="20px">
+						<div fxFlex *ngIf="showGettingPbxlines">
+							<p class="text-center">
+								<mat-spinner mode="indeterminate" color="warn"></mat-spinner>
+							</p>
+						</div>
+
+						<div fxFlex *ngIf="pbxLines">
+							<mat-list>
+								<ng-container *ngFor="let pbxline of pbxLines">
+									<company-pbxline [pbxline]="pbxline" (onPbxlineDeleted)="pbxlineDeleted($event)" (onPbxlineUpdated)="pbxlineUpdated($event)"></company-pbxline>
+									<mat-divider></mat-divider>
+								</ng-container>
+							</mat-list>
+						</div>
+						<div fxFlex *ngIf="!pbxLines && !showGettingPbxLines">
+							<p>No Pbxlines found. Use the Create PBX Line button to create a PBX Line.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>

@@ -1,0 +1,79 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				Guest Account
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+	<div class="mat-sidenav-content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+
+					<p>
+						Use the form below to edit your guest information.
+					</p>
+					<form [formGroup]="formGroup">
+						<div fxLayout="column" fxLayoutGap="20px">
+
+							<div fxFlex>
+								<mat-card>
+									<p><img mat-card-avatar src="{{imgSrc}}" /></p>
+									<mat-card-subtitle>
+										<span><strong>Name:</strong> {{formGroup.get('name').value}}<br /></span>
+										<span><strong>Email:</strong> {{originalEmail}}<br /></span>
+									</mat-card-subtitle>
+									<mat-card-content>
+										Guest users are only identified by the default avatar image. Consider
+										converting your guest account into a member account to get all the benefits of being a member.
+									</mat-card-content>
+								</mat-card>
+							</div>
+							<div fxFlex>
+								<mat-form-field class="full-width">
+									<input type="text"
+										   matInput
+										   formControlName="name"
+										   placeholder="Your Name" />
+									<show-form-errors [control]="formGroup.get('name')"></show-form-errors>
+									<p>
+									</p>
+								</mat-form-field>
+							</div>
+
+							<div fxFlex>
+								<p class="text-smaller" *ngIf="originalEmail">
+									Account Email: {{originalEmail}}<br />
+									As a guest users, you can not change your email.
+									You must logout and log back in with a different email account if
+									you wish to use a different email.
+								</p>
+							</div>
+
+							<div fxFlex>
+								<mat-spinner *ngIf="showProgress" mode="indeterminate" color="warn"></mat-spinner>
+								<button mat-button (click)="submit($event)" class="btn-primary" *ngIf="!showProgress">
+									<i class="fa fa-thumbs-up"></i>
+									Update Account Information
+								</button>
+
+								<button mat-button (click)="upgradeAccount($event)" class="btn-primary" *ngIf="!showProgress">
+									<i class="fa fa-thumbs-up"></i>
+									Upgrade to Member Account
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>

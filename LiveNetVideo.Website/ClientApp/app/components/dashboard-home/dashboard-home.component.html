@@ -1,0 +1,66 @@
+<div class="dashboard-home">
+	<a [routerLink]="['/dashboard/phone']">
+		<div class="icon-block">
+			<mat-icon>smartphone</mat-icon>
+			<div class="title">
+				<h1>Phone</h1>
+			</div>
+		</div>
+	</a>
+	<a [routerLink]="['/dashboard/contacts']">
+		<div class="icon-block">
+			<mat-icon>contacts</mat-icon>
+			<div class="title">
+				<h1>Contacts</h1>
+			</div>
+		</div>
+	</a>
+	<a [routerLink]="['/dashboard/account']">
+		<div class="icon-block">
+			<mat-icon>account_box</mat-icon>
+			<div class="title">
+				<h1>Account</h1>
+			</div>
+		</div>
+	</a>
+	<a [routerLink]="['/dashboard/block-list']">
+		<div class="icon-block">
+			<mat-icon>block</mat-icon>
+			<div class="title">
+				<h1>Blocked List</h1>
+			</div>
+		</div>
+	</a>
+	<a [routerLink]="['/dashboard/settings']">
+		<div class="icon-block">
+			<mat-icon>settings</mat-icon>
+			<div class="title">
+				<h1>Settings</h1>
+			</div>
+		</div>
+	</a>
+	<a (click)="logout()">
+		<div class="icon-block">
+			<mat-icon>exit_to_app</mat-icon>
+			<div class="title">
+				<h1>Log Out</h1>
+			</div>
+		</div>
+	</a>
+	<a [routerLink]="['/dashboard/company/company-overview']">
+		<div class="icon-block">
+			<mat-icon>business</mat-icon>
+			<div class="title">
+				<h1>Company</h1>
+			</div>
+		</div>
+	</a>
+	<a [routerLink]="['/dashboard/pbx-rep-shell/pbx-employers']" *ngIf="hasEmployers">
+		<div class="icon-block">
+			<mat-icon>phonelink</mat-icon>
+			<div class="title">
+				<h1>Assigned PBX</h1>
+			</div>
+		</div>
+	</a>
+</div>

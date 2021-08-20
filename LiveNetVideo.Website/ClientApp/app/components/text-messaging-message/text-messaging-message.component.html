@@ -1,0 +1,14 @@
+﻿<div (click)="openPrivateSmsInterface()">
+
+	<img src="{{message.imgSrc}}" />
+	<p>
+		<span [ngClass]="{'private': message.isPrivate}">
+			<strong>
+				{{message.name}}
+				<i class="fa fa-user-circle" *ngIf="message.isPrivate"></i>
+				<!--<i class="fa fa-upload" *ngIf="!message.inComing"></i>-->
+			</strong>
+			: {{message.message}}
+		</span>
+	</p>
+</div>

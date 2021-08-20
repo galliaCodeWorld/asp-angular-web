@@ -1,0 +1,134 @@
+﻿<form [formGroup]="formGroup">
+	<h2>Add a Netcast</h2>
+
+	<p>
+		Fill the form below to create a Netcast. Add a password
+		if you want your viewers to enter this password before they
+		can watch your netcast.
+	</p>
+
+	<div class="form-group">
+		<label><strong>Title:</strong></label>
+		<input type="text"
+			   class="form-control"
+			   formControlName="title" />
+		<show-form-errors [control]="formGroup.get('title')"></show-form-errors>
+	</div>
+	<div class="form-group">
+		<label><strong>Description:</strong></label>
+		<input type="text"
+			   class="form-control"
+			   formControlName="description" />
+		<show-form-errors [control]="formGroup.get('description')"></show-form-errors>
+	</div>
+	<div class="form-group">
+		<label><strong>Tags:</strong></label>
+		<input type="text"
+			   class="form-control"
+			   formControlName="tags" />
+		<show-form-errors [control]="formGroup.get('tags')"></show-form-errors>
+		<small>Add keywords seperated by comma. This will help others searching for your netcast.</small>
+	</div>
+	<div class="form-group">
+		<label><strong>Netcast Genre:</strong> </label>
+		<select [(value)]="selected"
+				class="form-control"
+				placeHolder="Select a Netcast genre"
+				formControlName="netcastGenreId">
+			<option *ngFor="let genre of genres"
+					[value]="genre.value">
+				{{genre.key}}
+			</option>
+		</select>
+		<show-form-errors [control]="formGroup.get('netcastGenreId')"></show-form-errors>
+	</div>
+
+	<div class="row align-content-bottom">
+		<div class="col">
+			<div class="form-group">
+				<label><strong>Date:</strong></label>
+				<input type="text"
+					   class="form-control"
+					   [matDatepicker]="picker"
+					   formControlName="netcastDate" />
+				<show-form-errors [control]="formGroup.get('netcastDate')"></show-form-errors>
+			</div>
+		</div>
+		<div class="col-2">
+			<div class="form-group">
+				<label> &nbsp; </label>	<br />
+				<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+				<mat-datepicker #picker></mat-datepicker>
+			</div>
+		</div>
+	</div>
+
+	<div class="row align-content-bottom">
+		<div class="col-5">
+			<div class="form-group">
+				<label><strong>Hour:</strong></label>
+				<input type="text"
+					   class="form-control"
+					   formControlName="netcastHour" />
+				<show-form-errors [control]="formGroup.get('netcastHour')" [customErrorMessage]="netcastHourErrorMessage"></show-form-errors>
+			</div>
+		</div>
+		<div class="col-5">
+			<div class="form-group">
+				<label><strong>Minute:</strong></label>
+				<input type="text"
+					   class="form-control"
+					   formControlName="netcastMinute" />
+				<show-form-errors [control]="formGroup.get('netcastMinute')" [customErrorMessage]="netcastMinuteErrorMessage"></show-form-errors>
+			</div>
+		</div>
+		<div class="col-2">
+			<label><strong>AM/PM:</strong></label><br />
+			<mat-slide-toggle formControlName="isPm">PM</mat-slide-toggle>
+		</div>
+	</div>
+
+	<div class="card border border-primary mb-3">
+		<div class="card-body">
+			<img class="img-circle thumbnail-md" src="{{image}}" />
+
+			<button class="btn btn-danger btn-sm" (click)="removeAvatar()" *ngIf="image && image != defaultAvatar">
+				<i class="fa fa-trash"></i>
+				Remove Avatar
+			</button>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label><strong>Add Photo: </strong></label>
+		<image-selector (onImageSelected)="onImageSelected($event)"></image-selector>
+	</div>
+
+	<div class="form-group">
+		<label><strong>Secret Password:</strong></label>
+		<input type="text"
+			   class="form-control"
+			   formControlName="password" />
+		<show-form-errors [control]="formGroup.get('password')"></show-form-errors>
+		<small>Enter a password if you would like your viewers to enter the password before viewing your netcast.</small>
+	</div>
+
+	<div *ngIf="showProgress">
+
+		<div class="circle">
+			<div class="loader">
+				<div class="loader">
+					<div class="loader">
+						<div class="loader">
+						</div>
+					</div>
+				</div>
+			</div>
+			<p class="text-center">Please Wait</p>
+		</div>
+	</div>
+	<button (click)="submit()" class="btn btn-primary" *ngIf="!showProgress">
+		<i class="fa fa-calendar"></i>
+		Create Netcast
+	</button>
+</form>

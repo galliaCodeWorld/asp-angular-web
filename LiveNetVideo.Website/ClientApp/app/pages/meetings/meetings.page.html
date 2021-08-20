@@ -1,0 +1,60 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				Upcoming Meetings
+			</span>
+			<span>
+				<i class="fa fa-users" (click)="gotoMeetingsDashboardPage()"></i>
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+
+	<div class="mat-sidenav-content">
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col">
+
+					<div *ngIf="loading">
+						<div class="circle">
+							<div class="loader">
+								<div class="loader">
+									<div class="loader">
+										<div class="loader">
+										</div>
+									</div>
+								</div>
+							</div>
+							<p class="text-center">Please Wait</p>
+						</div>
+					</div>
+
+					<div *ngIf="!loading">
+						<div *ngIf="meetings.length > 0">
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item" *ngFor="let meeting of meetings">
+									<meeting-item [meeting]="meeting" (onMeetingDeleted)="deleteMeeting($event)"></meeting-item>
+								</li>
+							</ul>
+						</div>
+
+						<div *ngIf="meetings.length < 1">
+							<div class="jumbotron">
+								<h2>No upcoming meetings found.</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>
+<phone-ringer #phoneRinger></phone-ringer>

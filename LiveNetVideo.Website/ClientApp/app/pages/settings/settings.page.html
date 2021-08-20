@@ -1,0 +1,46 @@
+<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				Settings
+			</span>
+			<span class="fill-row text-right">
+				<span (click)="toggleCamera()" class="pointer">
+					<i class="fa fa-camera"></i>
+				</span>
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+	<div class="mat-sidenav-content">
+		<div class="container-fluid">
+			<div class="row mb-5">
+				<div class="col">
+
+					<p>If you have multiple cameras, you can select which ones to use.</p>
+					<video id="main-video" src="" #localVideoElement autoplay playsinline></video>
+					<p><strong>Selected camera:</strong> {{selectedDevice}}</p>
+
+					<p>Select your camera below.</p>
+
+					<script>document.write("one");</script>
+					<ul class="list-group" *ngFor="let videoDeviceInfo of videoDeviceInfos; let i = index">
+						<li class="list-group-item" *ngIf="videoDeviceInfo.kind === 'videoinput'">
+							<button class="btn btn-primary"
+									(click)="setVideoDevice(videoDeviceInfo.deviceId)">
+								Camera {{i + 1}}:
+							</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>
+<phone-ringer #phoneRinger></phone-ringer>

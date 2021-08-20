@@ -1,0 +1,112 @@
+﻿{
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"project": {
+		"name": "live-net-video-website"
+	},
+	"apps": [
+		{
+			"root": "ClientApp",
+			"outDir": "wwwroot/dist",
+			"assets": [
+				"assets",
+				"favicon.ico",
+				"manifest.json",
+				"service-worker.js"
+
+			],
+			"index": "index.html",
+			"main": "boot-client.ts",
+			"polyfills": "polyfills.ts",
+			"test": "test.ts",
+			"tsconfig": "tsconfig.app.json",
+			"testTsconfig": "tsconfig.spec.json",
+			"prefix": "app",
+			"styles": [
+				"../node_modules/animate.css/animate.css",
+				"../node_modules/material-design-icons/iconfont/material-icons.css",
+				"../node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+				"app/theme.scss",
+				"app/styles.scss",
+				"../node_modules/ngx-toastr/toastr.css",
+				"../node_modules/bootstrap-scss/bootstrap.scss",
+				"../node_modules/bootstrap-scss/bootstrap-grid.scss",
+				"../node_modules/bootstrap-scss/bootstrap-reboot.scss",
+				"../node_modules/font-awesome/css/font-awesome.min.css"
+
+			],
+
+			"scripts": [
+				"../node_modules/hammerjs/hammer.min.js",
+				"../node_modules/jquery/dist/jquery.min.js",
+				"../node_modules/popper.js/dist/umd/popper.min.js",
+				"../node_modules/bootstrap/dist/js/bootstrap.min.js",
+				"../node_modules/webrtc-adapter/out/adapter.js"
+
+			],
+			"environmentSource": "environments/environment.ts",
+			"environments": {
+				"dev": "environments/environment.ts",
+				"prod": "environments/environment.prod.ts"
+			}
+		},
+		{
+			"platform": "server",
+			"root": "ClientApp",
+			"outDir": "ClientApp/dist-server",
+			"assets": [
+				"assets",
+				"favicon.ico"
+			],
+			"index": "index.html",
+			"main": "main.server.ts",
+			"test": "test.ts",
+			"tsconfig": "tsconfig.server.json",
+			"testTsconfig": "tsconfig.spec.json",
+			"prefix": "app",
+			"styles": [
+				"../wwwroot/css/site.scss"
+			],
+			"scripts": [],
+			"environmentSource": "environments/environment.ts",
+			"environments": {
+				"dev": "environments/environment.ts",
+				"prod": "environments/environment.prod.ts"
+			}
+		}
+	],
+	"e2e": {
+		"protractor": {
+			"config": "./ClientApp/protractor.conf.js"
+		}
+	},
+	"lint": [
+		{
+			"project": "ClientApp/tsconfig.app.json",
+			"exclude": "**/node_modules/**"
+		},
+		{
+			"project": "ClientApp/tsconfig.spec.json",
+			"exclude": "**/node_modules/**"
+		},
+		{
+			"project": "ClientApp/e2e/tsconfig.e2e.json",
+			"exclude": "**/node_modules/**"
+		}
+	],
+	"test": {
+		"karma": {
+			"config": "./ClientApp/karma.conf.js"
+		}
+	},
+	"defaults": {
+		"styleExt": "scss",
+		"component": {},
+		"serve": {
+			"proxyConfig": "./ClientApp/proxy.conf.json",
+			"port": 4100
+		},
+		"build": {
+			"showCircularDependencies": false
+		}
+	}
+}

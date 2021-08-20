@@ -1,0 +1,93 @@
+﻿<div class="container-fluid">
+	<div class="row" *ngIf="!messagingVisible">
+		<div class="col">
+			<div class="text-message-display-mini-box">
+				<ng-container *ngIf="currentMessage">
+					<text-messaging-message [(message)]="currentMessage" (onOpenPrivateSmsInterface)="openPrivateSmsInterface($event)"></text-messaging-message>
+				</ng-container>
+			</div>
+		</div>
+	</div>
+	<div class="row" *ngIf="messagingVisible">
+		<div class="col">
+			<div class="row">
+				<div class="col">
+					<div class="text-message-display-box">
+						<ng-container *ngIf="textMessages">
+							<div *ngFor="let message of textMessages">
+								<text-messaging-message [message]="message" (onOpenPrivateSmsInterface)="openPrivateSmsInterface($event)"></text-messaging-message>
+							</div>
+						</ng-container>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<form class="form-inline" [formGroup]="formGroup">
+						<div class="form-group">
+							<textarea class="form-control"
+									  rows="3"
+									  formControlName="message"
+									  (keyup.enter)="sendGroupMessageWithEnterKey($event)"></textarea>
+							<show-form-errors [control]="formGroup.get('message')"></show-form-errors>
+						</div>
+						<div class="form-group">
+							<div *ngIf="showSmsProgress">
+
+								<div class="circle">
+									<div class="loader">
+										<div class="loader">
+											<div class="loader">
+												<div class="loader">
+												</div>
+											</div>
+										</div>
+									</div>
+									<p class="text-center">Please Wait</p>
+								</div>
+							</div>
+							<button class="btn btn-primary" (click)="sendGroupMessage()" *ngIf="!showSmsProgress">
+								Send Group
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<!--<button mat-button
+					class="btn-primary"
+					(click)="addMessage()">
+				<i class="fa fa-plus"></i>
+				Add Message
+			</button>-->
+			<div class="btn-group" role="group" aria-label="Text Messaging Action Buttons">
+				<button type="button" class="btn btn-primary btn-sm" *ngIf="messagingVisible"
+						(click)="closeMessaging()">
+
+					Minimize
+				</button>
+				<button type="button" class="btn btn-primary btn-sm" *ngIf="!messagingVisible"
+						(click)="openMessaging()">
+					Maximize
+				</button>
+				<button type="button" class="btn btn-primary btn-sm" (click)="saveMessages()">
+					Save Messages
+				</button>
+				<button type="button" class="btn btn-primary btn-sm" (click)="clearMessages()">
+					Clear Messages
+				</button>
+				<button type="button" class="btn btn-primary btn-sm" (click)="openPrivateSmsInterface()" *ngIf="currentUsers.length > 1">
+					Private Message
+				</button>
+				<!--<mat-chip (click)="testShowUsers()">
+					Users
+				</mat-chip>-->
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,48 @@
+﻿<form [formGroup]="formGroup">
+	<div fxLayout="column" fxLayoutGap="20px">
+		<div fxFlex *ngIf="users">
+
+			<p>
+				Hit "Enter" to send your message.
+				Hit "Shift + Enter" to create a new line.
+			</p>
+
+			<mat-select [(ngModel)]="existingUsers"
+						placeholder="Select User(s)"
+						formControlName="selectedUsers"
+						multiple
+						class="full-width">
+				<mat-option *ngFor="let user of users"
+							[value]="user"><img src="{{user.imgSrc}}" />{{user.name}}</mat-option>
+			</mat-select>
+		</div>
+		<div fxFlex *ngIf="!users">
+			<p>
+				Sorry there are no users to send a private message to.
+				When you area connected to other users then, you can select one or more users to send a private message to.
+			</p>
+		</div>
+
+		<div fxFlex>
+			<mat-form-field class="full-width">
+				<textarea matInput
+						  formControlName="message"
+						  placeholder="your message"
+						  class="full-width"
+						  (keyup.enter)="submitWithEnterKey($event)"></textarea>
+				<show-form-errors [control]="formGroup.get('message')"></show-form-errors>
+			</mat-form-field>
+		</div>
+		<div fxFlex>
+			<mat-spinner *ngIf="showProgress" mode="indeterminate" color="warn"></mat-spinner>
+			<button mat-button (click)="submit()" class="btn-primary" *ngIf="!showProgress">
+				<i class="fa fa-paper-plane"></i>
+				Send
+			</button>
+			<button mat-button (click)="close()" class="btn-primary" *ngIf="!showProgress">
+				<i class="fa fa-times-circle"></i>
+				Cancel
+			</button>
+		</div>
+	</div>
+</form>

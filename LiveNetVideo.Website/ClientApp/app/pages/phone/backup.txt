@@ -1,0 +1,23 @@
+this.outgoingCallDialog.afterClosed()
+                .subscribe(() => {
+                    let alertData = new MaterialAlertMessageType();
+                    alertData.title = "Call Not Accepted";
+                    alertData.message = "The other user did not accept your call.";
+                    this.materialsHelperService.openAlert(alertData);
+                })
+
+
+                            this.outgoingCallDialog.afterClosed()
+                .subscribe(() => {
+                    let alertData = new MaterialAlertMessageType();
+                    alertData.title = "User busy";
+                    alertData.message = "The other user is busy on another line. Please try your call at a later time.";
+                    this.materialsHelperService.openAlert(alertData);
+                })
+
+                    this.outgoingCallDialog.afterClosed()
+    .subscribe(() => {
+        this.signalrService.cancelCall(email)
+            .catch((error) => console.log(error))
+            .then(() => console.log('call canceled'))
+})

@@ -1,0 +1,93 @@
+﻿<form [formGroup]="formGroup">
+	<h2>Add a Company Location</h2>
+	<p>
+		Use the form below to add a location or branch for your company.
+	</p>
+	<div class="row mb-3">
+		<div class="col-7">
+			<div class="card border border-primary">
+
+				<div class="card-body">
+					<img src="{{image}}" class="img-circle thumbnail_md" />
+					<p class="card-text">
+						<span *ngIf="formGroup.get('address').value"><strong>Address:</strong> {{formGroup.get('address').value}} <br /></span>
+						<span *ngIf="formGroup.get('city').value"><strong>City:</strong> {{formGroup.get('city').value}}<br /></span>
+						<span *ngIf="formGroup.get('region').value"><strong>Region:</strong> {{formGroup.get('region').value}}<br /></span>
+						<span *ngIf="formGroup.get('countryIsoCode').value"><strong>Country:</strong> {{formGroup.get('countryIsoCode').value}}</span>
+					</p>
+					<button (click)="removeImage()" class="btn btn-danger btn-sm">
+						<i class="fa fa-trash"></i>
+						Remove Image
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label><strong>Address: </strong></label>
+		<input type="text"
+			   class="form-control"
+			   formControlName="address"
+			   placeholder="Address" />
+		<show-form-errors [control]="formGroup.get('address')"></show-form-errors>
+	</div>
+
+	<div class="form-group">
+		<label><strong>City: </strong></label>
+		<input type="text"
+			   class="form-control"
+			   formControlName="city"
+			   placeholder="City" />
+		<show-form-errors [control]="formGroup.get('city')"></show-form-errors>
+	</div>
+
+	<div class="form-group">
+		<label><strong>Region: </strong></label>
+		<input type="text"
+			   class="form-control"
+			   formControlName="region"
+			   placeholder="Region" />
+		<show-form-errors [control]="formGroup.get('region')"></show-form-errors>
+	</div>
+
+	<div class="form-group" *ngIf="countries">
+		<label><strong>Country: </strong></label>
+		<select [(value)]="selected"
+				class="form-control"
+				placeHolder="Choose a Country"
+				formControlName="countryIsoCode">
+			<option *ngFor="let country of countries"
+					[value]="country.countryIsoCode">
+				{{country.countryName}}
+			</option>
+		</select>
+		<show-form-errors [control]="formGroup.get('countryIsoCode')"></show-form-errors>
+	</div>
+
+	<div class="form-group">
+		<label><strong>Add Photo: </strong></label>
+
+		<image-selector (onImageSelected)="onImageSelected($event)"></image-selector>
+	</div>
+
+	<div *ngIf="showProgress">
+
+		<div class="circle">
+			<div class="loader">
+				<div class="loader">
+					<div class="loader">
+						<div class="loader">
+						</div>
+					</div>
+				</div>
+			</div>
+			<p class="text-center">Please Wait</p>
+		</div>
+	</div>
+
+	<button (click)="submit()" class="btn btn-primary" *ngIf="!showProgress">
+		<i class="fa fa-plus"></i>
+		Add Location
+	</button>
+</form>

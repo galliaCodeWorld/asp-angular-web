@@ -1,0 +1,16 @@
+﻿<div *ngIf="otherReps">
+	<ul class="list-group">
+		<li class="list-group-item" *ngFor="let rep of otherReps">
+			<other-rep [otherRep]="rep"></other-rep>
+		</li>
+	</ul>
+</div>
+<div *ngIf="!otherReps">
+	<div class="jumbotron">
+		<h2>No Representatives available</h2>
+	</div>
+</div>
+<hr />
+<p class="text-center">
+	<button class="btn btn-danger" (click)="close()"><i class="fa fa-times-circle"></i> Close</button>
+</p>

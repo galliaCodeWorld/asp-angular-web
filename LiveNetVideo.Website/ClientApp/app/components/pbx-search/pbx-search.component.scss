@@ -1,0 +1,28 @@
+.pbx-search {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	pbx-search-box {
+		width: 600px;
+	}
+	.results {
+		display: flex;
+		flex-wrap: wrap;
+		mat-card {
+			mat-card-title {
+				font-size: 1.3em;
+                font-weight: bold;
+                text-transform: capitalize;
+			}
+			width: 300px;
+			margin: 1em;
+			.mat-card-image {
+				margin: auto;
+				width: 100%;
+				height: auto;
+			}
+		}
+	}
+}

@@ -1,0 +1,14 @@
+<mat-card class="mat-elevation-z0 incoming-call-card">
+    <mat-card-header>
+        <mat-card-title>Incoming Call...</mat-card-title>
+    </mat-card-header>
+    <img class="animated pulse infinite" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+        <h1>{{callerProfile.name}}</h1>
+        <h2>{{callerProfile.email}}</h2>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="accent" (click)="accept()">Accept</button>
+        <button mat-raised-button color="warn" (click)="reject()">Reject</button>
+    </mat-card-actions>
+</mat-card>

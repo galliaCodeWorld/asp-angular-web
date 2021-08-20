@@ -1,0 +1,64 @@
+﻿<form [formGroup]="formGroup">
+
+	<h2>Edit a Company Employee</h2>
+	<p>
+		Use the form below to edit your employee's information.
+	</p>
+
+	<div class="card border border-primary mb-3">
+		<div class="card-body">
+			<img class="img-circle thumbnail-md" src="{{image}}" />
+			<div class="card-text">
+				<span *ngIf="formGroup.get('title').value"><strong>Title:</strong> {{formGroup.get('title').value}} <br /></span>
+				<span *ngIf="name"><strong>Name:</strong> {{name}}<br /></span>
+				<span *ngIf="email"><strong>Email:</strong> {{email}}<br /></span>
+				<span><strong>Status:</strong> {{formGroup.get('isSuspended').value}}</span>
+			</div>
+
+			<button class="btn btn-danger btn-sm" (click)="removeImage()" *ngIf="image && image != defaultAvatar">
+				<i class="fa fa-trash"></i>
+				Remove Image
+			</button>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label><strong>Title: </strong></label>
+		<input type="text"
+			   class="form-control"
+			   formControlName="title"
+			   placeholder="Title" />
+		<show-form-errors [control]="formGroup.get('title')"></show-form-errors>
+	</div>
+
+	<mat-radio-group formControlName="isSuspended" [(ngModel)]="formGroup.get('isSuspended').value">
+		<mat-radio-button [value]="false">Active</mat-radio-button>
+		<mat-radio-button [value]="true">Suspended</mat-radio-button>
+	</mat-radio-group>
+	<show-form-errors [control]="formGroup.get('isSuspended')"></show-form-errors>
+
+	<div class="form-group">
+		<label><strong>Add Photo: </strong></label>
+		<image-selector (onImageSelected)="onImageSelected($event)"></image-selector>
+	</div>
+
+	<div *ngIf="showProgress">
+
+		<div class="circle">
+			<div class="loader">
+				<div class="loader">
+					<div class="loader">
+						<div class="loader">
+						</div>
+					</div>
+				</div>
+			</div>
+			<p class="text-center">Please Wait</p>
+		</div>
+	</div>
+
+	<button (click)="submit()" class="btn btn-primary" *ngIf="!showProgress">
+		<i class="fa fa-plus"></i>
+		Update Employee Information
+	</button>
+</form>

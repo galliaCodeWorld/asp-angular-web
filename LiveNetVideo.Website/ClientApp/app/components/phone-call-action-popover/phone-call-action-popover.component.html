@@ -1,0 +1,15 @@
+﻿<ul class="list-group">
+	<li>
+		<button ion-item (click)="privateMessage(e)">Private Message</button>
+	</li>
+	<li class="list-group-item">
+		<button ion-item (click)="displayMain(e)">Display to Main Video</button>
+	</li>
+	<li class="lsit-group-item">
+		<button ion-item *ngIf="!isOnHold" (click)="hold(e)">Hold Call</button>
+	</li>
+	<li class="list-group-item">
+		<button ion-item *ngIf="isOnHold" (click)="resumeCall(e)">Resume Call</button>
+	</li>
+	<!--<button ion-item (click)="sendFile(e)">Send File</button>-->
+</ul>

@@ -1,0 +1,243 @@
+<h2>Edit Meeting</h2>
+<div *ngIf="loading">
+
+	<div class="circle">
+		<div class="loader">
+			<div class="loader">
+				<div class="loader">
+					<div class="loader">
+					</div>
+				</div>
+			</div>
+		</div>
+		<p class="text-center">Please Wait</p>
+	</div>
+</div>
+
+<div class="row" *ngIf="!loading">
+	<div class="col">
+		<form [formGroup]="formGroup">
+			<div class="form-group">
+				<label><strong>Title:</strong></label>
+				<input type="text"
+					   class="form-control"
+					   formControlName="title" />
+				<show-form-errors [control]="formGroup.get('title')"></show-form-errors>
+			</div>
+			<div class="form-group">
+				<label><strong>Description:</strong></label>
+				<input type="text"
+					   class="form-control"
+					   formControlName="description" />
+				<show-form-errors [control]="formGroup.get('description')"></show-form-errors>
+			</div>
+
+			<div class="row">
+				<div class="col-10">
+					<div class="form-group">
+						<label><strong>Date:</strong></label>
+						<input type="text"
+							   class="form-control"
+							   [matDatepicker]="picker"
+							   [(ngModel)]="meeting.meetDate"
+							   formControlName="meetDate" />
+						<show-form-errors [control]="formGroup.get('meetDate')"></show-form-errors>
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label> &nbsp; </label>	<br />
+						<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+						<mat-datepicker #picker></mat-datepicker>
+					</div>
+				</div>
+			</div>
+
+			<div class="row align-content-end">
+				<div class="col-5">
+					<div class="form-group">
+						<label><strong>Hour:</strong></label>
+						<input type="text"
+							   class="form-control"
+							   formControlName="meetHour" />
+						<show-form-errors [control]="formGroup.get('meetHour')"></show-form-errors>
+					</div>
+				</div>
+				<div class="col-5">
+					<div class="form-group">
+						<label><strong>Minute:</strong></label>
+						<input type="text"
+							   class="form-control"
+							   formControlName="meetMinute" />
+						<show-form-errors [control]="formGroup.get('meetMinute')"></show-form-errors>
+					</div>
+				</div>
+				<div class="col">
+					<label><strong>AM/PM:</strong></label><br />
+					<mat-slide-toggle formControlName="isPm">PM</mat-slide-toggle>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label><strong>Estimated Meeting Length:</strong> </label>
+				<select [(value)]="selected"
+						class="form-control"
+						placeHolder="Select meeting Duration"
+						formControlName="meetLength">
+					<option *ngFor="let length of lengths"
+							[value]="length.value">
+						{{length.key}}
+					</option>
+				</select>
+				<show-form-errors [control]="formGroup.get('meetLength')"></show-form-errors>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="form-group">
+						<label>Private Meeting:</label><br />
+						<mat-slide-toggle formControlName="isPrivate">Yes</mat-slide-toggle>
+					</div>
+				</div>
+				<div class="col-3 text-right" [hidden]="!formGroup.get('isPrivate').value">
+					<div class="form-group">
+						<label> &nbsp; </label>
+						<button class="btn btn-primary" (click)="openFormAddAttendee()">
+							Add Attendee
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="row" *ngIf="formGroup.get('isPrivate').value">
+				<div class="col-4" *ngFor="let attendee of attendees">
+					<meeting-attendee [meetingAttendee]="attendee" (onMeetingAttendeeDeleted)="deleteMeetingAttendee($event)"></meeting-attendee>
+				</div>
+			</div>
+
+			<div class="form-group">
+
+				<button class="btn btn-primary" (click)="submit($event)">Update Meeting</button>
+				<button class="btn btn-default" (click)="cancel($event)">Cancel</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!--<div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="start center">
+	<div fxFlex>
+		<p *ngIf="loading" class="text-center">
+			<mat-spinner mode="indeterminate"></mat-spinner>
+		</p>
+
+		<div *ngIf="!loading">
+			<div class="well">
+				<form [formGroup]="formGroup">
+					<div class="form-group">
+						<label>Title:</label>
+						<input type="text"
+							   class="form-control"
+							   formControlName="title" />
+						<show-form-errors [control]="formGroup.get('title')"></show-form-errors>
+					</div>
+					<div class="form-group">
+						<label>Description:</label>
+						<input type="text"
+							   class="form-control"
+							   formControlName="description" />
+						<show-form-errors [control]="formGroup.get('description')"></show-form-errors>
+					</div>
+					<div fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="10px">
+						<div fxFlex fxGrow="2">
+							<div class="form-group">
+								<label>Date:</label>
+								<input type="text"
+									   class="form-control"
+									   [matDatepicker]="picker"
+									   [(ngModel)]="meeting.meetDate"
+									   formControlName="meetDate" />
+
+								<show-form-errors [control]="formGroup.get('meetDate')"></show-form-errors>
+							</div>
+						</div>
+						<div fxFlexAlign="end">
+							<div class="form-group">
+								<label> &nbsp; </label>
+								<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+								<mat-datepicker #picker></mat-datepicker>
+							</div>
+						</div>
+					</div>
+
+					<div fxLayout="row wrap" fxLayoutAlign="space-evenly start" fxLayoutGap="10px">
+						<div fxFlex>
+							<div class="form-group">
+								<label>Hour:</label>
+								<input type="text"
+									   class="form-control"
+									   formControlName="meetHour" />
+								<show-form-errors [control]="formGroup.get('meetHour')"></show-form-errors>
+							</div>
+						</div>
+						<div fxFlex>
+							<div class="form-group">
+								<label>Minute:</label>
+								<input type="text"
+									   class="form-control"
+									   formControlName="meetMinute" />
+								<show-form-errors [control]="formGroup.get('meetMinute')"></show-form-errors>
+							</div>
+						</div>
+						<div fxFlex>
+							<label>AM/PM:</label>
+							<mat-slide-toggle formControlName="isPm">PM</mat-slide-toggle>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label>Estimated Meeting Length: </label>
+						<select [(value)]="selected"
+								class="form-control"
+								placeHolder="Select meeting Duration"
+								formControlName="meetLength">
+							<option *ngFor="let length of lengths"
+									[value]="length.value">
+								{{length.key}}
+							</option>
+						</select>
+						<show-form-errors [control]="formGroup.get('meetLength')"></show-form-errors>
+					</div>
+
+					<div fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="10px">
+						<div fxFlex fxGrow="2">
+							<div class="form-group">
+								<label>Private Meeting:</label><br />
+								<mat-slide-toggle formControlName="isPrivate">Yes</mat-slide-toggle>
+							</div>
+						</div>
+						<div fxFlexAlign="end" [hidden]="!formGroup.get('isPrivate').value">
+							<div class="form-group">
+								<label> &nbsp; </label>
+								<button class="btn btn-primary" (click)="openFormAddAttendee()">
+									Add Attendee
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<mat-list *ngIf="formGroup.get('isPrivate').value">
+						<ng-container *ngFor="let attendee of attendees">
+							<meeting-attendee [meetingAttendee]="attendee" (onMeetingAttendeeDeleted)="deleteMeetingAttendee($event)"></meeting-attendee>
+						</ng-container>
+					</mat-list>
+
+					<div class="form-group">
+
+						<button class="btn btn-primary" (click)="submit($event)">Update Meeting</button>
+						<button class="btn btn-default" (click)="cancel($event)">Cancel</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>-->

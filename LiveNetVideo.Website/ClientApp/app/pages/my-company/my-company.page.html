@@ -1,0 +1,87 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				Company
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+	<div class="mat-sidenav-content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col mb-5">
+					<!--<h1 class="text-center page-title">
+						<ng-container *ngIf="companyProfile">
+							{{companyProfile.companyName}}
+						</ng-container>
+						<ng-container *ngIf="!companyProfile">
+							No Company Found
+						</ng-container>
+					</h1>-->
+
+					<div *ngIf="!companyProfile" class="jumbotron-fluid">
+						<p>In order to use our services related to a company, you must first create a company profile.</p>
+						<p>Use the button below to create your company profile.</p>
+						<p class="text-center">
+							<button class="btn btn-primary btn-lg" (click)="openCreateCompanyModal()">
+								<i class="fa fa-address-card"></i>
+								Create Company Profile
+							</button>
+
+							<!--<button mat-raised-button (click)="openCreateCompanyModal()">
+								<mat-icon font-set="fontawesome" fontIcon="address-card"></mat-icon>
+								Create Company Profile
+							</button>-->
+						</p>
+						<p>A company profile will enable your PBX phone service.</p>
+					</div>
+
+					<div class="row" *ngIf="companyProfile">
+
+						<div class="col-4 text-center mb-5">
+							<span class="pointer" [routerLink]="['/company-profile', companyProfile.companyProfileId]">
+								<i class="fa fa-address-card fa-4x"></i><br />
+								Public View
+							</span>
+						</div>
+						<div class="col-4 text-center mb-5">
+							<span class="pointer" [routerLink]="['/company-edit']">
+								<i class="fa fa-pencil-square fa-4x"></i><br />
+								Edit Company
+							</span>
+						</div>
+
+						<div class="col-4 text-center mb-5">
+							<span class="pointer" [routerLink]="['/company-employees',  companyProfile.companyProfileId]">
+								<i class="fa fa-users fa-4x"></i><br />
+								Employees
+							</span>
+						</div>
+
+						<div class="col-4 text-center mb-5">
+							<span class="pointer" [routerLink]="['/company-employee-invites']">
+								<i class="fa fa-user-plus fa-4x"></i><br />
+								Invites
+							</span>
+						</div>
+
+						<div class="col-4 text-center mb-5">
+							<span [routerLink]="['/company-pbxlines']" class="pointer">
+								<i class="fa fa-phone-square fa-4x"></i><br />
+								PBX Lines
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>
+<phone-ringer #phoneRinger></phone-ringer>

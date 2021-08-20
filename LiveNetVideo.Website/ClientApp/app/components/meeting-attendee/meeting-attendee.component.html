@@ -1,0 +1,28 @@
+﻿ <!-- dummy component requires data from parent-->
+<div class="card border border-secondary mb-3">
+	<div class="card-body">
+		<img class="img-circle thumbnail-md" src="{{imgSrc}}" />
+		<h3 class="card-title">{{name}}</h3>
+		<div class="card-text">
+			<span><strong>Email: </strong>{{email}}</span><br />
+			<span><strong>Status:</strong> {{rsvp}}</span>
+		</div>
+		<button class="btn btn-danger btn-sm" (click)="deleteMeetingAttendee()" *ngIf="canDelete">
+			<i class="fa fa-trash"></i>
+			Delete
+		</button>
+	</div>
+</div>
+
+<!--<mat-list-item>
+	<img matListAvatar src="{{imgSrc}}" />
+	<h3 matLine>
+		{{name}}
+	</h3>
+	<p matLine>{{email}}</p>
+	<p matLine>Status: {{rsvp}}</p>
+	<button mat-button (click)="deleteMeetingAttendee()" *ngIf="canDelete">
+		<mat-icon>delete</mat-icon>
+		Delete
+	</button>
+</mat-list-item>-->

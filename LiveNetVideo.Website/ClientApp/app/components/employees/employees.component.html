@@ -1,0 +1,44 @@
+<div *ngIf="isLoading">
+
+	<div class="circle">
+		<div class="loader">
+			<div class="loader">
+				<div class="loader">
+					<div class="loader">
+					</div>
+				</div>
+			</div>
+		</div>
+		<p class="text-center">Please Wait</p>
+	</div>
+</div>
+
+<div class="containerv" *ngIf="!isLoading">
+	<div class="employees">
+		<h1 color="primary" class="employee-title">Employees</h1>
+		<div class="actions">
+			<button class="btn btn-primary" (click)="inviteEmployee()">Invite Employee</button>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="employee-card" *ngFor="let employee of pendingInvitee">
+					<a>
+
+						<span class="badge badge-warning" selected="true">pending invitation</span>
+
+						<div class="image-title">
+							<img src="../../../assets/images/default-avatar.png" alt="" />
+						</div>
+					</a>
+
+					<p>
+						<strong>{{employee.firstName}}{{employee.lastName}}</strong>
+					</p>
+					<p>
+						{{employee.email}}
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

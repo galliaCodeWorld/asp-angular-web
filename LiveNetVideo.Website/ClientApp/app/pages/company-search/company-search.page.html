@@ -1,0 +1,149 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" open="true" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				Company Search
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+
+	<div mat-sidenav-content>
+		<div class="container-fluid">
+			<div class="row mb-5">
+				<div class="col-12">
+
+					<div *ngIf="loading">
+
+						<div class="circle">
+							<div class="loader">
+								<div class="loader">
+									<div class="loader">
+										<div class="loader">
+										</div>
+									</div>
+								</div>
+							</div>
+							<p class="text-center">Please Wait</p>
+						</div>
+					</div>
+
+					<div *ngIf="!loading">
+						<div class="row">
+							<div class="col-md-12">
+								<p class="text-right">
+									<mat-slide-toggle [(ngModel)]="showSearchForm">Show Search Form</mat-slide-toggle>
+								</p>
+							</div>
+						</div>
+						<div class="row" [hidden]="!showSearchForm">
+							<div class="col-5">
+								<div class="alert alert-dark">
+									<h4>Search Company By Name: </h4>
+									<form [formGroup]="nameSearchForm">
+										<div class="form-group">
+											<label><strong>Company Name:</strong> </label>
+											<input type="text"
+												   class="form-control"
+												   formControlName="name" />
+											<show-form-errors [control]="nameSearchForm.get('name')"></show-form-errors>
+										</div>
+										<div class="form-group">
+											<button class="btn btn-primary" (click)="searchByName($event)">Find Company</button>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="col-7">
+								<div class="alert alert-dark">
+									<h4>Search Company By Location: </h4>
+									<form [formGroup]="locationSearchForm">
+										<div class="row">
+											<div class="col-8">
+												<div class="form-group">
+													<label><strong>Address:</strong> </label>
+													<input type="text"
+														   class="form-control"
+														   formControlName="address" />
+													<show-form-errors [control]="nameSearchForm.get('address')"></show-form-errors>
+												</div>
+											</div>
+											<div class="col-4">
+												<div class="form-group">
+													<label><strong>City:</strong> </label>
+													<input type="text"
+														   class="form-control"
+														   formControlName="city" />
+													<show-form-errors [control]="nameSearchForm.get('city')"></show-form-errors>
+												</div>
+											</div>
+										</div>
+										<div class="row align-content-bottom">
+
+											<div class="col-4">
+												<div class="form-group">
+													<label>Region: </label>
+													<input type="text"
+														   class="form-control"
+														   formControlName="region" />
+													<show-form-errors [control]="nameSearchForm.get('region')"></show-form-errors>
+												</div>
+											</div>
+											<div class="col-4">
+												<div class="form-group">
+													<label>Country:</label>
+													<select class="form-control"
+															formControlName="countryIsoCode">
+														<ng-container *ngFor="let c of countries">
+															<option value="{{c.countryIsoCode}}">{{c.countryName}}</option>
+														</ng-container>
+													</select>
+												</div>
+											</div>
+											<div class="col-4">
+												<div class="form-group">
+													<label>&nbsp;</label><br />
+													<button class="btn btn-primary" (click)="searchByLocation($event)">Find Company</button>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+						<div class="well" *ngIf="showResults">
+							<h3>Search Results</h3>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item" *ngFor="let item of profiles">
+									<div class="media">
+										<img class="img-circle thumbnail-md mr-3" src="{{item.imgSrc}}" />
+										<div class="media-body">
+											<strong>
+												{{item.title}}
+											</strong><br />
+											<span *ngIf="item.content">{{item.content}}<br /></span>
+											<button class="btn btn-primary btn-sm" (click)="gotoCompanyProfile(item.id)"><i class="fa fa-address-card"></i> Profile</button>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<div *ngIf="!profiles">
+								<div class="jumbotron-fluid">
+									<h4>No results</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>
+<phone-ringer #phoneRinger></phone-ringer>

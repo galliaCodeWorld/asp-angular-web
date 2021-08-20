@@ -1,0 +1,18 @@
+﻿<!-- dummy component requires data from parent-->
+<div class="card">
+	<img class="card-img-top" src="{{imgSrc}}" />
+	<div class="card-body">
+		<p class="card-text">
+			{{address}}
+		</p>
+		<button class="btn btn-primary btn-sm" (click)="editCompanyLocation()">
+			<i class="fa fa-pencil"></i>
+			Edit
+		</button>
+
+		<button class="btn btn-danger btn-sm" (click)="deleteCompanyLocation()">
+			<i class="fa fa-trash"></i>
+			Delete
+		</button>
+	</div>
+</div>

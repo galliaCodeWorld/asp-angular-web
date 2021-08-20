@@ -1,0 +1,113 @@
+<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				Contacts
+			</span>
+
+			<span>
+				<button-add-contact (onContactAdded)="onContactAdded($event)"></button-add-contact>
+			</span>
+			<span>
+				<button mat-button
+						class="btn-danger"
+						(click)="refreshContactList()">
+					<mat-icon>refresh</mat-icon>
+					Refresh Contact List
+				</button>
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+	<div class="mat-sidenav-content">
+		<div class="container-fluid">
+
+			<div class="row">
+				<div class="col">
+					<div *ngIf="showGettingContacts">
+						<div class="circle">
+							<div class="loader">
+								<div class="loader">
+									<div class="loader">
+										<div class="loader">
+										</div>
+									</div>
+								</div>
+							</div>
+							<p class="text-center">Please Wait</p>
+						</div>
+					</div>
+
+					<contact-list [contacts]="contacts" *ngIf="!showGettingContacts"></contact-list>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>
+<phone-ringer #phoneRinger></phone-ringer>
+<!--
+<nav class="level box">
+	<div class="level-left">
+		<div class="level-item">
+			<div class="field has-addons">
+				<div class="control">
+					<input class="input" [(ngModel)]="query" (keyup)="filterContacts(query)" type="text" placeholder="Search Contact">
+				</div>
+				<div class="control">
+					<a class="button is-primary" *ngIf="query" (click)="query = ''; filterContacts(query)">
+						<span class="icon is-small is-left">
+							<i class="fa fa-close"></i>
+						</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="level-right">
+		<div class="level-item">
+			<a class="button" (click)="addContact()">
+				<span class="icon">
+					<i class="fa fa-plus"></i>
+				</span>
+				<span>ADD CONTACT</span>
+			</a>
+		</div>
+	</div>
+</nav>
+<edit-contact-modal (close)="editContactModalClosed($event)" *ngIf="showEditContactModal" [contact]="selectedContact"></edit-contact-modal>
+<add-contact-modal (close)="addContactModalClosed($event)" *ngIf="showAddContactModal"></add-contact-modal>
+<h-loader *ngIf="pageLoading"></h-loader>
+<div class="containerv" *ngIf="!pageLoading">
+	<mat-card class="on-demand-contact" *ngIf="phoneContactsView && phoneContactsView.length < 1">
+		<img mat-card-image src="assets/images/default-avatar.png">
+		<mat-card-content>
+			<h2>{{query}}</h2>
+		</mat-card-content>
+		<mat-card-actions>
+			<button mat-raised-button color="primary" (click)="callContact(query)">Call</button>
+		</mat-card-actions>
+	</mat-card>
+	<mat-card class="contact-card" *ngFor="let contact of phoneContactsView">
+		<mat-card-header>
+			<dropdown-menu (onEditContactClicked)="editContact(contact)" (onBlockContactClicked)="blockContact(contact)" (onDeleteContactClicked)="removeContact(contact)">
+			</dropdown-menu>
+		</mat-card-header>
+		<img *ngIf="contact.avatarFileName" src="{{configService.contactAvatarBaseUrl+contact.avatarFileName}}">
+		<img mat-card-image *ngIf="!contact.avatarFileName" src="assets/images/default-avatar.png">
+		<mat-card-content>
+			<h1>{{contact.name}}</h1>
+			<h2>{{contact.email}}</h2>
+		</mat-card-content>
+		<mat-card-actions>
+			<button mat-raised-button color="primary" (click)="callContact(contact.email)" *ngIf="contact.isMember">Call</button>
+			<button mat-raised-button color="accent" (click)="inviteContact(contact)" *ngIf="!contact.isMember">Invite</button>
+		</mat-card-actions>
+	</mat-card>
+</div>-->

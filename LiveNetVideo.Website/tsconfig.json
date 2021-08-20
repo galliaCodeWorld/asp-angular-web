@@ -1,0 +1,53 @@
+{
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"declaration": false,
+		"moduleResolution": "node",
+		"target": "es5",
+		"sourceMap": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"skipDefaultLibCheck": true,
+		"lib": [ "es2015", "dom" ],
+		"types": [
+			"node",
+			"jquery",
+
+		]
+	},
+	"compileOnSave": false,
+	"exclude": [ "node_modules" ],
+	"atom": { "rewriteTsconfig": false }
+}
+
+//{
+//    "compilerOptions": {
+//      "skipLibCheck": true,
+
+//        "allowSyntheticDefaultImports": true,
+//        "declaration": false,
+//        "emitDecoratorMetadata": true,
+//        "experimentalDecorators": true,
+//        "lib": [
+//            "dom",
+//            "es6",
+//            "es7"
+//        ],
+//        "module": "es6",
+//        "moduleResolution": "node",
+//        "sourceMap": true,
+//        "target": "es5"
+//    },
+
+//    "include": [
+//        "src/**/*.ts"
+//    ],
+//    "exclude": [
+//        "node_modules",
+//        "src/test.ts"
+//    ],
+//    "compileOnSave": false,
+//    "atom": {
+//        "rewriteTsconfig": false
+//    }
+//}

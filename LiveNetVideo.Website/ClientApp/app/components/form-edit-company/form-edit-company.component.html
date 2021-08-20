@@ -1,0 +1,78 @@
+﻿<form [formGroup]="formGroup">
+
+	<h3>Company Information</h3>
+
+	<p>
+		Update your company information.
+	</p>
+
+	<div class="card border-primary mb-3">
+
+		<div class="card-body">
+			<img class="img-circle thumbnail_md" src="{{image}}" />
+			<h3 class="card-title">
+				{{formGroup.get('companyName').value}}
+			</h3>
+			<h4 class="card-subtitle">
+				{{formGroup.get('contactEmail').value}}
+			</h4>
+			<p class="card-text">
+				{{formGroup.get('description').value}}
+			</p>
+			<button class="btn btn-danger btn-sm" *ngIf="image && image != defaultAvatar"
+					(click)="removeAvatar()">
+				<i class="fa fa-trash"></i>
+				Remove Logo
+			</button>
+		</div>
+	</div>
+	<div class="form-group">
+		<label><strong>Company Name: </strong></label>
+		<input type="text"
+			   class="form-control"
+			   formControlName="companyName"
+			   placeholder="Company Name" />
+		<show-form-errors [control]="formGroup.get('companyName')"></show-form-errors>
+	</div>
+	<div class="form-group">
+		<label><strong>Contact Email: </strong></label>
+		<input type="text"
+			   class="form-control"
+			   formControlName="contactEmail"
+			   placeholder="Contact email" />
+		<show-form-errors [control]="formGroup.get('contactEmail')"></show-form-errors>
+	</div>
+
+	<div class="form-group">
+		<label><strong>Description: </strong></label>
+		<textarea class="form-control"
+				  formControlName="description"
+				  placeholder="description"
+				  rows="5"></textarea>
+		<show-form-errors [control]="formGroup.get('description')"></show-form-errors>
+	</div>
+
+	<div class="form-group">
+		<label><strong>Add New Logo: </strong></label>
+		<image-selector (onImageSelected)="onImageSelected($event)"></image-selector>
+	</div>
+
+	<div *ngIf="showProgress">
+
+		<div class="circle">
+			<div class="loader">
+				<div class="loader">
+					<div class="loader">
+						<div class="loader">
+						</div>
+					</div>
+				</div>
+			</div>
+			<p class="text-center">Please Wait</p>
+		</div>
+	</div>
+
+	<button (click)="submit()" class="btn btn-primary" *ngIf="!showProgress">
+		Save Company Information
+	</button>
+</form>

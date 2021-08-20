@@ -1,0 +1,32 @@
+.modal-content {
+    height: auto;
+	.button-bar {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        padding: 1em;
+        display:  flex;
+        justify-content: space-around;
+
+
+        .button {
+            text-transform: uppercase;
+            font-weight: bold;
+            &.is-icon {
+                border-radius: 100%;
+            }
+        }
+
+        background-color: rgba(0, 0, 0, 0.397)
+    }
+
+    .media-container {
+        width: 100%;
+        position: relative;
+
+
+        .is-invisible {
+            display: none;
+        }
+    }
+}

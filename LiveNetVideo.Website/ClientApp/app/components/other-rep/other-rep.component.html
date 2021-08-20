@@ -1,0 +1,28 @@
+﻿<div class="media">
+	<img class="mr-3" src="{{imgSrc}}" />
+	<div class="media-body">
+		<h3>
+			Name: {{name}}
+		</h3>
+		<p *ngIf="title">Title: {{title}}</p>
+		<p *ngIf="email">Contact: {{email}}</p>
+		<p *ngIf="pbxLineName">Pbx Line: {{pbxLineName}}</p>
+		<button class="btn btn-primary" (click)="sendPage()">
+			<i class="fa fa-bullhorn"></i>
+			Page
+		</button>
+	</div>
+</div>
+<!--<mat-list-item>
+	<img matListAvatar src="{{imgSrc}}" />
+	<h3 matLine>
+		Name: {{name}}
+	</h3>
+	<p matLine *ngIf="title">Title: {{title}}</p>
+	<p matLine *ngIf="email">Contact: {{email}}</p>
+	<p matLine *ngIf="pbxLineName">Pbx Line: {{pbxLineName}}</p>
+	<button mat-button (click)="sendPage()">
+		<mat-icon>phone</mat-icon>
+		Page
+	</button>
+</mat-list-item>-->

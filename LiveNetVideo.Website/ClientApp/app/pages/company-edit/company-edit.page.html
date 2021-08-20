@@ -1,0 +1,136 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar>
+		<mat-toolbar-row>
+			<!--<div class="container-fluid">
+				<div class="row">
+					<div class="col-1">
+					</div>
+					<div class="col-7"></div>
+					<div class="col text-right">
+					</div>
+				</div>
+			</div>-->
+
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span>
+				Edit Company Profile
+			</span>
+
+			<span class="fill-row text-right">
+				<button (click)="refreshCompanyProfile()" class="btn btn-danger">
+					<i class="fa fa-rotate-right"></i>
+					Refresh
+				</button>
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+	<div class="mat-sidenav-content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col">
+					<!--<h1 class="text-center page-title">
+					</h1>-->
+
+					<div fxLayout="column" fxLayoutGap="20px">
+
+						<div *ngIf="!donePageLoading">
+							<div class="circle">
+								<div class="loader">
+									<div class="loader">
+										<div class="loader">
+											<div class="loader">
+											</div>
+										</div>
+									</div>
+								</div>
+								<p class="text-center">Please Wait</p>
+							</div>
+						</div>
+
+						<div class="alert alert-warning" *ngIf="!companyProfile && donePageLoading">
+
+							<p>Sorry we were unable to locate your company profile.</p>
+							<p>Click the refresh button below to try and retrieve your profile.</p>
+
+							<button class="btn btn-primary btn-lg" (click)="retrieveCompanyProfile()">
+								<i class="fa fa-refresh"></i>
+								Refresh
+							</button>
+						</div>
+
+						<div *ngIf="companyProfile && donePageLoading">
+
+							<div class="row mb-5">
+								<div class="col">
+									<form-edit-company [showProgress]="showProfileUpdateProgress" [companyProfile]="companyProfile" (onEditCompany)="updateCompanyProfile($event)" (onUpdateCompanyLogo)="updateCompanyLogo($event)"></form-edit-company>
+								</div>
+							</div>
+
+							<div class="row mb-5">
+								<div class="col">
+									<div class="row align-content-center mb-3">
+										<div class="col">
+											<h3>Company Locations</h3>
+										</div>
+										<div class="col-2">
+											<button-add-company-location (onCompanyLocationAdded)="companyLocationAdded($event)"></button-add-company-location>
+										</div>
+									</div>
+									<!--TODO: make this row and cols instead of list-->
+									<div class="row align-content-top justify-content-center" *ngIf="locations">
+										<div class="col-4 mb-3" *ngFor="let location of locations">
+											<company-location [companyLocation]="location"></company-location>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row mb-5">
+								<div class="col">
+									<div class="row align-content-center mb-3">
+										<div class="col">
+											<h3>Company Photos</h3>
+										</div>
+										<div class="col-2">
+											<button-add-company-photo (onPhotoAdded)="companyPhotoAdded($event)"></button-add-company-photo>
+										</div>
+									</div>
+									<div class="row align-content-top" *ngIf="photos">
+										<div class="col-2" *ngFor="let photo of photos">
+											<company-photo [companyPhoto]="photo" (onDeleted)="companyPhotoDeleted($event)"></company-photo>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row mb-5">
+								<div class="col">
+									<div class="row">
+										<div class="col">
+											<h3>Company Videos</h3>
+										</div>
+										<div class="col-2">
+											<button-add-company-video></button-add-company-video>
+										</div>
+									</div>
+
+									<div class="row align-content-center" *ngIf="videos">
+										<div class="col">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>
+<phone-ringer #phoneRinger></phone-ringer>

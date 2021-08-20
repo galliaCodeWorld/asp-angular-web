@@ -1,0 +1,15 @@
+﻿<ul class="list-group list-group-flush" *ngIf="companyProfiles">
+	<li class="list-group-item" *ngFor="let companyProfile of companyProfiles">
+		<div class="media">
+			<img src="{{companyProfile.src}}" class="mr-3" />
+			<div class="media-body"></div>
+		</div>
+	</li>
+</ul>
+
+<!--<mat-list *ngIf="companyProfiles">
+	<mat-list-item *ngFor="let companyProfile of companyProfiles">
+		<img matListAvatar src="{{companyProfile.src}}" alt="" />
+		<h3 matLine></h3>
+	</mat-list-item>
+</mat-list>-->

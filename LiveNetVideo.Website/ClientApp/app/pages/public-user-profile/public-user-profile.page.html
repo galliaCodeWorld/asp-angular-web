@@ -1,0 +1,65 @@
+﻿<mat-sidenav-container #matSidenavContainer>
+	<mat-sidenav #sidenav mode="side" opened="false" mobileCollapse>
+		<navmenu-component></navmenu-component>
+	</mat-sidenav>
+
+	<mat-toolbar color="primary">
+		<mat-toolbar-row>
+			<span>
+				<sidenav-toggle [sideNav]="sidenav"></sidenav-toggle>
+			</span>
+			<span class="fill-row">
+				User Profile
+			</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+	<div class="mat-sidenav-content">
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col">
+
+					<div class="card border border-primary mb-3">
+						<div class="card-body">
+							<img *ngIf="imgSrc" class="img-circle thumbnail-md" src="{{imgSrc}}" />
+							<h3 class="card-title">{{firstName}} {{lastName}}</h3>
+							<h5 class="card-subtitle"><span class="link" [routerLink]="['/phone', email]"><i class="fa fa-phone"></i> Call</span></h5>
+						</div>
+						<div class="card-body" *ngIf="companyProfile">
+
+							<h2>Company Information</h2>
+
+							<div *ngIf="companyProfileId">
+								<img class="img-circle thumbnail-md" src="{{companyImgSrc}}" />
+								<h3>
+									<a class="link" [routerLink]="['/company-profile', companyProfileId]">{{companyName}}</a>
+								</h3>
+								<p>
+									<strong>Email: </strong>
+									{{companyEmail}}
+								</p>
+								<p>
+									<strong>Description: </strong>
+									{{companyDescription}}
+								</p>
+							</div>
+
+							<hr />
+							<h2>Pbx Lines</h2>
+							<div *ngIf="pbxlines">
+								<ul class="list-group">
+									<li class="list-group-item" *ngFor="let pbxline of pbxlines">
+										<public-pbxline [pbxline]="pbxline"></public-pbxline>
+									</li>
+								</ul>
+							</div>
+							<div class="alert alert-warning" *ngIf="!pbxlines">
+								This user's company currently doesn't have any Pbx Lines setup.
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-sidenav-container>

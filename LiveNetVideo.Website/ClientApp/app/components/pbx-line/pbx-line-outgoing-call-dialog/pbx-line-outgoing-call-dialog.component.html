@@ -1,0 +1,12 @@
+<mat-card class="mat-elevation-z0 outgoing-call-card">
+        <mat-card-header>
+            <mat-card-title>Connecting to...</mat-card-title>
+        </mat-card-header>
+        <img class="animated pulse infinite" mat-card-image src="../../../../assets/images/default-avatar.png" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            <h2>{{callReciever.email}}</h2>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
+        </mat-card-actions>
+    </mat-card>

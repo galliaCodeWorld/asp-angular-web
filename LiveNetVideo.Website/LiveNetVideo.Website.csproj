@@ -1,0 +1,486 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <!--<PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>-->
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+  </PropertyGroup>
+  <PropertyGroup>
+    <UserSecretsId>aspnet-AspNetCoreFrameworkIdentity-dc9f661d-0b19-4f8e-a443-686bc448879a</UserSecretsId>
+    <DockerTargetOS>Windows</DockerTargetOS>
+  </PropertyGroup>
+  <ItemGroup>
+	  <!--2.0 -->
+	  <!--
+	  <PackageReference Include="Microsoft.AspNetCore.App" />
+	  <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" PrivateAssets="All" />
+	   -->
+	  <!--<PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+	<PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />-->
+	  <!--
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.3" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
+	  <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.1916590" />
+	  <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+	  -->
+	  <!--<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />-->
+	  <!--
+	  <PackageReference Include="MultiPlatformChat.RestService" Version="1.2.0" />
+	  <PackageReference Include="PaulMiami.AspNetCore.Mvc.Recaptcha" Version="1.2.1" />
+	  <PackageReference Include="WebApi.DTO" Version="1.7.5" />
+	  -->
+	  
+	  <!--2.1 -->
+	<PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.1916590" />
+	<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+	<PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" version="2.1.1" />
+	<PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" version="2.1.1" />
+    <PackageReference Include="MultiPlatformChat.RestService" Version="1.2.0" />
+    <PackageReference Include="PaulMiami.AspNetCore.Mvc.Recaptcha" Version="1.2.1" />
+    <PackageReference Include="WebApi.DTO" Version="1.7.5" />
+	  
+  </ItemGroup>
+  <ItemGroup>
+	  <!--2.0-->
+	<!--
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+	-->
+	  <!--2.1-->
+	  <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+	  <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Files not to show in IDE -->
+    <None Remove="ClientApp\app\components\block-list\block-list.html" />
+    <None Remove="ClientApp\app\components\button-add-company-location\button-add-company-location.component.ts" />
+    <None Remove="ClientApp\app\components\button-add-company-photo\button-add-company-photo.component.ts" />
+    <None Remove="ClientApp\app\components\button-add-company-video\button-add-company-video.component.ts" />
+    <None Remove="ClientApp\app\components\button-add-contact\button-add-contact.component.ts" />
+    <None Remove="ClientApp\app\components\button-add-employee-invite\button-add-employee-invite.component.ts" />
+    <None Remove="ClientApp\app\components\button-add-pbxline\button-add-pbxline.component.ts" />
+    <None Remove="ClientApp\app\components\company-employee-invite\company-employee-invite.component.ts" />
+    <None Remove="ClientApp\app\components\company-employee\company-employee.component.ts" />
+    <None Remove="ClientApp\app\components\company-locations\company-locations.component.ts" />
+    <None Remove="ClientApp\app\components\company-location\company-location.component.ts" />
+    <None Remove="ClientApp\app\components\company-pbxline-reps\company-pbxline-reps.component.ts" />
+    <None Remove="ClientApp\app\components\company-pbxline\company-pbxline.component.ts" />
+    <None Remove="ClientApp\app\components\company-photos\company-photos.component.ts" />
+    <None Remove="ClientApp\app\components\company-photo\company-photo.component.ts" />
+    <None Remove="ClientApp\app\components\company-videos\company-videos.component.ts" />
+    <None Remove="ClientApp\app\components\contact-card\contact-card.component.ts" />
+    <None Remove="ClientApp\app\components\contact-list\contact-list.component.ts" />
+    <None Remove="ClientApp\app\components\contactus-form\contactus-form.component.ts" />
+    <None Remove="ClientApp\app\components\contact\contact.component.ts" />
+    <None Remove="ClientApp\app\components\employee-card\employee-card.component.ts" />
+    <None Remove="ClientApp\app\components\employee-companies\employee-companies.component.ts" />
+    <None Remove="ClientApp\app\components\employer-assigned-pbxline\employer-assigned-pbxline.component.ts" />
+    <None Remove="ClientApp\app\components\employer-details\employer-details.component.ts" />
+    <None Remove="ClientApp\app\components\form-add-attendee\form-add-attendee.component.ts" />
+    <None Remove="ClientApp\app\components\form-add-contact\form-add-contact.component.ts" />
+    <None Remove="ClientApp\app\components\form-company-employee-add\form-company-employee-add.component.ts" />
+    <None Remove="ClientApp\app\components\form-company-employee-edit\form-company-employee-edit.component.ts" />
+    <None Remove="ClientApp\app\components\form-company-employee-invite-add\form-company-employee-invite-add.component.ts" />
+    <None Remove="ClientApp\app\components\form-company-employee-invite-edit\form-company-employee-invite-edit.component.ts" />
+    <None Remove="ClientApp\app\components\form-company-location-add\form-company-location-add.component.ts" />
+    <None Remove="ClientApp\app\components\form-company-location-edit\form-company-location-edit.component.ts" />
+    <None Remove="ClientApp\app\components\form-company-pbxline-add\employee-card.component.ts" />
+    <None Remove="ClientApp\app\components\form-company-pbxline-add\form-company-pbxline-add.component.ts" />
+    <None Remove="ClientApp\app\components\form-company-pbxline-edit\form-company-pbxline-edit.component.ts" />
+    <None Remove="ClientApp\app\components\form-company-photo-add\form-company-photo-add.component.ts" />
+    <None Remove="ClientApp\app\components\form-company-video-add\form-company-video-add.component.ts" />
+    <None Remove="ClientApp\app\components\form-create-company\form-create-company.component.ts" />
+    <None Remove="ClientApp\app\components\form-edit-company\form-edit-company.component.ts" />
+    <None Remove="ClientApp\app\components\form-edit-contact\form-edit-contact.component.ts" />
+    <None Remove="ClientApp\app\components\form-get-info\form-get-info.component.ts" />
+    <None Remove="ClientApp\app\components\global-listener\global-listener.component.ts" />
+    <None Remove="ClientApp\app\components\global-phone-listener\global-phone-listener.component.ts" />
+    <None Remove="ClientApp\app\components\guest-login-form\guest-login-form.component.ts" />
+    <None Remove="ClientApp\app\components\id-card\id-card.component.ts" />
+    <None Remove="ClientApp\app\components\image-selector\image-selector.component.ts" />
+    <None Remove="ClientApp\app\components\incoming-phone-call\incoming-phone-call.component.ts" />
+    <None Remove="ClientApp\app\components\login-options\login-options.component.ts" />
+    <None Remove="ClientApp\app\components\meeting-attendee\meeting-attendee.component.ts" />
+    <None Remove="ClientApp\app\components\meeting-invite\meeting-invite.component.ts" />
+    <None Remove="ClientApp\app\components\meeting-item\meeting-item.component.ts" />
+    <None Remove="ClientApp\app\components\member-login-form\member-login-form.component.ts" />
+    <None Remove="ClientApp\app\components\other-reps\other-reps.component.ts" />
+    <None Remove="ClientApp\app\components\other-rep\other-rep.component.ts" />
+    <None Remove="ClientApp\app\components\pbx-customer-details\pbx-customer-details.component.ts" />
+    <None Remove="ClientApp\app\components\pbx-customer\pbx-customer.component.ts" />
+    <None Remove="ClientApp\app\components\pbx-employers\pbx-employers.component.ts" />
+    <None Remove="ClientApp\app\components\phone-listener\phone-listener.component.ts" />
+    <None Remove="ClientApp\app\components\phone-ringer\phone-ringer.component.ts" />
+    <None Remove="ClientApp\app\components\photo-camera\photo-camera.component.ts" />
+    <None Remove="ClientApp\app\components\private-messaging\private-messaging.component.ts" />
+    <None Remove="ClientApp\app\components\profile-summary\profile-summary.component.ts" />
+    <None Remove="ClientApp\app\components\register-form\footer.component.ts" />
+    <None Remove="ClientApp\app\components\register-form\register-form.component.ts" />
+    <None Remove="ClientApp\app\components\show-form-errors\show-form-errors.component.ts" />
+    <None Remove="ClientApp\app\components\sidenav-toggle\sidenav-toggle.component.ts" />
+    <None Remove="ClientApp\app\components\text-messaging-message\text-messaging-message.component.ts" />
+    <None Remove="ClientApp\app\components\text-messaging\text-messaging.component.ts" />
+    <None Remove="ClientApp\app\directives\global-phone-listener.directive.ts" />
+    <None Remove="ClientApp\app\guards\employee-companies.resolver.service.ts" />
+    <None Remove="ClientApp\app\guards\index.ts" />
+    <None Remove="ClientApp\app\guards\page.canActivate.service.ts" />
+    <None Remove="ClientApp\app\models\accessTokenErrorCode.enum.ts" />
+    <None Remove="ClientApp\app\models\andOr.enum.ts" />
+    <None Remove="ClientApp\app\models\comparisonType.enum.ts" />
+    <None Remove="ClientApp\app\models\contactus.dto.ts" />
+    <None Remove="ClientApp\app\models\dcJson.type.ts" />
+    <None Remove="ClientApp\app\models\formErrorType.enum.ts" />
+    <None Remove="ClientApp\app\models\formItem.type.ts" />
+    <None Remove="ClientApp\app\models\formsErrorMessage.type.ts" />
+    <None Remove="ClientApp\app\models\genericUser.type.ts" />
+    <None Remove="ClientApp\app\models\guest-login.type.ts" />
+    <None Remove="ClientApp\app\models\httpType.enum.ts" />
+    <None Remove="ClientApp\app\models\idCard.type.ts" />
+    <None Remove="ClientApp\app\models\keyValue.type.ts" />
+    <None Remove="ClientApp\app\models\listItem.type.ts" />
+    <None Remove="ClientApp\app\models\loginOptions.enum.ts" />
+    <None Remove="ClientApp\app\models\netcast.dto.ts" />
+    <None Remove="ClientApp\app\models\netcast.type.ts" />
+    <None Remove="ClientApp\app\models\netcastFile.dto.ts" />
+    <None Remove="ClientApp\app\models\netcastGenre.dto.ts" />
+    <None Remove="ClientApp\app\models\netcastLink.type.ts" />
+    <None Remove="ClientApp\app\models\pagingOrderBy.dto.ts" />
+    <None Remove="ClientApp\app\models\parsedToken.type.ts" />
+    <None Remove="ClientApp\app\models\PbxCallQueueNotes.ts" />
+    <None Remove="ClientApp\app\models\pbxCustomer.type.ts" />
+    <None Remove="ClientApp\app\models\profile-summary.type.ts" />
+    <None Remove="ClientApp\app\models\requestNetcastStub.type.ts" />
+    <None Remove="ClientApp\app\models\rtcDataChannelState.enum.ts" />
+    <None Remove="ClientApp\app\models\rtcIceConnectionState.enum.ts" />
+    <None Remove="ClientApp\app\models\rtcIceGatheringState.enum.ts" />
+    <None Remove="ClientApp\app\models\rtcIceTransportPolicy.enum.ts" />
+    <None Remove="ClientApp\app\models\rtcPeerConnectionState.enum.ts" />
+    <None Remove="ClientApp\app\models\rtcSignalingState.enum.ts" />
+    <None Remove="ClientApp\app\models\sendCopyOfMessage.dto.ts" />
+    <None Remove="ClientApp\app\models\sqlPredicate.dto.ts" />
+    <None Remove="ClientApp\app\models\sqlSearchPredicate.dto.ts" />
+    <None Remove="ClientApp\app\models\textMessage.type.ts" />
+    <None Remove="ClientApp\app\models\view-models\netcast.viewmodel.ts" />
+    <None Remove="ClientApp\app\models\view-models\netcastGenre.viewmodel.ts" />
+    <None Remove="ClientApp\app\models\warnings.type.ts" />
+    <None Remove="ClientApp\app\pages\company-search\company-search.page.ts" />
+    <None Remove="ClientApp\app\pages\create-meeting\create-meeting.page.ts" />
+    <None Remove="ClientApp\app\pages\error\error.page.ts" />
+    <None Remove="ClientApp\app\pages\guest-account\guest-account.page.ts" />
+    <None Remove="ClientApp\app\pages\index.ts" />
+    <None Remove="ClientApp\app\pages\manage-meetings\manage-meetings.page.ts" />
+    <None Remove="ClientApp\app\pages\meeting-invites\meeting-invites.page.ts" />
+    <None Remove="ClientApp\app\pages\meetings-dashboard\meetings-dashboard.page.ts" />
+    <None Remove="ClientApp\app\pages\meetings\meetings.page.ts" />
+    <None Remove="ClientApp\app\pages\meeting\meeting.page.ts" />
+    <None Remove="ClientApp\app\pages\netcast-dashboard\netcast-dashboard.page.ts" />
+    <None Remove="ClientApp\app\pages\netcast-details\netcast-details.page.ts" />
+    <None Remove="ClientApp\app\pages\netcast-search\netcast-search.page.ts" />
+    <None Remove="ClientApp\app\pages\past-meetings\past-meetings.page.ts" />
+    <None Remove="ClientApp\app\services\mapper.service.ts" />
+    <None Remove="ClientApp\app\validators\date.validator.ts" />
+    <None Remove="ClientApp\assets\favicon.ico" />
+    <None Remove="ClientApp\assets\images\bg.jpg" />
+    <None Remove="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Remove="webpack.config.js" />
+    <None Remove="webpack.config.vendor.js" />
+    <None Remove="yarn.lock" />
+    <Compile Remove="ClientApp\app\components\account\**" />
+    <Compile Remove="ClientApp\app\components\company-create\**" />
+    <Compile Remove="ClientApp\app\components\company-edit\**" />
+    <Compile Remove="ClientApp\app\components\company-employee-invites\**" />
+    <Compile Remove="ClientApp\app\components\company-employees\**" />
+    <Compile Remove="ClientApp\app\components\company-pbxlines\**" />
+    <Compile Remove="ClientApp\app\components\company-profile\**" />
+    <Compile Remove="ClientApp\app\components\contacts\**" />
+    <Compile Remove="ClientApp\app\components\contactus\**" />
+    <Compile Remove="ClientApp\app\components\employer-assigned-pbxlines\**" />
+    <Compile Remove="ClientApp\app\components\logout\**" />
+    <Compile Remove="ClientApp\app\components\my-company\**" />
+    <Compile Remove="ClientApp\app\components\my-employers\**" />
+    <Compile Remove="ClientApp\app\components\public-user-profile\**" />
+    <Compile Remove="ClientApp\app\components\settings\**" />
+    <Compile Remove="ClientApp\sass\**" />
+    <Compile Remove="Precompile\**" />
+
+    <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
+    <Content Remove="ClientApp\**" />
+    <Content Remove="Precompile\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\account\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\company-create\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\company-edit\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\company-employee-invites\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\company-employees\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\company-pbxlines\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\company-profile\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\contacts\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\contactus\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\employer-assigned-pbxlines\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\logout\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\my-company\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\my-employers\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\public-user-profile\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\settings\**" />
+    <EmbeddedResource Remove="ClientApp\sass\**" />
+    <EmbeddedResource Remove="Precompile\**" />
+    <None Remove="ClientApp\app\components\account\**" />
+    <None Remove="ClientApp\app\components\company-create\**" />
+    <None Remove="ClientApp\app\components\company-edit\**" />
+    <None Remove="ClientApp\app\components\company-employee-invites\**" />
+    <None Remove="ClientApp\app\components\company-employees\**" />
+    <None Remove="ClientApp\app\components\company-pbxlines\**" />
+    <None Remove="ClientApp\app\components\company-profile\**" />
+    <None Remove="ClientApp\app\components\contacts\**" />
+    <None Remove="ClientApp\app\components\contactus\**" />
+    <None Remove="ClientApp\app\components\employer-assigned-pbxlines\**" />
+    <None Remove="ClientApp\app\components\logout\**" />
+    <None Remove="ClientApp\app\components\my-company\**" />
+    <None Remove="ClientApp\app\components\my-employers\**" />
+    <None Remove="ClientApp\app\components\public-user-profile\**" />
+    <None Remove="ClientApp\app\components\settings\**" />
+    <None Remove="ClientApp\sass\**" />
+    <None Remove="Precompile\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ClientApp\assets\favicon.ico">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\assets\images\bg.jpg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\service-worker.js" />
+    <Content Include="ClientApp\ngsw-config.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Application.Business\Application.Business.csproj" />
+    <ProjectReference Include="..\Application.NetCryptor\Application.NetCryptor.csproj" />
+    <ProjectReference Include="..\Application.Services\Application.Services.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Application.Data\EntityFramework\Models\Database.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Database.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Application.Data\EntityFramework\Models\Database.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ClientApp\app\models\dtos\" />
+    <Folder Include="wwwroot\lib\bootstrap\dist\css\" />
+    <Folder Include="wwwroot\lib\bootstrap\dist\fonts\" />
+    <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
+    <Folder Include="wwwroot\lib\bootstrap\fonts\" />
+    <Folder Include="wwwroot\lib\bootstrap\grunt\" />
+    <Folder Include="wwwroot\lib\bootstrap\js\" />
+    <!--<Folder Include="wwwroot\lib\bootstrap\less\mixins\" />-->
+    <Folder Include="wwwroot\lib\bootstrap\nuget\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\css\mvc.site.scss" />
+    <None Include="wwwroot\css\site.scss" />
+    <None Include="wwwroot\images\banner1.svg" />
+    <None Include="wwwroot\images\banner2.svg" />
+    <None Include="wwwroot\images\banner3.svg" />
+    <None Include="wwwroot\images\banner4.svg" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\site.min.js" />
+    <None Include="wwwroot\thirdpartyjs\adapter.js" />
+    <None Include="wwwroot\thirdpartyjs\JsHelper.js" />
+    <None Include="wwwroot\thirdpartyjs\LocalStorage.js" />
+    <None Include="wwwroot\thirdpartyjs\VideoHelper.js" />
+    <None Include="wwwroot\thirdpartyjs\WebRtcClient.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\button-add-company-location\button-add-company-location.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\button-add-company-photo\button-add-company-photo.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\button-add-company-video\button-add-company-video.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\button-add-contact\button-add-contact.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\button-add-employee-invite\button-add-employee-invite.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\button-add-pbxline\button-add-pbxline.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\company-employee-invite\company-employee-invite.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\company-employee\company-employee.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\company-locations\company-locations.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\company-location\company-location.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\company-pbxline-details\company-pbxline-details.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\company-pbxline-reps\company-pbxline-reps.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\company-pbxline\company-pbxline.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\company-photos\company-photos.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\company-photo\company-photo.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\company-videos\company-videos.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\contact-card\contact-card.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\contact-list\contact-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\contactus-form\contactus-form.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\contact\contact.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\employee-card\employee-card.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\employee-companies\employee-companies.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\employer-assigned-pbxline\employer-assigned-pbxline.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\employer-details\employer-details.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-add-attendee\form-add-attendee.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-add-contact\form-add-contact.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-company-employee-add\form-company-employee-add.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-company-employee-edit\form-company-employee-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-company-employee-invite-add\form-company-employee-invite-add.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-company-employee-invite-edit\form-company-employee-invite-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-company-location-add\form-company-location-add.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-company-location-edit\form-company-location-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-company-pbxline-add\employee-card.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-company-pbxline-add\form-company-pbxline-add.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-company-pbxline-edit\form-company-pbxline-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-company-photo-add\form-company-photo-add.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-company-video-add\form-company-video-add.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-create-company\form-create-company.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-edit-company\form-edit-company.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-edit-contact\form-edit-contact.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-company-pbxline-rep-add\form-company-pbxline-rep-add.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\form-get-info\form-get-info.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\global-listener\global-listener.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\global-phone-listener\global-phone-listener.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\guest-login-form\guest-login-form.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\id-card\id-card.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\image-selector\image-selector.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\incoming-phone-call\incoming-phone-call.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\login-options\login-options.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\meeting-attendee\meeting-attendee.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\meeting-invite\meeting-invite.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\meeting-item\meeting-item.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\member-login-form\member-login-form.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\other-reps\other-reps.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\other-rep\other-rep.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\pbx-customer-details\pbx-customer-details.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\pbx-customer\pbx-customer.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\pbx-employers\pbx-employers.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\pbx-rep-shell\pbx-rep-shell.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\phone-listener\phone-listener.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\phone-ringer\phone-ringer.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\photo-camera\photo-camera.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\private-messaging\private-messaging.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\profile-summary\profile-summary.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\footer\footer.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\public-pbxline\public-pbxline.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\register-form\register-form.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\show-form-errors\show-form-errors.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\sidenav-toggle\sidenav-toggle.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\text-messaging-message\text-messaging-message.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\text-messaging\text-messaging.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\directives\global-phone-listener.directive.ts" />
+    <TypeScriptCompile Include="ClientApp\app\guards\page.canActivate.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\guards\guest.canActivate.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\guards\member.canActivate.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\guards\employee-companies.resolver.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\guards\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\accessTokenErrorCode.enum.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\andOr.enum.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\comparisonType.enum.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\contactus.dto.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\country.dto.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\formErrorType.enum.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\formItem.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\formsErrorMessage.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\genericUser.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\guest-login.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\httpType.enum.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\idCard.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\keyValue.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\listItem.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\loginOptions.enum.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\member-login.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\dcJson.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\netcast.dto.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\netcastGenre.dto.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\netcastLink.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\pagingOrderBy.dto.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\parsedToken.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\PbxCallQueueNotes.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\pbxCustomer.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\netcast.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\profile-summary.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\propertyTracking.enum.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\requestNetcastStub.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\rtcDataChannelState.enum.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\rtcIceConnectionState.enum.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\rtcIceGatheringState.enum.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\rtcIceTransportPolicy.enum.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\rtcPeerConnectionState.enum.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\rtcSignalingState.enum.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\sendCopyOfMessage.dto.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\sqlPredicate.dto.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\sqlSearchPredicate.dto.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\textMessage.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\view-models\netcast.viewmodel.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\view-models\netcastGenre.viewmodel.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\warnings.type.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pages\company-search\company-search.page.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pages\create-meeting\create-meeting.page.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pages\error\error.page.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pages\guest-account\guest-account.page.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pages\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pages\manage-meetings\manage-meetings.page.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pages\meeting-invites\meeting-invites.page.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pages\meetings-dashboard\meetings-dashboard.page.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pages\meetings\meetings.page.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pages\meeting\meeting.page.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pages\netcast-dashboard\netcast-dashboard.page.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pages\netcast-details\netcast-details.page.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pages\netcast-search\netcast-search.page.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pages\past-meetings\past-meetings.page.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\formsError.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\mapper.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\service.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\validators\date.validator.ts" />
+    <TypeScriptCompile Include="ClientApp\app\validators\optionalEmail.validator.ts" />
+  </ItemGroup>
+
+  <!--<Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">-->
+
+  <!--As part of publishing, ensure the JS resources are freshly built in production mode-->
+
+  <!--<Exec Command="npm install" />
+		<Exec Command="node node_modules/webpack/bin/webpack.js - -config webpack.config.vendor.js - -env.prod" />
+		<Exec Command="node node_modules/webpack/bin/webpack.js - -env.prod" />-->
+
+  <!--Include the newly-built files in the publish output-->
+
+  <!--<ItemGroup>
+			<DistFiles Include="wwwroot\dist\**; ClientApp\dist\**" />
+			<ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+				<RelativePath>%(DistFiles.Identity)</RelativePath>
+				<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+			</ResolvedFileToPublish>
+		</ItemGroup>
+	</Target>-->
+</Project>

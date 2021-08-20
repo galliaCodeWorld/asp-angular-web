@@ -1,0 +1,32 @@
+<div class="outgoing-call-container">
+	<div class="card">
+
+		<div class="card-body">
+			<img class="animated pulse infinite img-circle thumbnail-lg" src="{{imgSrc}}" alt="">
+			<h2 class="card-title">{{email}}</h2>
+			<p class="card-subtitle" *ngIf="name">{{name}}</p>
+		</div>
+		<div class="card-body">
+			<h2 class="timer">{{timer}}</h2>
+			<h3 class="mt-0">Connecting...</h3>
+		</div>
+		<div class="card-footer">
+			<button class="btn btn-danger" (click)="cancel()">Cancel</button>
+		</div>
+	</div>
+
+	<!--<mat-card class="mat-elevation-z0 outgoing-call-card">
+		<mat-card-header>
+			<h2 mat-card-avatar class="timer">{{timer}}</h2>
+			<mat-card-title><h3>Connecting to...</h3></mat-card-title>
+		</mat-card-header>
+		<img class="animated pulse infinite" mat-card-image src="{{imgSrc}}" alt="">
+		<mat-card-content>
+			<h2>{{email}}</h2>
+			<p *ngIf="name">{{name}}</p>
+		</mat-card-content>
+		<mat-card-actions>
+			<button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
+		</mat-card-actions>
+	</mat-card>-->
+</div>

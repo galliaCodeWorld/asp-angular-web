@@ -1,0 +1,55 @@
+@import '../../_variables.scss';
+@import '../../_mixins.scss';
+/*:host {
+	width: 25%;
+	height: auto;
+}*/
+
+.phone-call-component {
+	cursor: pointer;
+	//object-fit: contain;
+	.hold-placeholder {
+		//display: flex;
+		//flex-direction: column;
+		//justify-content: center;
+		//align-items: center;
+		background-color: black;
+		//background-position: center;
+		//background-size: cover;
+		vertical-align: middle;
+		text-align: center;
+		display: block;
+		overflow: hidden;
+		width: 100%;
+		min-width: 120px;
+		height: auto;
+		border: 1px solid lighten($black, 20%);
+		@include borderRadius($radiusMd);
+		@include shadow(lighten($black, 10%), .6);
+
+		.mat-icon {
+			color: white;
+			font-size: 3em;
+			height: auto;
+			width: auto;
+		}
+
+		p {
+			color: white;
+		}
+	}
+
+	.video-thumbs {
+		object-fit: contain;
+		width: 100%;
+		height: auto;
+		border: 1px solid lighten($black, 20%);
+		//border: 1px solid blue;
+		@include borderRadius($radiusMd);
+		@include shadow(lighten($black, 10%), .6);
+	}
+
+	.col-md-2 {
+		float: right !important;
+	}
+}
