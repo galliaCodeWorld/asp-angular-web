@@ -110,10 +110,8 @@ namespace BzCrm
 			{
 				app.UseExceptionHandler("/Home/Error");
 			}
-			//err2.2------------------------------------------------
-			//app.UseDefaultFiles();
-			//app.UseStaticFiles();
-			//--------------------------------------------
+			app.UseDefaultFiles();
+			app.UseStaticFiles();
 
 			//app.UseIdentity();
 			app.UseAuthentication();
