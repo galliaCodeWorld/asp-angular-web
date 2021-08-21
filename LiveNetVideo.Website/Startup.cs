@@ -94,8 +94,6 @@ namespace BzCrm
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 		{
-			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-			loggerFactory.AddDebug();
 
 			if (env.IsDevelopment())
 			{
@@ -112,9 +110,10 @@ namespace BzCrm
 			{
 				app.UseExceptionHandler("/Home/Error");
 			}
-
-			app.UseDefaultFiles();
-			app.UseStaticFiles();
+			//err2.2------------------------------------------------
+			//app.UseDefaultFiles();
+			//app.UseStaticFiles();
+			//--------------------------------------------
 
 			//app.UseIdentity();
 			app.UseAuthentication();

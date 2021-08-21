@@ -15,7 +15,7 @@ namespace Application.Data.WebApi
 			_webApiClient = webApiClient;
 		}
 
-		public async Task<CompanyProfileDto> GetCompanyProfileById(int id)
+		public Task<CompanyProfileDto> GetCompanyProfileById(int id)
 		{
 			throw new NotImplementedException();
 		}
