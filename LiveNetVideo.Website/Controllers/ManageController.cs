@@ -12,7 +12,6 @@ using LiveNetVideo.Website.Models.ManageViewModels;
 using LiveNetVideo.Website.Services;
 using Microsoft.AspNetCore.Authentication;
 using LiveNetVideo.Website.Models.AccountViewModels;
-using Microsoft.AspNetCore.Http.Authentication;
 
 namespace LiveNetVideo.Website.Controllers
 {
@@ -289,7 +288,7 @@ namespace LiveNetVideo.Website.Controllers
 			//var otherLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync())
 			//	.Where(auth => model.CurrentLogins.All(ul => auth.Name != ul.LoginProvider))
 			//	.ToList();
-			List<AuthenticationDescription> otherLogins = null;
+			List<AuthenticationScheme> otherLogins = null;
 			ViewData["ShowRemoveButton"] = user.PasswordHash != null || userLogins.Count > 1;
 			return View(new ManageLoginsViewModel
 			{

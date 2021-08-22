@@ -5,9 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.AspNetCore.SpaServices.Extensions;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
+
 using LiveNetVideo.Website.Data;
 using LiveNetVideo.Website.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -26,6 +30,7 @@ using WebApi.DTO;
 using Application.Data;
 using Application.Data.WebApi;
 
+
 namespace BzCrm
 {
 	public class Startup
@@ -37,6 +42,7 @@ namespace BzCrm
 
 		public IConfiguration Configuration { get; }
 
+		[System.Obsolete("Use Microsoft.AspNetCore.SpaServices.Extensions")]
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
@@ -60,7 +66,8 @@ namespace BzCrm
 				options.Filters.Add(new RequireHttpsAttribute());
 			});
 
-			services.AddMvc();
+			services.AddMvc(option => option.EnableEndpointRouting = false).AddNewtonsoftJson();
+
 			//NOTE: New Version: added
 			services.AddNodeServices();
 
@@ -92,7 +99,7 @@ namespace BzCrm
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
 		{
 
 			if (env.IsDevelopment())
