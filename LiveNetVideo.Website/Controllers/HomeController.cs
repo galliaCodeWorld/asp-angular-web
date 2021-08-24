@@ -28,9 +28,9 @@ namespace LiveNetVideo.Website.Controllers
 		//    _service = service;
 		//}
 
-		private readonly IHostingEnvironment _hostingEnvironment;
+		private readonly IWebHostEnvironment _hostingEnvironment;
 
-		public HomeController(IHostingEnvironment hostingEnvironment, IService service, IOptions<AppSettings> appSettings)
+		public HomeController(IWebHostEnvironment hostingEnvironment, IService service, IOptions<AppSettings> appSettings)
 		{
 			_hostingEnvironment = hostingEnvironment;
 			_service = service;

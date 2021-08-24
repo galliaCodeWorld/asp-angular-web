@@ -10,7 +10,7 @@
 		"start:s:p": "dotnet watch run --launch-profile dotNetCoreNgCli-prod",
 		"start": "concurrently \"npm run start:s\" \"npm run start:ng\"  ",
 		"start:p": "npm run build:ng:p:ssr && npm run start:s:p",
-		"start:ng": "ng serve --open -sm -vc -hmr",
+		"start:ng": "ng serve --open -sm -vc -hmr ",
 		"build:ng": "ng build",
 		"build:ng:p": "npm run lint && ng build --prod --buildOptimizer --statsJson --output-hashing=none --extractCss --vendor-chunk",
 		"build:ng:p:ssr": "npm run build:ng:p && ng build --prod --app 1 --output-hashing=none",

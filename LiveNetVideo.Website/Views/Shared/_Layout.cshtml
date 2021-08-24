@@ -41,11 +41,11 @@
     </environment>
 </head>
 <body>
-    @{ Html.RenderPartial("_Header");}
+    @{await Html.RenderPartialAsync("_Header");}
 
     @RenderBody()
 
-    @{ Html.RenderPartial("_Footer");}
+    @{await Html.RenderPartialAsync("_Footer");}
 
     @RenderSection("Scripts", required: false)
 </body>

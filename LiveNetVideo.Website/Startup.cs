@@ -96,6 +96,7 @@ namespace BzCrm
 				SecretKey = appSettings.GetSection("RecaptchaPrivateKey").Value
 			});
 			//services.AddTransient<IWebApiClient, WebApiClient>();
+			services.AddDatabaseDeveloperPageExceptionFilter();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -110,7 +111,7 @@ namespace BzCrm
 				//{
 				//	HotModuleReplacement = true
 				//});
-				app.UseDatabaseErrorPage();
+				app.UseMigrationsEndPoint();
 				app.UseBrowserLink();
 			}
 			else

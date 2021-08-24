@@ -62,7 +62,7 @@
 					</p>
 
 					<div class="register">
-						@Html.Partial("~/Views/Shared/_EmployeeInviteRegister.cshtml", Model.Registration)
+						@Html.PartialAsync("~/Views/Shared/_EmployeeInviteRegister.cshtml", Model.Registration)
 						@*<h1 class="is-size-3 has-text-white">EmployeeInvite</h1>
 							<form asp-controller="Account" asp-action="EmployeeInviteRegister" method="post">
 								<input asp-for="@Model.Registration.CompanyEmployeeInviteId" type="hidden" value="@Model.Registration.CompanyEmployeeInviteId" />
