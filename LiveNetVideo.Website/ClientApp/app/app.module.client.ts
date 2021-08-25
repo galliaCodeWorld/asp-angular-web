@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
 import { sharedConfig } from './app.module.shared';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppModuleMaterials } from './app.module.materials';
@@ -87,7 +86,8 @@ import { MapperService } from './services/mapper.service';
 import {
 	PageCanActivate,
 	GuestCanActivate,
-	MemberCanActivate,	EmployeeCompaniesResolver
+	MemberCanActivate,
+	EmployeeCompaniesResolver
 } from "./guards/index";
 
 @NgModule({
@@ -98,7 +98,6 @@ import {
 		BrowserModule,
 		FormsModule,
 		ReactiveFormsModule,
-		HttpModule,
 		AppModuleMaterials,
 		...sharedConfig.imports,
 		BrowserAnimationsModule,

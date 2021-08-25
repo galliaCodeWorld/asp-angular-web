@@ -8,11 +8,11 @@ import {
 	SignalrHttpResponseType,
 	JwtToken,
 	WebApiResponseType,
-	WebApiResponseStatusType,	ParsedTokenType,
+	WebApiResponseStatusType,
+	ParsedTokenType,
 	PropertyTrackingEnum,
 	PhoneLineType
 } from '../models/index';
-import { ArrayBuffer } from '@angular/http/src/static_request';
 
 @Injectable()
 export class JsHelperService {
@@ -20,8 +20,7 @@ export class JsHelperService {
 	) { }
 
 	generateKey(keyName: PushEncryptionKeyName, subscription: PushSubscription): string {
-		let rawKey: ArrayBuffer;
-		rawKey = subscription.getKey ? subscription.getKey(keyName) : null;
+		let rawKey = subscription.getKey ? subscription.getKey(keyName) : null;
 		return rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : '';
 	}
 
