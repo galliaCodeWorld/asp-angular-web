@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { Http } from '@angular/http';
+import {HttpClient} from '@angular/common/http'
 
 @Component({
     selector: 'fetchdata',
@@ -7,23 +7,19 @@ import { Http } from '@angular/http';
 })
 export class FetchDataComponent {
     public forecasts: WeatherForecast[];
-    public _http: Http;
+    public _http: HttpClient;
     public _url: string;
 
     // NOTE: the get url is a web api url SampleDataController.cs
-    constructor(http: Http, @Inject('ORIGIN_URL') originUrl: string) {
+    constructor(http: HttpClient, @Inject('ORIGIN_URL') originUrl: string) {
         this._http = http;
         this._url = originUrl;
-        //http.get(originUrl + '/api/SampleData/WeatherForecasts').subscribe(result => {
-        //    console.log("fetchdata: ", result);
-        //    this.forecasts = result.json() as WeatherForecast[];
-        //});
     }
 
     ngOnInit() {
         this._http.get(this._url + '/ChatClient/api/SampleData/WeatherForecasts').subscribe(result => {
             console.log("fetchdata: ", result);
-            this.forecasts = result.json() as WeatherForecast[];
+            this.forecasts = result as WeatherForecast[];
         });
     }
 }

@@ -42,7 +42,7 @@ import {
 	HttpTypeEnum,
 } from '../models/index';
 
-import { Observable, Subject, BehaviorSubject } from 'rxjs/Rx'
+import { Observable, Subject, BehaviorSubject } from 'rxjs'
 //import { Platform } from "ionic-angular";
 
 @Injectable()

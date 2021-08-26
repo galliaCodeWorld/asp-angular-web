@@ -1,8 +1,6 @@
 ﻿import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { ConnectionBackend, Http, Request, RequestOptions, RequestOptionsArgs, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-//import { TransferState } from './transfer-state/transfer-state';
+import {HttpClient} from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { isPlatformServer } from '@angular/common';
 
 import 'rxjs/add/operator/map';
@@ -16,80 +14,74 @@ export class TransferHttp {
 
     constructor(
         @Inject(PLATFORM_ID) public platformId,
-        public http: Http,
+        public http: HttpClient,
         protected transferState: TransferState
     ) { }
 
-    request(uri: string | Request, options?: RequestOptionsArgs): Observable<any> {
-        return this.getData(uri, options, (url: string, _options: RequestOptionsArgs) => {
-            return this.http.request(url, _options);
+    request(uri: string, options?: Object): Observable<any> {
+        return this.getData(uri, options, (url: string, _options: Object) => {
+            return this.http.get(url, _options);
         });
     }
 	/**
 	 * Performs a request with `get` http method.
 	 */
-    get(url: string, options?: RequestOptionsArgs): Observable<any> {
-        return this.getData(url, options, (_url: string, _options: RequestOptionsArgs) => {
+    get(url: string, options?: Object): Observable<any> {
+        return this.getData(url, options, (_url: string, _options: Object) => {
             return this.http.get(_url, _options);
         });
     }
 	/**
 	 * Performs a request with `post` http method.
 	 */
-    post(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
-        return this.getPostData(url, body, options, (_url: string, _options: RequestOptionsArgs) => {
+    post(url: string, body: any, options?: Object): Observable<any> {
+        return this.getPostData(url, body, options, (_url: string, _options: Object) => {
             return this.http.post(_url, body, _options);
         });
     }
 	/**
 	 * Performs a request with `put` http method.
 	 */
-    put(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
-        return this.getPostData(url, body, options, (_url: string, _options: RequestOptionsArgs) => {
+    put(url: string, body: any, options?: Object): Observable<any> {
+        return this.getPostData(url, body, options, (_url: string, _options: Object) => {
             return this.http.put(_url, body, _options);
         });
     }
 	/**
 	 * Performs a request with `delete` http method.
 	 */
-    delete(url: string, options?: RequestOptionsArgs): Observable<any> {
-        return this.getData(url, options, (_url: string, _options: RequestOptionsArgs) => {
+    delete(url: string, options?: Object): Observable<any> {
+        return this.getData(url, options, (_url: string, _options: Object) => {
             return this.http.delete(_url, _options);
         });
     }
 	/**
 	 * Performs a request with `patch` http method.
 	 */
-    patch(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
-        return this.getPostData(url, body, options, (_url: string, _options: RequestOptionsArgs) => {
+    patch(url: string, body: any, options?: Object): Observable<any> {
+        return this.getPostData(url, body, options, (_url: string, _options: Object) => {
             return this.http.patch(_url, body.options);
         });
     }
 	/**
 	 * Performs a request with `head` http method.
 	 */
-    head(url: string, options?: RequestOptionsArgs): Observable<any> {
-        return this.getData(url, options, (_url: string, _options: RequestOptionsArgs) => {
+    head(url: string, options?: Object): Observable<any> {
+        return this.getData(url, options, (_url: string, _options: Object) => {
             return this.http.head(_url, _options);
         });
     }
 	/**
 	 * Performs a request with `options` http method.
 	 */
-    options(url: string, options?: RequestOptionsArgs): Observable<any> {
-        return this.getData(url, options, (_url: string, _options: RequestOptionsArgs) => {
+    options(url: string, options?: Object): Observable<any> {
+        return this.getData(url, options, (_url: string, _options: Object) => {
             return this.http.options(_url, _options);
         });
     }
 
-    public getData(uri: string | Request, options: RequestOptionsArgs,
-        callback: (uri: string | Request, options?: RequestOptionsArgs) => Observable<Response>) {
-        let url = uri;
-
-        if (typeof uri !== 'string') {
-            url = uri.url;
-        }
-
+    public getData(url: string, options: Object,
+        callback: (url: string, options?: Object) => Observable<any>) {
         const key = url + JSON.stringify(options);
 
         try {
@@ -105,20 +97,14 @@ export class TransferHttp {
         }
     }
 
-    public getPostData(uri: string | Request, body: any, options: RequestOptionsArgs,
-        callback: (uri: string | Request, body: any, options?: RequestOptionsArgs) => Observable<Response>) {
-        let url = uri;
-
-        if (typeof uri !== 'string') {
-            url = uri.url;
-        }
-
+    public getPostData(url: string, body: any, options: Object,
+        callback: (url: string, body: any, options?: Object) => Observable<any>) {
         const key = url + JSON.stringify(body);
 
         try {
             return this.resolveData(key);
         } catch (e) {
-            return callback(uri, body, options)
+            return callback(url, body, options)
                 .map(res => res.json())
                 .do(data => {
                     if (this.isServer) {
