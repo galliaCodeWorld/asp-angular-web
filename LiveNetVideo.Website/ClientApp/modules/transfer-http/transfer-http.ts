@@ -1,13 +1,9 @@
 ﻿import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { isPlatformServer } from '@angular/common';
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/observable/fromPromise';
 import { TransferState } from "../transer-state/transfer-state";
-
 @Injectable()
 export class TransferHttp {
     public isServer = isPlatformServer(this.platformId);
@@ -88,12 +84,12 @@ export class TransferHttp {
             return this.resolveData(key);
         } catch (e) {
             return callback(url, options)
-                .map(res => res.json())
-                .do(data => {
+                .pipe(map(res => { res.json() }))
+                .pipe(tap(data => { 
                     if (this.isServer) {
                         this.setCache(key, data);
                     }
-                });
+                }));
         }
     }
 
@@ -104,13 +100,13 @@ export class TransferHttp {
         try {
             return this.resolveData(key);
         } catch (e) {
-            return callback(url, body, options)
-                .map(res => res.json())
-                .do(data => {
+            return callback(url, options)
+                .pipe(map(res => { res.json() }))
+                .pipe(tap(data => {
                     if (this.isServer) {
                         this.setCache(key, data);
                     }
-                });
+                }));
         }
     }
 
@@ -121,7 +117,7 @@ export class TransferHttp {
             throw new Error();
         }
 
-        return Observable.fromPromise(Promise.resolve(data));
+        return from(Promise.resolve(data));
     }
 
     public setCache(key, data) {
